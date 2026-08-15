@@ -1,247 +1,1390 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="bn">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Physics Khuji ⚡</title>
+
 <style>
 *{box-sizing:border-box}
-html,body{margin:0;padding:0;background:#07111f;color:#f7f8ff;font-family:"Noto Sans Bengali","Noto Sans",Arial,sans-serif}
-body{min-height:100vh}
-button,input{font:inherit}
-button{cursor:pointer}
-.wrap{max-width:1050px;margin:auto;padding:14px}
-header{display:flex;align-items:center;justify-content:space-between;gap:10px;padding:10px 0;position:sticky;top:0;z-index:20;background:#07111fee;backdrop-filter:blur(10px)}
-.brand{font-size:22px;font-weight:900}.bolt{display:inline-grid;place-items:center;width:40px;height:40px;border-radius:12px;background:#7659ff;margin-right:7px}
-.stats{display:flex;gap:6px;flex-wrap:wrap}.stat{padding:7px 10px;border:1px solid #30405d;border-radius:12px;background:#112039;font-size:12px}
-.screen{display:none}.screen.active{display:block}
-.hero,.panel,.card,.topic,.detail{border:1px solid #2b3b58;background:#0e1c30;border-radius:22px;box-shadow:0 14px 38px #0006}
-.hero{margin-top:16px;padding:34px;background:radial-gradient(circle at 85% 15%,#7659ff55,transparent 30%),linear-gradient(135deg,#152643,#0d1727)}
-.badge{display:inline-block;padding:6px 10px;border-radius:99px;background:#2b2354;color:#ddd5ff;font-size:12px;font-weight:800}
-h1{font-size:clamp(42px,9vw,78px);line-height:.95;margin:14px 0 8px}
-h2{margin:8px 0 12px}h3{margin:8px 0}p{color:#bac5d8;line-height:1.75}
+body{
+ margin:0;
+ background:#07111f;
+ color:#f5f7ff;
+ font-family:"Noto Sans Bengali","Noto Sans",Arial,sans-serif;
+}
+button{font:inherit;cursor:pointer}
+.container{max-width:1050px;margin:auto;padding:15px}
+
+header{
+ position:sticky;top:0;z-index:10;
+ display:flex;justify-content:space-between;align-items:center;
+ padding:12px 0;background:#07111fee;
+ backdrop-filter:blur(10px)
+}
+.logo{font-size:22px;font-weight:900}
+.bolt{
+ display:inline-grid;place-items:center;
+ width:40px;height:40px;border-radius:12px;
+ background:#7659ff;margin-right:7px
+}
+.stats{display:flex;gap:7px;flex-wrap:wrap}
+.stat{
+ background:#112039;border:1px solid #30405d;
+ border-radius:12px;padding:7px 10px;font-size:12px
+}
+
+.page{display:none}
+.page.active{display:block}
+
+.hero,.panel,.card,.topic,.detail{
+ border:1px solid #2b3b58;
+ background:#0e1c30;
+ border-radius:22px;
+ box-shadow:0 14px 38px #0006
+}
+
+.hero{
+ margin-top:18px;padding:35px;
+ background:
+ radial-gradient(circle at 85% 15%,#7659ff55,transparent 30%),
+ linear-gradient(135deg,#152643,#0d1727)
+}
+
+.badge{
+ display:inline-block;padding:6px 11px;
+ border-radius:99px;background:#2b2354;
+ color:#ddd5ff;font-size:12px;font-weight:800
+}
+
+h1{font-size:clamp(42px,9vw,78px);line-height:.95;margin:15px 0 10px}
+h2{margin:8px 0 13px}
+h3{margin:8px 0}
+p{color:#bac5d8;line-height:1.75}
+
 .row{display:flex;flex-wrap:wrap;gap:10px;margin-top:18px}
-.primary,.secondary{padding:12px 17px;border-radius:12px;font-weight:800}
-.primary{border:0;background:#7659ff;color:#fff}.secondary{border:1px solid #384a69;background:#14233c;color:#fff}
-.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:18px}
-.card{padding:20px}.icon{font-size:32px}
+
+.primary,.secondary{
+ padding:12px 17px;border-radius:12px;font-weight:800
+}
+.primary{border:0;background:#7659ff;color:white}
+.secondary{border:1px solid #384a69;background:#14233c;color:white}
+
+.grid{
+ display:grid;grid-template-columns:repeat(3,1fr);
+ gap:14px;margin-top:18px
+}
+.card{padding:20px}
+.icon{font-size:32px}
+
 .panel{padding:23px;margin-top:18px}
-.map{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:18px}
-.topic{padding:18px;min-height:180px;transition:.15s}.topic.open{cursor:pointer}.topic.open:hover{transform:translateY(-3px);border-color:#917cff}.topic.locked{opacity:.4}
+
+.map{
+ display:grid;grid-template-columns:repeat(3,1fr);
+ gap:14px;margin-top:18px
+}
+.topic{
+ padding:18px;min-height:180px;
+ transition:.15s
+}
+.topic.open{cursor:pointer}
+.topic.open:hover{
+ transform:translateY(-3px);
+ border-color:#917cff
+}
+.topic.locked{opacity:.4}
+
 .level{float:right;font-size:12px;color:#8e9bb0;font-weight:900}
-.bar{height:8px;background:#263650;border-radius:99px;overflow:hidden;margin-top:12px}.bar i{display:block;height:100%;background:#8068ff}
-.map4{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-top:15px}
-.mapbtn{min-height:108px;border:1px solid #3a4b69;background:#12223b;color:#fff;border-radius:16px;padding:12px}
-.mapbtn:hover{border-color:#927dff;background:#1a2945}
-.mapbtn small{display:block;color:#aebbd0;line-height:1.45;margin-top:7px}
-.detail{padding:18px;margin-top:15px}
-.source{margin-top:16px;padding:16px;border:1px solid #344764;background:#0a1729;border-radius:16px}
-.source a{display:block;color:#c8bcff;text-decoration:none;padding:8px 0}
+
+.bar{
+ height:8px;background:#263650;
+ border-radius:99px;overflow:hidden;margin-top:12px
+}
+.bar i{display:block;height:100%;background:#8068ff}
+
+.map4{
+ display:grid;grid-template-columns:repeat(4,1fr);
+ gap:10px;margin-top:15px
+}
+.mapbtn{
+ min-height:110px;
+ border:1px solid #3a4b69;
+ background:#12223b;color:white;
+ border-radius:16px;padding:12px
+}
+.mapbtn:hover{
+ border-color:#927dff;background:#1a2945
+}
+.mapbtn small{
+ display:block;color:#aebbd0;
+ line-height:1.45;margin-top:7px
+}
+
+.detail{
+ padding:18px;margin-top:15px
+}
+
+.source{
+ margin-top:16px;padding:16px;
+ border:1px solid #344764;
+ background:#0a1729;border-radius:16px
+}
+.source a{
+ display:block;color:#c8bcff;
+ text-decoration:none;padding:8px 0
+}
 .source a:hover{text-decoration:underline}
-.option{display:block;width:100%;text-align:left;padding:13px;margin:8px 0;border-radius:11px;border:1px solid #354665;background:#0a1729;color:#fff}
-.option.selected{border-color:#927dff;background:#2e255b}.success{border-color:#2ac997!important;background:#103b31!important}.wrong{border-color:#ff647c!important;background:#3b1824!important}
-input{width:100%;padding:13px;border-radius:10px;border:1px solid #354665;background:#0a1729;color:#fff;margin:8px 0}
-.toast{display:none;position:fixed;left:50%;bottom:20px;transform:translateX(-50%);background:#fff;color:#101828;padding:12px 18px;border-radius:12px;font-weight:800;z-index:50}
-footer{text-align:center;color:#74829a;padding:30px}
-@media(max-width:760px){.grid,.map{grid-template-columns:1fr 1fr}.map4{grid-template-columns:1fr 1fr}}
-@media(max-width:500px){.grid,.map,.map4{grid-template-columns:1fr}}
+
+.option{
+ display:block;width:100%;
+ text-align:left;padding:13px;margin:8px 0;
+ border-radius:11px;
+ border:1px solid #354665;
+ background:#0a1729;color:white
+}
+.option.selected{
+ border-color:#927dff;background:#2e255b
+}
+
+.success{
+ border-color:#2ac997!important;
+ background:#103b31!important
+}
+.wrong{
+ border-color:#ff647c!important;
+ background:#3b1824!important
+}
+
+input{
+ width:100%;padding:13px;
+ border-radius:10px;
+ border:1px solid #354665;
+ background:#0a1729;color:white;
+ margin:8px 0
+}
+
+footer{
+ text-align:center;color:#74829a;padding:30px
+}
+
+@media(max-width:760px){
+ .grid,.map{grid-template-columns:1fr 1fr}
+ .map4{grid-template-columns:1fr 1fr}
+}
+@media(max-width:500px){
+ .grid,.map,.map4{grid-template-columns:1fr}
+}
 </style>
 </head>
+
 <body>
-<div class="wrap">
+
+<div class="container">
+
 <header>
-  <div class="brand"><span class="bolt">⚡</span>Physics Khuji</div>
-  <div class="stats">
-    <div class="stat">❤️ <b id="lives">3</b></div>
-    <div class="stat">⭐ <b id="xp">0</b> XP</div>
-    <div class="stat">🏆 স্তর <b id="level">1</b></div>
-  </div>
+<div class="logo">
+<span class="bolt">⚡</span>Physics Khuji
+</div>
+
+<div class="stats">
+<div class="stat">❤️ <b id="lives">3</b></div>
+<div class="stat">⭐ <b id="xp">0</b> XP</div>
+<div class="stat">🏆 স্তর <b id="level">1</b></div>
+</div>
 </header>
 
-<section id="home" class="screen active">
-  <div class="hero">
-    <span class="badge">দশম শ্রেণি • ইন্টার‌্যাকটিভ Physics শেখা</span>
-    <h1>Physics Khuji ⚡</h1>
-    <h3>চারপাশের জীবন থেকে Physics খুঁজে শেখো!</h3>
-    <p>শুধু মুখস্থ নয়—দেখো, ভাবো, পরীক্ষা করো এবং বাস্তব জীবনের ঘটনার সঙ্গে Physics-এর সম্পর্ক খুঁজে বের করো।</p>
-    <div class="row">
-      <button class="primary" onclick="show('profile')">🚀 শেখা শুরু করি</button>
-      <button class="secondary" onclick="show('world')">🗺️ Physics-এর দুনিয়া</button>
-    </div>
-  </div>
-  <div class="grid">
-    <div class="card"><div class="icon">🕵️</div><h3>Physics গোয়েন্দা</h3><p>বাস, সাইকেল, আয়না, ফ্যান—কোন ঘটনায় কোন Physics ধারণা কাজ করছে তা খুঁজে বের করো।</p></div>
-    <div class="card"><div class="icon">🧪</div><h3>বাস্তব পরীক্ষা</h3><p>সহজ ও নিরাপদ activity করে বইয়ের ধারণা নিজের চোখে বোঝো।</p></div>
-    <div class="card"><div class="icon">🏆</div><h3>Challenge</h3><p>Mission ও Quiz শেষ করে XP অর্জন করো এবং নতুন স্তর খুলে দাও।</p></div>
-  </div>
+
+<!-- HOME -->
+
+<section id="home" class="page active">
+
+<div class="hero">
+
+<span class="badge">
+দশম শ্রেণি • ইন্টার‌্যাকটিভ Physics শেখা
+</span>
+
+<h1>Physics Khuji ⚡</h1>
+
+<h3>
+চারপাশের জীবন থেকে Physics খুঁজে শেখো!
+</h3>
+
+<p>
+শুধু মুখস্থ নয়—দেখো, ভাবো, পরীক্ষা করো এবং
+বাস্তব জীবনের ঘটনার সঙ্গে Physics-এর সম্পর্ক খুঁজে বের করো।
+</p>
+
+<div class="row">
+
+<button class="primary" onclick="show('profile')">
+🚀 শেখা শুরু করি
+</button>
+
+<button class="secondary" onclick="show('world')">
+🗺️ Physics-এর দুনিয়া
+</button>
+
+</div>
+</div>
+
+
+<div class="grid">
+
+<div class="card">
+<div class="icon">🕵️</div>
+<h3>Physics গোয়েন্দা</h3>
+<p>
+বাস, সাইকেল, আয়না, ফ্যান—কোন ঘটনায়
+কোন Physics ধারণা কাজ করছে তা খুঁজে বের করো।
+</p>
+</div>
+
+<div class="card">
+<div class="icon">🧪</div>
+<h3>বাস্তব পরীক্ষা</h3>
+<p>
+সহজ ও নিরাপদ activity করে
+বইয়ের ধারণা নিজের চোখে বোঝো।
+</p>
+</div>
+
+<div class="card">
+<div class="icon">🏆</div>
+<h3>Challenge</h3>
+<p>
+Mission ও Quiz শেষ করে XP অর্জন করো
+এবং নতুন স্তর খুলে দাও।
+</p>
+</div>
+
+</div>
 </section>
 
-<section id="profile" class="screen">
-  <div class="panel">
-    <span class="badge">👤 শিক্ষার্থীর পরিচয়</span>
-    <h2>তোমার নাম লিখো</h2>
-    <input id="studentName" placeholder="যেমন: Esha">
-    <p>কোনো account লাগবে না। তোমার অগ্রগতি এই browser-এ সংরক্ষিত থাকবে।</p>
-    <div class="row">
-      <button class="secondary" onclick="show('home')">← ফিরে যাও</button>
-      <button class="primary" onclick="start()">🎮 শেখা শুরু করি</button>
-    </div>
-  </div>
+
+<!-- PROFILE -->
+
+<section id="profile" class="page">
+
+<div class="panel">
+
+<span class="badge">👤 শিক্ষার্থীর পরিচয়</span>
+
+<h2>তোমার নাম লিখো</h2>
+
+<input id="studentName" placeholder="যেমন: Esha">
+
+<p>
+কোনো account লাগবে না।
+তোমার অগ্রগতি এই browser-এ সংরক্ষিত থাকবে।
+</p>
+
+<div class="row">
+
+<button class="secondary" onclick="show('home')">
+← ফিরে যাও
+</button>
+
+<button class="primary" onclick="startGame()">
+🎮 শেখা শুরু করি
+</button>
+
+</div>
+
+</div>
 </section>
 
-<section id="world" class="screen">
-  <div class="panel">
-    <span class="badge">🗺️ Physics-এর দুনিয়া</span>
-    <h2 id="journey">তোমার Physics Journey</h2>
-    <p>প্রথম স্তর থেকে শুরু করো। একটি Mission সফল হলে পরের স্তর খুলে যাবে।</p>
-    <div id="topics" class="map"></div>
-    <div class="row"><button class="secondary" onclick="show('home')">← হোম</button><button class="primary" onclick="dashboard()">📊 আমার অগ্রগতি</button></div>
-  </div>
+
+<!-- WORLD -->
+
+<section id="world" class="page">
+
+<div class="panel">
+
+<span class="badge">🗺️ Physics-এর দুনিয়া</span>
+
+<h2 id="journey">তোমার Physics Journey</h2>
+
+<p>
+একটি Mission সফল হলে পরের স্তর খুলে যাবে।
+</p>
+
+<div id="topics" class="map"></div>
+
+<div class="row">
+
+<button class="secondary" onclick="show('home')">
+← হোম
+</button>
+
+<button class="primary" onclick="dashboard()">
+📊 আমার অগ্রগতি
+</button>
+
+</div>
+
+</div>
 </section>
 
-<section id="lesson" class="screen"><div id="lessonBox" class="panel"></div></section>
-<section id="detail" class="screen"><div id="detailBox" class="panel"></div></section>
 
-<section id="quiz" class="screen">
-  <div class="panel">
-    <span class="badge">⚔️ Mission Challenge</span>
-    <h2 id="quizTitle"></h2>
-    <div id="quizBox"></div>
-    <div id="quizResult"></div>
-    <div class="row">
-      <button class="secondary" onclick="openTopic(current)">← Concept Map</button>
-      <button class="primary" onclick="submitQuiz()">উত্তর জমা দাও</button>
-    </div>
-  </div>
+<!-- LESSON -->
+
+<section id="lesson" class="page">
+
+<div id="lessonBox" class="panel"></div>
+
 </section>
 
-<section id="dash" class="screen">
-  <div class="panel">
-    <span class="badge">📊 আমার অগ্রগতি</span>
-    <h2 id="dashName"></h2>
-    <p id="dashText"></p>
-    <div class="bar"><i id="dashBar"></i></div>
-  </div>
-  <div class="grid">
-    <div class="card"><h3>⭐ XP</h3><h2 id="dashXp">0</h2></div>
-    <div class="card"><h3>🔥 ধারাবাহিকতা</h3><h2 id="dashStreak">0</h2></div>
-    <div class="card"><h3>🎯 সম্পন্ন Mission</h3><h2 id="dashDone">0</h2></div>
-  </div>
-  <div class="panel"><h3>🏅 অর্জন</h3><p id="badges"></p><h3>🔄 আবার অনুশীলন</h3><div id="revision"></div></div>
+
+<!-- DETAIL -->
+
+<section id="detail" class="page">
+
+<div id="detailBox" class="panel"></div>
+
 </section>
+
+
+<!-- QUIZ -->
+
+<section id="quiz" class="page">
+
+<div class="panel">
+
+<span class="badge">
+⚔️ Mission Challenge
+</span>
+
+<h2 id="quizTitle"></h2>
+
+<div id="quizBox"></div>
+
+<div id="quizResult"></div>
+
+<div class="row">
+
+<button class="secondary" onclick="openTopic(current)">
+← Concept Map
+</button>
+
+<button class="primary" onclick="submitQuiz()">
+উত্তর জমা দাও
+</button>
+
+</div>
+
+</div>
+</section>
+
+
+<!-- DASHBOARD -->
+
+<section id="dash" class="page">
+
+<div class="panel">
+
+<span class="badge">
+📊 আমার অগ্রগতি
+</span>
+
+<h2 id="dashName"></h2>
+
+<p id="dashText"></p>
+
+<div class="bar">
+<i id="dashBar"></i>
+</div>
+
+</div>
+
+
+<div class="grid">
+
+<div class="card">
+<h3>⭐ XP</h3>
+<h2 id="dashXp">0</h2>
+</div>
+
+<div class="card">
+<h3>🔥 ধারাবাহিকতা</h3>
+<h2 id="dashStreak">0</h2>
+</div>
+
+<div class="card">
+<h3>🎯 সম্পন্ন Mission</h3>
+<h2 id="dashDone">0</h2>
+</div>
+
+</div>
+
+
+<div class="panel">
+
+<h3>🏅 অর্জন</h3>
+
+<p id="badges"></p>
+
+<h3>🔄 আবার অনুশীলন</h3>
+
+<div id="revision"></div>
+
+</div>
+
+</section>
+
 
 <div id="toast" class="toast"></div>
-<footer>Physics Khuji ⚡ • Class 10 Interactive Physics Learning</footer>
+
+<footer>
+Physics Khuji ⚡ • Class 10 Interactive Physics Learning
+</footer>
+
 </div>
+
 
 <script>
+
 const data=[
-{title:"গতি ও বেগ (Motion & Speed)",icon:"🚗",
-concept:"কোনো বস্তুর অবস্থান সময়ের সঙ্গে পরিবর্তিত হলে তাকে গতিশীল বলা হয়। Speed বা দ্রুতি বোঝায় কোনো বস্তু কত দ্রুত দূরত্ব অতিক্রম করছে। সূত্র: Speed = Distance ÷ Time.",
-real:["🚌 বাস চলার সময় যাত্রী কেন সামনে বা পিছনে হেলে যায়?","🚴 সাইকেলের Speed কখন বাড়ে?","🏃 দৌড়ানোর সময় কি তোমার Speed সবসময় একই থাকে?"],
-experiment:"একটি খেলনা গাড়ি নাও। নির্দিষ্ট একটি দূরত্ব ঠিক করে সময় মাপো। Speed = Distance ÷ Time ব্যবহার করে Speed বের করো। এবার গাড়িটিকে বেশি জোরে ঠেলে দেখো—সময় ও Speed কীভাবে বদলায়?",
-questions:[["একটি বাস হঠাৎ সামনে চলতে শুরু করলে যাত্রী সাধারণত কোন দিকে হেলে যায়?",["সামনে","পিছনে","উপরে","কোনোটিই নয়"],1],["Speed বের করার সূত্র কোনটি?",["Distance ÷ Time","Time ÷ Distance","Mass × Time","Force ÷ Area"],0],["Acceleration কী বোঝায়?",["বেগের পরিবর্তনের হার","শুধু দূরত্ব","শুধু ভর","শুধু তাপমাত্রা"],0]],
-sources:[["Khan Academy — One-dimensional motion","https://www.khanacademy.org/science/physics/one-dimensional-motion"],["PhET — Moving Man","https://phet.colorado.edu/en/simulations/moving-man"]]},
-{title:"বল ও নিউটনের সূত্র (Force & Newton’s Laws)",icon:"💪",
-concept:"Force বা বল কোনো বস্তুর গতি, দিক বা আকৃতি পরিবর্তন করতে পারে। Newton’s Laws দিয়ে বল ও গতির সম্পর্ক ব্যাখ্যা করা হয়।",
-real:["⚽ ফুটবলকে জোরে লাথি দিলে কী হয়?","🚲 ব্রেক চাপলে সাইকেল ধীরে যায় কেন?","🚪 দরজা ঠেললে তার গতি কেন বদলায়?"],
-experiment:"একটি বলকে প্রথমে হালকা এবং পরে জোরে ধাক্কা দাও। দুই ক্ষেত্রে তার গতি কীভাবে বদলায় লক্ষ্য করো। তারপর নিজের ভাষায় কারণটি লিখে রাখো।",
-questions:[["Force কোনো বস্তুর কী পরিবর্তন করতে পারে?",["গতি বা আকৃতি","শুধু রং","শুধু তাপমাত্রা","শুধু ভর"],0],["Newton-এর তৃতীয় সূত্রের মূল ধারণা কী?",["ক্রিয়া ও প্রতিক্রিয়া","শুধু জড়তা","শুধু শক্তি","আলোর প্রতিফলন"],0],["জড়তা (Inertia) কী?",["গতির অবস্থা বজায় রাখার প্রবণতা","তাপের প্রবাহ","আলোর বাঁক","বিদ্যুৎ প্রবাহ"],0]],
-sources:[["Khan Academy — Forces & Newton’s Laws","https://www.khanacademy.org/science/physics/forces-newtons-laws"],["PhET — Forces and Motion","https://phet.colorado.edu/en/simulations/forces-and-motion-basics"]]},
-{title:"কাজ, ক্ষমতা ও শক্তি (Work, Power & Energy)",icon:"🏋️",
-concept:"বল প্রয়োগের ফলে কোনো বস্তুর সরণ ঘটলে Work বা কাজ হতে পারে। Power বা ক্ষমতা হলো কাজ করার হার। Energy বা শক্তি হলো কাজ করার সামর্থ্য।",
-real:["🎒 ব্যাগ তুলতে শক্তি কোথা থেকে আসে?","🏃 একই সিঁড়ি কে দ্রুত উঠলে তার Power বেশি হতে পারে?","💡 বৈদ্যুতিক শক্তি কীভাবে আলোতে রূপ নেয়?"],
-experiment:"একটি বই মেঝে থেকে টেবিলে তোলো। ভাবো—তোমার শরীরের শক্তি কীভাবে বইয়ের অবস্থান পরিবর্তনে ব্যবহৃত হলো।",
-questions:[["Work সম্পন্ন হওয়ার জন্য সাধারণভাবে কী দরকার?",["বল ও সরণ","শুধু সময়","শুধু ভর","শুধু রং"],0],["Power কী নির্দেশ করে?",["কাজ করার হার","শুধু বল","শুধু দূরত্ব","শুধু ভর"],0],["Energy-এর একটি গুরুত্বপূর্ণ বৈশিষ্ট্য কী?",["এক রূপ থেকে অন্য রূপে রূপান্তরিত হতে পারে","সবসময় নষ্ট হয়","শুধু আলো হতে পারে","কোনো কাজে লাগে না"],0]],
-sources:[["Khan Academy — Work & Energy","https://www.khanacademy.org/science/physics/work-and-energy"],["PhET — Energy Skate Park","https://phet.colorado.edu/en/simulations/energy-skate-park"]]},
-{title:"আলো (Light)",icon:"💡",
-concept:"আলো প্রতিফলন (Reflection), প্রতিসরণ (Refraction) এবং ছায়ার মতো বিভিন্ন ঘটনা ঘটায়।",
-real:["🪞 আয়নায় নিজের ছবি দেখা কীভাবে সম্ভব?","🥤 পানিতে পেন্সিল বাঁকা দেখায় কেন?","🌳 গাছের নিচে ছায়া তৈরি হয় কেন?"],
-experiment:"এক গ্লাস পানিতে একটি পেন্সিল আংশিক ডুবিয়ে পাশ থেকে দেখো। পেন্সিলটি বাঁকা মনে হচ্ছে কি? কেন এমন মনে হতে পারে তা ভাবো।",
-questions:[["আয়নায় নিজের ছবি দেখা কোন ঘটনার উদাহরণ?",["Reflection বা প্রতিফলন","Refraction বা প্রতিসরণ","শব্দ","চাপ"],0],["মাধ্যম পরিবর্তনের সময় আলোর দিক পরিবর্তনকে কী বলে?",["Refraction বা প্রতিসরণ","Reflection বা প্রতিফলন","কম্পন","তাপ পরিবহন"],0],["ছায়া তৈরির জন্য সাধারণত কী দরকার?",["আলো ও একটি বাধা","শুধু পানি","শুধু শব্দ","শুধু তাপ"],0]],
-sources:[["Khan Academy — Geometric Optics","https://www.khanacademy.org/science/physics/geometric-optics"],["PhET — Bending Light","https://phet.colorado.edu/en/simulations/bending-light"]]},
-{title:"বিদ্যুৎ (Electricity)",icon:"🔌",
-concept:"একটি সম্পূর্ণ circuit-এ electric current বা তড়িৎ প্রবাহ হতে পারে। বৈদ্যুতিক শক্তি আলো, তাপ বা গতির মতো অন্য রূপে রূপান্তরিত হতে পারে।",
-real:["💡 সুইচ অন করলে বাল্ব জ্বলে কেন?","🔋 Battery কীভাবে circuit-কে শক্তি দেয়?","🌀 ফ্যানের electrical energy কীভাবে motion-এ রূপ নেয়?"],
-experiment:"একটি নিরাপদ battery-powered circuit-এর switch অন ও অফ করে দেখো। Circuit সম্পূর্ণ ও বিচ্ছিন্ন হলে কী পরিবর্তন হয়?",
-questions:[["সম্পূর্ণ circuit হলে কী হতে পারে?",["Electric current প্রবাহিত হতে পারে","ভর কমে যায়","শব্দ বন্ধ হয়","আলো বাঁকা হয়"],0],["সুইচের প্রধান কাজ কী?",["Circuit খোলা বা বন্ধ করা","ভর বাড়ানো","আলো বাঁকানো","সময় মাপা"],0],["বৈদ্যুতিক শক্তি কোন রূপে রূপান্তরিত হতে পারে?",["আলো, তাপ বা গতি","শুধু পানি","শুধু শব্দ","কোনোটিই নয়"],0]],
-sources:[["Khan Academy — Electrical Circuits","https://www.khanacademy.org/science/physics/circuits-topic"],["PhET — Circuit Construction Kit","https://phet.colorado.edu/en/simulations/circuit-construction-kit-dc"]]},
-{title:"চুম্বক ও চৌম্বকত্ব (Magnetism)",icon:"🧲",
-concept:"চৌম্বক ক্ষেত্র (Magnetic Field) এবং electric current-এর সম্পর্ক বিভিন্ন প্রযুক্তিতে ব্যবহার করা হয়। Compass, motor ও speaker-এর মতো যন্ত্রে Magnetism গুরুত্বপূর্ণ।",
-real:["🧭 Compass কীভাবে দিক দেখায়?","🔊 Speaker-এ Magnetism কেন গুরুত্বপূর্ণ?","⚙️ Motor-এর ঘূর্ণনের সঙ্গে Magnetism-এর কী সম্পর্ক?"],
-experiment:"একটি ছোট চুম্বক দিয়ে নিরাপদ কিছু বস্তু পরীক্ষা করো। কোনগুলো আকর্ষিত হয় এবং কোনগুলো হয় না—তালিকা বানাও।",
-questions:[["চুম্বক সাধারণত কোন বস্তু আকর্ষণ করে?",["লোহা","কাগজ","কাঠ","পানি"],0],["Compass মূলত কী কাজে সাহায্য করে?",["দিক নির্ণয়","তাপ মাপা","ভর মাপা","সময় মাপা"],0],["Motor-এর কাজের সঙ্গে কোন ধারণা সম্পর্কিত?",["চৌম্বকীয় প্রভাব ও বিদ্যুৎ","শুধু শব্দ","শুধু পানি","শুধু আলো"],0]],
-sources:[["Khan Academy — Magnetic Forces","https://www.khanacademy.org/science/physics/magnetic-forces-and-magnetic-fields"],["PhET — Faraday’s Electromagnetic Lab","https://phet.colorado.edu/en/simulations/faradays-electromagnetic-lab"]]}
+
+{
+title:"গতি ও বেগ (Motion & Speed)",
+icon:"🚗",
+
+concept:
+"কোনো বস্তুর অবস্থান সময়ের সঙ্গে পরিবর্তিত হলে তাকে গতিশীল বলা হয়। Speed বা দ্রুতি বোঝায় কোনো বস্তু কত দ্রুত দূরত্ব অতিক্রম করছে। সূত্র: Speed = Distance ÷ Time.",
+
+real:[
+"🚌 বাস চলার সময় যাত্রী কেন সামনে বা পিছনে হেলে যায়?",
+"🚴 সাইকেলের Speed কখন বাড়ে?",
+"🏃 দৌড়ানোর সময় কি তোমার Speed সবসময় একই থাকে?"
+],
+
+experiment:
+"একটি খেলনা গাড়ি নাও। নির্দিষ্ট একটি দূরত্ব ঠিক করে সময় মাপো। Speed = Distance ÷ Time ব্যবহার করে Speed বের করো। এবার গাড়িটিকে বেশি জোরে ঠেলে দেখো—সময় ও Speed কীভাবে বদলায়?",
+
+questions:[
+[
+"একটি বাস হঠাৎ সামনে চলতে শুরু করলে যাত্রী সাধারণত কোন দিকে হেলে যায়?",
+["সামনে","পিছনে","উপরে","কোনোটিই নয়"],1
+],
+[
+"Speed বের করার সূত্র কোনটি?",
+["Distance ÷ Time","Time ÷ Distance","Mass × Time","Force ÷ Area"],0
+],
+[
+"Acceleration কী বোঝায়?",
+["বেগের পরিবর্তনের হার","শুধু দূরত্ব","শুধু ভর","শুধু তাপমাত্রা"],0
+]
+],
+
+sources:[
+[
+"Khan Academy — One-dimensional motion",
+"https://www.khanacademy.org/science/physics/one-dimensional-motion"
+],
+[
+"PhET — Moving Man",
+"https://phet.colorado.edu/en/simulations/moving-man"
+]
+]
+},
+
+
+{
+title:"বল ও নিউটনের সূত্র (Force & Newton’s Laws)",
+icon:"💪",
+
+concept:
+"Force বা বল কোনো বস্তুর গতি, দিক বা আকৃতি পরিবর্তন করতে পারে। Newton’s Laws দিয়ে বল ও গতির সম্পর্ক ব্যাখ্যা করা হয়।",
+
+real:[
+"⚽ ফুটবলকে জোরে লাথি দিলে কী হয়?",
+"🚲 ব্রেক চাপলে সাইকেল ধীরে যায় কেন?",
+"🚪 দরজা ঠেললে তার গতি কেন বদলায়?"
+],
+
+experiment:
+"একটি বলকে প্রথমে হালকা এবং পরে জোরে ধাক্কা দাও। দুই ক্ষেত্রে তার গতি কীভাবে বদলায় লক্ষ্য করো। তারপর নিজের ভাষায় কারণটি লিখে রাখো।",
+
+questions:[
+[
+"Force কোনো বস্তুর কী পরিবর্তন করতে পারে?",
+["গতি বা আকৃতি","শুধু রং","শুধু তাপমাত্রা","শুধু ভর"],0
+],
+[
+"Newton-এর তৃতীয় সূত্রের মূল ধারণা কী?",
+["ক্রিয়া ও প্রতিক্রিয়া","শুধু জড়তা","শুধু শক্তি","আলোর প্রতিফলন"],0
+],
+[
+"জড়তা (Inertia) কী?",
+["গতির অবস্থা বজায় রাখার প্রবণতা","তাপের প্রবাহ","আলোর বাঁক","বিদ্যুৎ প্রবাহ"],0
+]
+],
+
+sources:[
+[
+"Khan Academy — Forces & Newton’s Laws",
+"https://www.khanacademy.org/science/physics/forces-newtons-laws"
+],
+[
+"PhET — Forces and Motion",
+"https://phet.colorado.edu/en/simulations/forces-and-motion-basics"
+]
+]
+},
+
+
+{
+title:"কাজ, ক্ষমতা ও শক্তি (Work, Power & Energy)",
+icon:"🏋️",
+
+concept:
+"বল প্রয়োগের ফলে কোনো বস্তুর সরণ ঘটলে Work বা কাজ হতে পারে। Power বা ক্ষমতা হলো কাজ করার হার। Energy বা শক্তি হলো কাজ করার সামর্থ্য।",
+
+real:[
+"🎒 ব্যাগ তুলতে শক্তি কোথা থেকে আসে?",
+"🏃 একই সিঁড়ি কে দ্রুত উঠলে তার Power বেশি হতে পারে?",
+"💡 বৈদ্যুতিক শক্তি কীভাবে আলোতে রূপ নেয়?"
+],
+
+experiment:
+"একটি বই মেঝে থেকে টেবিলে তোলো। ভাবো—তোমার শরীরের শক্তি কীভাবে বইয়ের অবস্থান পরিবর্তনে ব্যবহৃত হলো।",
+
+questions:[
+[
+"Work সম্পন্ন হওয়ার জন্য সাধারণভাবে কী দরকার?",
+["বল ও সরণ","শুধু সময়","শুধু ভর","শুধু রং"],0
+],
+[
+"Power কী নির্দেশ করে?",
+["কাজ করার হার","শুধু বল","শুধু দূরত্ব","শুধু ভর"],0
+],
+[
+"Energy-এর একটি গুরুত্বপূর্ণ বৈশিষ্ট্য কী?",
+["এক রূপ থেকে অন্য রূপে রূপান্তরিত হতে পারে","সবসময় নষ্ট হয়","শুধু আলো হতে পারে","কোনো কাজে লাগে না"],0
+]
+],
+
+sources:[
+[
+"Khan Academy — Work & Energy",
+"https://www.khanacademy.org/science/physics/work-and-energy"
+],
+[
+"PhET — Energy Skate Park",
+"https://phet.colorado.edu/en/simulations/energy-skate-park"
+]
+]
+},
+
+
+{
+title:"আলো (Light)",
+icon:"💡",
+
+concept:
+"আলো প্রতিফলন (Reflection), প্রতিসরণ (Refraction) এবং ছায়ার মতো বিভিন্ন ঘটনা ঘটায়।",
+
+real:[
+"🪞 আয়নায় নিজের ছবি দেখা কীভাবে সম্ভব?",
+"🥤 পানিতে পেন্সিল বাঁকা দেখায় কেন?",
+"🌳 গাছের নিচে ছায়া তৈরি হয় কেন?"
+],
+
+experiment:
+"এক গ্লাস পানিতে একটি পেন্সিল আংশিক ডুবিয়ে পাশ থেকে দেখো। পেন্সিলটি বাঁকা মনে হচ্ছে কি? কেন এমন মনে হতে পারে তা ভাবো।",
+
+questions:[
+[
+"আয়নায় নিজের ছবি দেখা কোন ঘটনার উদাহরণ?",
+["Reflection বা প্রতিফলন","Refraction বা প্রতিসরণ","শব্দ","চাপ"],0
+],
+[
+"মাধ্যম পরিবর্তনের সময় আলোর দিক পরিবর্তনকে কী বলে?",
+["Refraction বা প্রতিসরণ","Reflection বা প্রতিফলন","কম্পন","তাপ পরিবহন"],0
+],
+[
+"ছায়া তৈরির জন্য সাধারণত কী দরকার?",
+["আলো ও একটি বাধা","শুধু পানি","শুধু শব্দ","শুধু তাপ"],0
+]
+],
+
+sources:[
+[
+"Khan Academy — Geometric Optics",
+"https://www.khanacademy.org/science/physics/geometric-optics"
+],
+[
+"PhET — Bending Light",
+"https://phet.colorado.edu/en/simulations/bending-light"
+]
+]
+},
+
+
+{
+title:"বিদ্যুৎ (Electricity)",
+icon:"🔌",
+
+concept:
+"একটি সম্পূর্ণ circuit-এ electric current বা তড়িৎ প্রবাহ হতে পারে। বৈদ্যুতিক শক্তি আলো, তাপ বা গতির মতো অন্য রূপে রূপান্তরিত হতে পারে।",
+
+real:[
+"💡 সুইচ অন করলে বাল্ব জ্বলে কেন?",
+"🔋 Battery কীভাবে circuit-কে শক্তি দেয়?",
+"🌀 ফ্যানের electrical energy কীভাবে motion-এ রূপ নেয়?"
+],
+
+experiment:
+"একটি নিরাপদ battery-powered circuit-এর switch অন ও অফ করে দেখো। Circuit সম্পূর্ণ ও বিচ্ছিন্ন হলে কী পরিবর্তন হয়?",
+
+questions:[
+[
+"সম্পূর্ণ circuit হলে কী হতে পারে?",
+["Electric current প্রবাহিত হতে পারে","ভর কমে যায়","শব্দ বন্ধ হয়","আলো বাঁকা হয়"],0
+],
+[
+"সুইচের প্রধান কাজ কী?",
+["Circuit খোলা বা বন্ধ করা","ভর বাড়ানো","আলো বাঁকানো","সময় মাপা"],0
+],
+[
+"বৈদ্যুতিক শক্তি কোন রূপে রূপান্তরিত হতে পারে?",
+["আলো, তাপ বা গতি","শুধু পানি","শুধু শব্দ","কোনোটিই নয়"],0
+]
+],
+
+sources:[
+[
+"Khan Academy — Electrical Circuits",
+"https://www.khanacademy.org/science/physics/circuits-topic"
+],
+[
+"PhET — Circuit Construction Kit",
+"https://phet.colorado.edu/en/simulations/circuit-construction-kit-dc"
+]
+]
+},
+
+
+{
+title:"চুম্বক ও চৌম্বকত্ব (Magnetism)",
+icon:"🧲",
+
+concept:
+"চৌম্বক ক্ষেত্র (Magnetic Field) এবং electric current-এর সম্পর্ক বিভিন্ন প্রযুক্তিতে ব্যবহার করা হয়। Compass, motor ও speaker-এর মতো যন্ত্রে Magnetism গুরুত্বপূর্ণ।",
+
+real:[
+"🧭 Compass কীভাবে দিক দেখায়?",
+"🔊 Speaker-এ Magnetism কেন গুরুত্বপূর্ণ?",
+"⚙️ Motor-এর ঘূর্ণনের সঙ্গে Magnetism-এর কী সম্পর্ক?"
+],
+
+experiment:
+"একটি ছোট চুম্বক দিয়ে নিরাপদ কিছু বস্তু পরীক্ষা করো। কোনগুলো আকর্ষিত হয় এবং কোনগুলো হয় না—তালিকা বানাও।",
+
+questions:[
+[
+"চুম্বক সাধারণত কোন বস্তু আকর্ষণ করে?",
+["লোহা","কাগজ","কাঠ","পানি"],0
+],
+[
+"Compass মূলত কী কাজে সাহায্য করে?",
+["দিক নির্ণয়","তাপ মাপা","ভর মাপা","সময় মাপা"],0
+],
+[
+"Motor-এর কাজের সঙ্গে কোন ধারণা সম্পর্কিত?",
+["চৌম্বকীয় প্রভাব ও বিদ্যুৎ","শুধু শব্দ","শুধু পানি","শুধু আলো"],0
+]
+],
+
+sources:[
+[
+"Khan Academy — Magnetic Forces",
+"https://www.khanacademy.org/science/physics/magnetic-forces-and-magnetic-fields"
+],
+[
+"PhET — Faraday’s Electromagnetic Lab",
+"https://phet.colorado.edu/en/simulations/faradays-electromagnetic-lab"
+]
+]
+}
+
 ];
 
-let state={name:"শিক্ষার্থী",xp:0,lives:3,streak:0,done:{}};let current=0;let selected={};
-try{const old=localStorage.getItem("physics_khuji_clean");if(old)state={...state,...JSON.parse(old)}}catch(e){}
-function save(){try{localStorage.setItem("physics_khuji_clean",JSON.stringify(state))}catch(e){}}
-function top(){document.getElementById("lives").textContent=state.lives;document.getElementById("xp").textContent=state.xp;document.getElementById("level").textContent=Math.floor(state.xp/100)+1}
-function show(id){document.querySelectorAll(".screen").forEach(x=>x.classList.remove("active"));document.getElementById(id).classList.add("active");window.scrollTo(0,0);top();if(id==="world")renderWorld();if(id==="dash")renderDash()}
-function start(){state.name=document.getElementById("studentName").value.trim()||"শিক্ষার্থী";save();show("world")}
+
+let state={
+ name:"শিক্ষার্থী",
+ xp:0,
+ lives:3,
+ streak:0,
+ done:{}
+};
+
+let current=0;
+let selected={};
+
+
+try{
+ let saved=localStorage.getItem("physics_khuji_final");
+ if(saved) state={...state,...JSON.parse(saved)};
+}catch(e){}
+
+
+function save(){
+ try{
+  localStorage.setItem(
+   "physics_khuji_final",
+   JSON.stringify(state)
+  );
+ }catch(e){}
+}
+
+
+function updateTop(){
+
+ document.getElementById("lives").textContent=state.lives;
+ document.getElementById("xp").textContent=state.xp;
+ document.getElementById("level")
+ .textContent=Math.floor(state.xp/100)+1;
+
+}
+
+
+function show(id){
+
+ document.querySelectorAll(".page")
+ .forEach(p=>p.classList.remove("active"));
+
+ document.getElementById(id)
+ .classList.add("active");
+
+ window.scrollTo(0,0);
+
+ updateTop();
+
+ if(id==="world") renderWorld();
+
+ if(id==="dash") renderDashboard();
+
+}
+
+
+function startGame(){
+
+ state.name=
+ document.getElementById("studentName")
+ .value.trim() || "শিক্ষার্থী";
+
+ save();
+
+ show("world");
+}
+
+
 function renderWorld(){
-document.getElementById("journey").textContent=state.name+"-এর Physics Journey";
-document.getElementById("topics").innerHTML=data.map((t,i)=>{const open=i===0||state.done[data[i-1].title];return `<div class="topic ${open?"open":"locked"}" onclick="${open?`openTopic(${i})`:"locked()"}"><span class="level">LEVEL ${i+1}</span><div class="icon">${t.icon}</div><h3>${t.title}</h3><p>${open?"🎯 Mission প্রস্তুত":"🔒 আগের স্তর সম্পন্ন করো"}</p><div class="bar"><i style="width:${state.done[t.title]?100:open?18:0}%"></i></div></div>`}).join("")
+
+ document.getElementById("journey")
+ .textContent=state.name+"-এর Physics Journey";
+
+ document.getElementById("topics").innerHTML=
+
+ data.map((t,i)=>{
+
+  let open=
+   i===0 ||
+   state.done[data[i-1].title];
+
+  return `
+
+  <div class="topic ${open?"open":"locked"}"
+   onclick="${open?`openTopic(${i})`:"lockedTopic()"}">
+
+   <span class="level">
+   LEVEL ${i+1}
+   </span>
+
+   <div class="icon">${t.icon}</div>
+
+   <h3>${t.title}</h3>
+
+   <p>
+   ${open?
+   "🎯 Mission প্রস্তুত":
+   "🔒 আগের স্তর সম্পন্ন করো"}
+   </p>
+
+   <div class="bar">
+   <i style="
+   width:${state.done[t.title]?100:open?18:0}%
+   "></i>
+   </div>
+
+  </div>
+
+  `;
+
+ }).join("");
+
 }
-function locked(){toast("🔒 আগে আগের Mission সম্পন্ন করো।")}
+
+
+function lockedTopic(){
+
+ toast("🔒 আগে আগের Mission সম্পন্ন করো।");
+
+}
+
+
 function openTopic(i){
-current=i;const t=data[i];
-document.getElementById("lessonBox").innerHTML=`
-<span class="badge">স্তর ${i+1} • ${t.title}</span>
-<h2>${t.icon} ${t.title}</h2>
-<div class="detail"><h3>📖 আজকের মূল ধারণা</h3><p>${t.concept}</p></div>
-<h3 style="margin-top:22px">🗺️ Concept Map</h3>
-<p>নিচের প্রতিটি অংশে ক্লিক করো—প্রতিটি অংশে আলাদা learning content আছে।</p>
-<div class="map4">
-<button class="mapbtn" onclick="detail('concept')">📖<br><b>Concept</b><small>মূল ধারণা ও সহজ ব্যাখ্যা</small></button>
-<button class="mapbtn" onclick="detail('real')">🌍<br><b>Real Life</b><small>বাস্তব জীবনে কোথায় দেখি?</small></button>
-<button class="mapbtn" onclick="detail('experiment')">🧪<br><b>Experiment</b><small>নিরাপদে নিজে করে দেখো</small></button>
-<button class="mapbtn" onclick="quiz()">⚔️<br><b>Mission</b><small>শিখে সমস্যা সমাধান করো</small></button>
-</div>
-<div class="source"><h3>📚 আরও শেখার Source</h3><p>এই Topic নিয়ে আরও শিখতে নিচের নির্ভরযোগ্য resources ব্যবহার করতে পারো।</p>${t.sources.map(s=>`<a href="${s[1]}" target="_blank" rel="noopener">${s[0]} ↗</a>`).join("")}</div>
-<div class="row"><button class="primary" onclick="quiz()">⚔️ Mission শুরু করি</button><button class="secondary" onclick="show('world')">← মানচিত্রে ফিরে যাও</button></div>`;
-show("lesson")
+
+ current=i;
+
+ let t=data[i];
+
+ document.getElementById("lessonBox").innerHTML=`
+
+ <span class="badge">
+ স্তর ${i+1} • ${t.title}
+ </span>
+
+ <h2>${t.icon} ${t.title}</h2>
+
+ <div class="detail">
+
+ <h3>📖 আজকের মূল ধারণা</h3>
+
+ <p>${t.concept}</p>
+
+ </div>
+
+
+ <h3 style="margin-top:22px">
+ 🗺️ Concept Map
+ </h3>
+
+ <p>
+ নিচের প্রতিটি অংশে ক্লিক করো।
+ প্রতিটি অংশে আলাদা learning content আছে।
+ </p>
+
+
+ <div class="map4">
+
+ <button class="mapbtn"
+ onclick="showDetail('concept')">
+
+ 📖<br>
+ <b>Concept</b>
+
+ <small>
+ মূল ধারণা ও সহজ ব্যাখ্যা
+ </small>
+
+ </button>
+
+
+ <button class="mapbtn"
+ onclick="showDetail('real')">
+
+ 🌍<br>
+ <b>Real Life</b>
+
+ <small>
+ বাস্তব জীবনে কোথায় দেখি?
+ </small>
+
+ </button>
+
+
+ <button class="mapbtn"
+ onclick="showDetail('experiment')">
+
+ 🧪<br>
+ <b>Experiment</b>
+
+ <small>
+ নিজে করে দেখো
+ </small>
+
+ </button>
+
+
+ <button class="mapbtn"
+ onclick="startQuiz()">
+
+ ⚔️<br>
+ <b>Mission</b>
+
+ <small>
+ শিখে সমস্যা সমাধান করো
+ </small>
+
+ </button>
+
+ </div>
+
+
+ <div class="source">
+
+ <h3>📚 আরও শেখার Source</h3>
+
+ <p>
+ এই Topic নিয়ে আরও শিখতে নিচের
+ resources ব্যবহার করতে পারো।
+ </p>
+
+ ${t.sources.map(s=>`
+
+ <a href="${s[1]}"
+ target="_blank"
+ rel="noopener">
+
+ ${s[0]} ↗
+
+ </a>
+
+ `).join("")}
+
+ </div>
+
+
+ <div class="row">
+
+ <button class="primary"
+ onclick="startQuiz()">
+
+ ⚔️ Mission শুরু করি
+
+ </button>
+
+ <button class="secondary"
+ onclick="show('world')">
+
+ ← মানচিত্রে ফিরে যাও
+
+ </button>
+
+ </div>
+
+ `;
+
+ show("lesson");
+
 }
-function detail(type){
-const t=data[current];let title="",body="";
-if(type==="concept"){title="📖 Concept — সহজ করে বুঝি";body=`<p>${t.concept}</p><p><b>শেখার কৌশল:</b> এই ধারণাটি নিজের ভাষায় একজন বন্ধুকে বোঝানোর চেষ্টা করো। যদি বোঝাতে পারো, তাহলে concept সত্যিই বুঝেছ।</p>`}
-if(type==="real"){title="🌍 Real Life — বাস্তবে কোথায় দেখি?";body=t.real.map(x=>`<div class="detail">${x}</div>`).join("")}
-if(type==="experiment"){title="🧪 Experiment — নিজে করে দেখো";body=`<div class="detail"><p>${t.experiment}</p><p>📝 শেষে লিখে রাখো: <b>আমি কী দেখলাম?</b> এবং <b>কেন এমন হলো?</b></p><p>⚠️ শুধু নিরাপদ activity করবে। প্রয়োজন হলে শিক্ষক বা অভিভাবকের সাহায্য নেবে।</p></div>`}
-document.getElementById("detailBox").innerHTML=`<span class="badge">${t.title}</span><h2>${title}</h2>${body}<div class="row"><button class="secondary" onclick="openTopic(${current})">← Concept Map</button><button class="primary" onclick="quiz()">⚔️ Mission-এ যাও</button></div>`;
-show("detail")
+
+
+function showDetail(type){
+
+ let t=data[current];
+
+ let title="";
+ let body="";
+
+
+ if(type==="concept"){
+
+  title="📖 Concept — সহজ করে বুঝি";
+
+  body=`
+
+  <p>${t.concept}</p>
+
+  <p>
+  <b>শেখার কৌশল:</b>
+  এই ধারণাটি নিজের ভাষায় একজন বন্ধুকে
+  বোঝানোর চেষ্টা করো।
+  </p>
+
+  `;
+
+ }
+
+
+ if(type==="real"){
+
+  title="🌍 Real Life — বাস্তবে কোথায় দেখি?";
+
+  body=t.real.map(x=>`
+
+  <div class="detail">
+  ${x}
+  </div>
+
+  `).join("");
+
+ }
+
+
+ if(type==="experiment"){
+
+  title="🧪 Experiment — নিজে করে দেখো";
+
+  body=`
+
+  <div class="detail">
+
+  <p>${t.experiment}</p>
+
+  <p>
+  📝 শেষে লিখে রাখো:
+  <b>আমি কী দেখলাম?</b>
+  এবং
+  <b>কেন এমন হলো?</b>
+  </p>
+
+  <p>
+  ⚠️ শুধু নিরাপদ activity করবে।
+  প্রয়োজন হলে শিক্ষক বা অভিভাবকের সাহায্য নেবে।
+  </p>
+
+  </div>
+
+  `;
+
+ }
+
+
+ document.getElementById("detailBox").innerHTML=`
+
+ <span class="badge">
+ ${t.title}
+ </span>
+
+ <h2>${title}</h2>
+
+ ${body}
+
+ <div class="row">
+
+ <button class="secondary"
+ onclick="openTopic(${current})">
+
+ ← Concept Map
+
+ </button>
+
+ <button class="primary"
+ onclick="startQuiz()">
+
+ ⚔️ Mission-এ যাও
+
+ </button>
+
+ </div>
+
+ `;
+
+ show("detail");
+
 }
-function quiz(){
-selected={};const t=data[current];
-document.getElementById("quizTitle").textContent=t.icon+" "+t.title;
-document.getElementById("quizBox").innerHTML=t.questions.map((q,i)=>`<div class="detail"><b>${i+1}. ${q[0]}</b>${q[1].map((o,j)=>`<button class="option" id="o${i}_${j}" onclick="pick(${i},${j})">${String.fromCharCode(65+j)}. ${o}</button>`).join("")}</div>`).join("");
-document.getElementById("quizResult").innerHTML="";show("quiz")
+
+
+function startQuiz(){
+
+ selected={};
+
+ let t=data[current];
+
+ document.getElementById("quizTitle")
+ .textContent=t.icon+" "+t.title;
+
+
+ document.getElementById("quizBox").innerHTML=
+
+ t.questions.map((q,i)=>`
+
+ <div class="detail">
+
+ <b>
+ ${i+1}. ${q[0]}
+ </b>
+
+ ${q[1].map((option,j)=>`
+
+ <button
+ class="option"
+ id="option${i}_${j}"
+ onclick="selectAnswer(${i},${j})">
+
+ ${String.fromCharCode(65+j)}.
+ ${option}
+
+ </button>
+
+ `).join("")}
+
+ </div>
+
+ `).join("");
+
+
+ document.getElementById("quizResult").innerHTML="";
+
+ show("quiz");
+
 }
-function pick(i,j){selected[i]=j;document.querySelectorAll(".option").forEach(x=>x.classList.remove("selected"));document.getElementById(`o${i}_${j}`).classList.add("selected")}
+
+
+function selectAnswer(q,a){
+
+ selected[q]=a;
+
+ document.querySelectorAll(".option")
+ .forEach(x=>x.classList.remove("selected"));
+
+ document.getElementById(
+ `option${q}_${a}`
+ ).classList.add("selected");
+
+}
+
+
 function submitQuiz(){
-const t=data[current];if(Object.keys(selected).length<t.questions.length){toast("সব প্রশ্নের উত্তর নির্বাচন করো।");return}
-let score=0;t.questions.forEach((q,i)=>{if(selected[i]===q[2])score++});
-if(score===t.questions.length){
-const fresh=!state.done[t.title];state.done[t.title]=true;if(fresh)state.xp+=50;state.streak++;save();
-document.getElementById("quizResult").innerHTML=`<div class="detail success"><h3>🎉 Mission সম্পন্ন!</h3><p>দারুণ! তুমি সবগুলো প্রশ্নের সঠিক উত্তর দিয়েছ। ${fresh?"⭐ তুমি ৫০ XP পেয়েছ।":"এই Mission আগে সম্পন্ন করেছিলে।"}</p><p>🏆 পরের স্তর এখন খুলে গেছে।</p><button class="primary" onclick="show('world')">🗺️ পরের স্তরে যাও</button></div>`;
-}else{
-state.lives=Math.max(0,state.lives-1);state.streak=0;save();
-document.getElementById("quizResult").innerHTML=`<div class="detail wrong"><h3>💡 আবার চেষ্টা করো</h3><p>তোমার ফলাফল: ${score}/${t.questions.length}</p><p>ভুল হলে সমস্যা নেই। Concept Map-এর Concept ও Real Life অংশ আবার দেখে চেষ্টা করো।</p><button class="secondary" onclick="openTopic(${current})">🔄 আবার শিখি</button></div>`;
-}top()
+
+ let t=data[current];
+
+ if(Object.keys(selected).length<t.questions.length){
+
+  toast("সব প্রশ্নের উত্তর নির্বাচন করো।");
+
+  return;
+ }
+
+
+ let score=0;
+
+ t.questions.forEach((q,i)=>{
+
+  if(selected[i]===q[2])
+   score++;
+
+ });
+
+
+ if(score===t.questions.length){
+
+  let fresh=!state.done[t.title];
+
+  state.done[t.title]=true;
+
+  if(fresh)
+   state.xp+=50;
+
+  state.streak++;
+
+  save();
+
+
+  document.getElementById("quizResult")
+  .innerHTML=`
+
+  <div class="detail success">
+
+  <h3>🎉 Mission সম্পন্ন!</h3>
+
+  <p>
+  দারুণ! তুমি সবগুলো প্রশ্নের
+  সঠিক উত্তর দিয়েছ।
+  </p>
+
+  <p>
+  ${fresh?
+  "⭐ তুমি ৫০ XP পেয়েছ।":
+  "এই Mission আগে সম্পন্ন করেছিলে।"}
+  </p>
+
+  <p>
+  🏆 পরের স্তর এখন খুলে গেছে।
+  </p>
+
+  <button class="primary"
+  onclick="show('world')">
+
+  🗺️ পরের স্তরে যাও
+
+  </button>
+
+  </div>
+
+  `;
+
+ }
+
+
+ else{
+
+  state.lives=
+  Math.max(0,state.lives-1);
+
+  state.streak=0;
+
+  save();
+
+
+  document.getElementById("quizResult")
+  .innerHTML=`
+
+  <div class="detail wrong">
+
+  <h3>💡 আবার চেষ্টা করো</h3>
+
+  <p>
+  তোমার ফলাফল:
+  ${score}/${t.questions.length}
+  </p>
+
+  <p>
+  ভুল হলে সমস্যা নেই।
+  Concept Map-এর Concept ও Real Life
+  অংশ আবার দেখে চেষ্টা করো।
+  </p>
+
+  <button class="secondary"
+  onclick="openTopic(${current})">
+
+  🔄 আবার শিখি
+
+  </button>
+
+  </div>
+
+  `;
+
+ }
+
+ updateTop();
+
 }
+
+
 function dashboard(){
-document.getElementById("dashName").textContent="⚡ "+state.name;
-const n=Object.keys(state.done).length;
-document.getElementById("dashText").textContent=`তোমার Level ${Math.floor(state.xp/100)+1} • ${n}টি Mission সম্পন্ন • ${state.xp} XP`;
-document.getElementById("dashXp").textContent=state.xp;document.getElementById("dashStreak").textContent=state.streak;document.getElementById("dashDone").textContent=n;document.getElementById("dashBar").style.width=(state.xp%100)+"%";
-let badges=[];if(n>=1)badges.push("🌱 Physics Explorer");if(n>=3)badges.push("🕵️ Physics Detective");if(n>=5)badges.push("⚡ Physics Master");
-document.getElementById("badges").textContent=badges.length?badges.join(" • "):"প্রথম Mission সম্পন্ন করলে তোমার প্রথম Badge পাওয়া যাবে।";
-document.getElementById("revision").innerHTML=n?Object.keys(state.done).map(id=>{const i=data.findIndex(t=>t.title===id);return `<button class="secondary" style="margin:5px" onclick="openTopic(${i})">🔄 ${data[i].title}</button>`}).join(""):"<p>Mission সম্পন্ন করলে Revision এখানে দেখা যাবে।";
-show("dash")
+
+ renderDashboard();
+
+ show("dash");
+
 }
-function renderDash(){dashboard()}
-function toast(s){const t=document.getElementById("toast");t.textContent=s;t.style.display="block";setTimeout(()=>t.style.display="none",1800)}
-top()
+
+
+function renderDashboard(){
+
+ let doneCount=
+ Object.keys(state.done).length;
+
+
+ document.getElementById("dashName")
+ .textContent="⚡ "+state.name;
+
+
+ document.getElementById("dashText")
+ .textContent=
+ `তোমার Level ${Math.floor(state.xp/100)+1}
+ • ${doneCount}টি Mission সম্পন্ন
+ • ${state.xp} XP`;
+
+
+ document.getElementById("dashXp")
+ .textContent=state.xp;
+
+ document.getElementById("dashStreak")
+ .textContent=state.streak;
+
+ document.getElementById("dashDone")
+ .textContent=doneCount;
+
+
+ document.getElementById("dashBar")
+ .style.width=(state.xp%100)+"%";
+
+
+ let badges=[];
+
+
+ if(doneCount>=1)
+  badges.push("🌱 Physics Explorer");
+
+ if(doneCount>=3)
+  badges.push("🕵️ Physics Detective");
+
+ if(doneCount>=5)
+  badges.push("⚡ Physics Master");
+
+
+ document.getElementById("badges")
+ .textContent=
+
+ badges.length?
+ badges.join(" • "):
+ "প্রথম Mission সম্পন্ন করলে তোমার প্রথম Badge পাওয়া যাবে।";
+
+
+ document.getElementById("revision")
+ .innerHTML=
+
+ doneCount?
+
+ Object.keys(state.done)
+ .map(title=>{
+
+  let i=data.findIndex(
+   t=>t.title===title
+  );
+
+  return `
+
+  <button
+  class="secondary"
+  style="margin:5px"
+  onclick="openTopic(${i})">
+
+  🔄 ${data[i].title}
+
+  </button>
+
+  `;
+
+ }).join("")
+
+ :
+
+ "<p>Mission সম্পন্ন করলে Revision এখানে দেখা যাবে।</p>";
+
+}
+
+
+function updateTop(){
+
+ document.getElementById("lives")
+ .textContent=state.lives;
+
+ document.getElementById("xp")
+ .textContent=state.xp;
+
+ document.getElementById("level")
+ .textContent=
+ Math.floor(state.xp/100)+1;
+
+}
+
+
+function toast(message){
+
+ let t=document.getElementById("toast");
+
+ t.textContent=message;
+
+ t.style.display="block";
+
+ setTimeout(()=>{
+  t.style.display="none";
+ },1800);
+
+}
+
+
+updateTop();
+
 </script>
+
 </body>
 </html>
