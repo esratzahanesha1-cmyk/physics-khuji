@@ -3,1386 +3,1021 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Physics Khuji ⚡</title>
+
+<title>Physics Khuji | পদার্থবিজ্ঞান খুঁজি</title>
 
 <style>
-*{box-sizing:border-box}
+*{
+  box-sizing:border-box;
+  margin:0;
+  padding:0;
+}
+
 body{
- margin:0;
- background:#07111f;
- color:#f5f7ff;
- font-family:"Noto Sans Bengali","Noto Sans",Arial,sans-serif;
-}
-button{font:inherit;cursor:pointer}
-.container{max-width:1050px;margin:auto;padding:15px}
-
-header{
- position:sticky;top:0;z-index:10;
- display:flex;justify-content:space-between;align-items:center;
- padding:12px 0;background:#07111fee;
- backdrop-filter:blur(10px)
-}
-.logo{font-size:22px;font-weight:900}
-.bolt{
- display:inline-grid;place-items:center;
- width:40px;height:40px;border-radius:12px;
- background:#7659ff;margin-right:7px
-}
-.stats{display:flex;gap:7px;flex-wrap:wrap}
-.stat{
- background:#112039;border:1px solid #30405d;
- border-radius:12px;padding:7px 10px;font-size:12px
+  font-family:"Noto Sans Bengali","Segoe UI",sans-serif;
+  background:#07111f;
+  color:#f4f7fb;
+  line-height:1.7;
 }
 
-.page{display:none}
-.page.active{display:block}
-
-.hero,.panel,.card,.topic,.detail{
- border:1px solid #2b3b58;
- background:#0e1c30;
- border-radius:22px;
- box-shadow:0 14px 38px #0006
+button{
+  font-family:inherit;
+  cursor:pointer;
 }
 
-.hero{
- margin-top:18px;padding:35px;
- background:
- radial-gradient(circle at 85% 15%,#7659ff55,transparent 30%),
- linear-gradient(135deg,#152643,#0d1727)
+.header{
+  padding:22px 6%;
+  background:linear-gradient(135deg,#0d2340,#102d4d);
+  border-bottom:1px solid #23476d;
+  position:sticky;
+  top:0;
+  z-index:20;
+}
+
+.nav{
+  max-width:1150px;
+  margin:auto;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:20px;
+}
+
+.logo{
+  font-size:25px;
+  font-weight:800;
+}
+
+.logo span{
+  color:#5ee7d2;
 }
 
 .badge{
- display:inline-block;padding:6px 11px;
- border-radius:99px;background:#2b2354;
- color:#ddd5ff;font-size:12px;font-weight:800
+  background:#183a59;
+  padding:5px 12px;
+  border-radius:20px;
+  font-size:13px;
 }
 
-h1{font-size:clamp(42px,9vw,78px);line-height:.95;margin:15px 0 10px}
-h2{margin:8px 0 13px}
-h3{margin:8px 0}
-p{color:#bac5d8;line-height:1.75}
-
-.row{display:flex;flex-wrap:wrap;gap:10px;margin-top:18px}
-
-.primary,.secondary{
- padding:12px 17px;border-radius:12px;font-weight:800
+.hero{
+  max-width:1150px;
+  margin:auto;
+  padding:65px 6% 45px;
+  text-align:center;
 }
-.primary{border:0;background:#7659ff;color:white}
-.secondary{border:1px solid #384a69;background:#14233c;color:white}
 
-.grid{
- display:grid;grid-template-columns:repeat(3,1fr);
- gap:14px;margin-top:18px
+.hero h1{
+  font-size:48px;
+  margin-bottom:12px;
 }
-.card{padding:20px}
-.icon{font-size:32px}
 
-.panel{padding:23px;margin-top:18px}
-
-.map{
- display:grid;grid-template-columns:repeat(3,1fr);
- gap:14px;margin-top:18px
+.hero h1 span{
+  color:#5ee7d2;
 }
+
+.hero p{
+  max-width:720px;
+  margin:auto;
+  color:#b8c9dc;
+  font-size:18px;
+}
+
+.xpbox{
+  max-width:650px;
+  margin:30px auto 0;
+  background:#0e2035;
+  border:1px solid #24476b;
+  border-radius:18px;
+  padding:18px;
+}
+
+.xprow{
+  display:flex;
+  justify-content:space-between;
+  margin-bottom:8px;
+}
+
+.progress{
+  height:12px;
+  background:#172c43;
+  border-radius:20px;
+  overflow:hidden;
+}
+
+.progress div{
+  height:100%;
+  width:0%;
+  background:linear-gradient(90deg,#5ee7d2,#68a8ff);
+  transition:.5s;
+}
+
+.container{
+  max-width:1150px;
+  margin:auto;
+  padding:20px 6% 70px;
+}
+
+.section-title{
+  margin:45px 0 18px;
+}
+
+.section-title h2{
+  font-size:29px;
+}
+
+.section-title p{
+  color:#9fb2c8;
+}
+
+.topic-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(210px,1fr));
+  gap:15px;
+}
+
 .topic{
- padding:18px;min-height:180px;
- transition:.15s
-}
-.topic.open{cursor:pointer}
-.topic.open:hover{
- transform:translateY(-3px);
- border-color:#917cff
-}
-.topic.locked{opacity:.4}
-
-.level{float:right;font-size:12px;color:#8e9bb0;font-weight:900}
-
-.bar{
- height:8px;background:#263650;
- border-radius:99px;overflow:hidden;margin-top:12px
-}
-.bar i{display:block;height:100%;background:#8068ff}
-
-.map4{
- display:grid;grid-template-columns:repeat(4,1fr);
- gap:10px;margin-top:15px
-}
-.mapbtn{
- min-height:110px;
- border:1px solid #3a4b69;
- background:#12223b;color:white;
- border-radius:16px;padding:12px
-}
-.mapbtn:hover{
- border-color:#927dff;background:#1a2945
-}
-.mapbtn small{
- display:block;color:#aebbd0;
- line-height:1.45;margin-top:7px
+  background:#0d1d30;
+  border:1px solid #203e5d;
+  border-radius:18px;
+  padding:20px;
+  transition:.25s;
 }
 
-.detail{
- padding:18px;margin-top:15px
+.topic:hover{
+  transform:translateY(-4px);
+  border-color:#5ee7d2;
+}
+
+.topic .icon{
+  font-size:35px;
+}
+
+.topic h3{
+  margin:8px 0 4px;
+}
+
+.topic small{
+  color:#91a7bd;
+}
+
+.topic button{
+  margin-top:14px;
+  width:100%;
+  border:0;
+  padding:10px;
+  border-radius:10px;
+  background:#163b57;
+  color:white;
+}
+
+.topic button:hover{
+  background:#1e5672;
+}
+
+.panel{
+  display:none;
+  margin-top:25px;
+  background:#0d1e32;
+  border:1px solid #2a4e72;
+  border-radius:22px;
+  padding:28px;
+  animation:fade .3s;
+}
+
+@keyframes fade{
+  from{opacity:0;transform:translateY(8px)}
+  to{opacity:1;transform:translateY(0)}
+}
+
+.panel.active{
+  display:block;
+}
+
+.panel h2{
+  color:#5ee7d2;
+  margin-bottom:10px;
+}
+
+.panel h3{
+  margin-top:22px;
+  color:#8fc4ff;
+}
+
+.info{
+  background:#101f31;
+  border-left:4px solid #5ee7d2;
+  padding:15px;
+  margin:15px 0;
+  border-radius:8px;
+}
+
+.real{
+  background:#17283b;
+  padding:16px;
+  border-radius:14px;
+  margin-top:10px;
+}
+
+.experiment{
+  background:#102b29;
+  border:1px solid #28645e;
+  padding:18px;
+  border-radius:15px;
+  margin-top:10px;
+}
+
+.mission{
+  background:#251d39;
+  border:1px solid #5c4a88;
+  padding:18px;
+  border-radius:15px;
+  margin-top:10px;
 }
 
 .source{
- margin-top:16px;padding:16px;
- border:1px solid #344764;
- background:#0a1729;border-radius:16px
+  display:block;
+  margin:8px 0;
+  color:#71c8ff;
+  text-decoration:none;
 }
-.source a{
- display:block;color:#c8bcff;
- text-decoration:none;padding:8px 0
+
+.source:hover{
+  text-decoration:underline;
 }
-.source a:hover{text-decoration:underline}
+
+.quiz{
+  margin-top:22px;
+  background:#101f32;
+  border-radius:16px;
+  padding:20px;
+}
+
+.question{
+  margin-bottom:22px;
+}
 
 .option{
- display:block;width:100%;
- text-align:left;padding:13px;margin:8px 0;
- border-radius:11px;
- border:1px solid #354665;
- background:#0a1729;color:white
-}
-.option.selected{
- border-color:#927dff;background:#2e255b
-}
-
-.success{
- border-color:#2ac997!important;
- background:#103b31!important
-}
-.wrong{
- border-color:#ff647c!important;
- background:#3b1824!important
+  display:block;
+  width:100%;
+  text-align:left;
+  padding:12px 15px;
+  margin:8px 0;
+  border:1px solid #31516f;
+  background:#12263b;
+  color:white;
+  border-radius:10px;
 }
 
-input{
- width:100%;padding:13px;
- border-radius:10px;
- border:1px solid #354665;
- background:#0a1729;color:white;
- margin:8px 0
+.option:hover{
+  border-color:#5ee7d2;
 }
 
-footer{
- text-align:center;color:#74829a;padding:30px
+.option.correct{
+  background:#124c3d;
+  border-color:#52e3bd;
 }
 
-@media(max-width:760px){
- .grid,.map{grid-template-columns:1fr 1fr}
- .map4{grid-template-columns:1fr 1fr}
+.option.wrong{
+  background:#4b2025;
+  border-color:#e87575;
 }
-@media(max-width:500px){
- .grid,.map,.map4{grid-template-columns:1fr}
+
+.result{
+  margin-top:15px;
+  font-weight:bold;
+}
+
+.complete{
+  margin-top:20px;
+  padding:13px 20px;
+  background:#5ee7d2;
+  color:#07111f;
+  border:0;
+  border-radius:10px;
+  font-weight:700;
+}
+
+.footer{
+  text-align:center;
+  padding:30px;
+  border-top:1px solid #203b58;
+  color:#8197ad;
+}
+
+@media(max-width:600px){
+  .hero h1{
+    font-size:35px;
+  }
+
+  .nav{
+    flex-direction:column;
+  }
+
+  .panel{
+    padding:19px;
+  }
 }
 </style>
 </head>
 
 <body>
 
-<div class="container">
-
-<header>
-<div class="logo">
-<span class="bolt">⚡</span>Physics Khuji
-</div>
-
-<div class="stats">
-<div class="stat">❤️ <b id="lives">3</b></div>
-<div class="stat">⭐ <b id="xp">0</b> XP</div>
-<div class="stat">🏆 স্তর <b id="level">1</b></div>
-</div>
+<header class="header">
+  <div class="nav">
+    <div class="logo">⚡ Physics <span>Khuji</span></div>
+    <div class="badge">Class 10 • Interactive Learning</div>
+  </div>
 </header>
 
+<section class="hero">
+  <h1>Physics <span>Khuji</span> 🔎</h1>
+  <p>
+    শুধু মুখস্থ নয়—চারপাশের বাস্তব জীবন থেকে পদার্থবিজ্ঞান খুঁজে বের করো,
+    বুঝে শেখো, পরীক্ষা করো এবং নিজের জ্ঞান যাচাই করো।
+  </p>
 
-<!-- HOME -->
+  <div class="xpbox">
+    <div class="xprow">
+      <strong>তোমার Learning Progress</strong>
+      <strong><span id="xp">0</span> XP</strong>
+    </div>
+    <div class="progress">
+      <div id="progressBar"></div>
+    </div>
+  </div>
+</section>
 
-<section id="home" class="page active">
 
-<div class="hero">
+<main class="container">
 
-<span class="badge">
-দশম শ্রেণি • ইন্টার‌্যাকটিভ Physics শেখা
-</span>
+<div class="section-title">
+  <h2>🗺️ Physics Concept Map</h2>
+  <p>একটি topic বেছে নিয়ে Physics-এর ধারণাগুলো আবিষ্কার করো।</p>
+</div>
 
-<h1>Physics Khuji ⚡</h1>
+<div class="topic-grid">
 
-<h3>
-চারপাশের জীবন থেকে Physics খুঁজে শেখো!
-</h3>
+  <div class="topic">
+    <div class="icon">🏃</div>
+    <h3>গতি ও Motion</h3>
+    <small>Motion • Speed • Velocity</small>
+    <button onclick="openTopic('motion')">শিখি →</button>
+  </div>
+
+  <div class="topic">
+    <div class="icon">💪</div>
+    <h3>বল ও Force</h3>
+    <small>Force • Inertia • Newton</small>
+    <button onclick="openTopic('force')">শিখি →</button>
+  </div>
+
+  <div class="topic">
+    <div class="icon">⚙️</div>
+    <h3>কাজ ও শক্তি</h3>
+    <small>Work • Energy • Power</small>
+    <button onclick="openTopic('energy')">শিখি →</button>
+  </div>
+
+  <div class="topic">
+    <div class="icon">🌡️</div>
+    <h3>তাপ ও Temperature</h3>
+    <small>Heat • Temperature • Expansion</small>
+    <button onclick="openTopic('heat')">শিখি →</button>
+  </div>
+
+  <div class="topic">
+    <div class="icon">🔊</div>
+    <h3>তরঙ্গ ও Sound</h3>
+    <small>Wave • Frequency • Sound</small>
+    <button onclick="openTopic('wave')">শিখি →</button>
+  </div>
+
+  <div class="topic">
+    <div class="icon">🪞</div>
+    <h3>আলো ও Optics</h3>
+    <small>Reflection • Refraction • Lens</small>
+    <button onclick="openTopic('light')">শিখি →</button>
+  </div>
+
+  <div class="topic">
+    <div class="icon">🔋</div>
+    <h3>বিদ্যুৎ</h3>
+    <small>Current • Voltage • Resistance</small>
+    <button onclick="openTopic('electricity')">শিখি →</button>
+  </div>
+
+  <div class="topic">
+    <div class="icon">🧲</div>
+    <h3>চুম্বকত্ব</h3>
+    <small>Magnet • Magnetic Field</small>
+    <button onclick="openTopic('magnet')">শিখি →</button>
+  </div>
+
+</div>
+
+
+<!-- MOTION -->
+<section id="motion" class="panel">
+
+<h2>🏃 গতি ও Motion</h2>
 
 <p>
-শুধু মুখস্থ নয়—দেখো, ভাবো, পরীক্ষা করো এবং
-বাস্তব জীবনের ঘটনার সঙ্গে Physics-এর সম্পর্ক খুঁজে বের করো।
+কোনো বস্তু সময়ের সাথে তার অবস্থান পরিবর্তন করলে আমরা বলি বস্তুটি
+<strong>Motion</strong>-এ আছে।
 </p>
 
-<div class="row">
+<div class="info">
+<strong>মূল ধারণা:</strong><br>
+Distance হলো মোট অতিক্রান্ত পথ। আর Speed হলো একক সময়ে কত দূরত্ব অতিক্রম করা হয়েছে।
+<br><br>
+<strong>Speed = Distance ÷ Time</strong>
+</div>
 
-<button class="primary" onclick="show('profile')">
-🚀 শেখা শুরু করি
+<h3>🌍 Real Life Connection</h3>
+
+<div class="real">
+বাস যখন রাস্তা দিয়ে চলে, তার position পরিবর্তিত হয়—তাই বাসটি motion-এ আছে।
+তোমার স্কুলে হাঁটার সময়ও তুমি motion-এ থাকো।
+</div>
+
+<h3>🧪 Try an Experiment</h3>
+
+<div class="experiment">
+একটি মোবাইল stopwatch নাও। 10 মিটার দূরত্ব নির্ধারণ করো।
+তারপর হেঁটে যেতে কত সময় লাগে মাপো।
+
+<br><br>
+
+যদি 10 মিটার যেতে 5 সেকেন্ড লাগে:
+
+<br><br>
+
+<strong>Speed = 10 ÷ 5 = 2 m/s</strong>
+
+<br><br>
+এবার দৌড়ে একই distance অতিক্রম করে speed তুলনা করো।
+</div>
+
+<h3>🎯 Mission</h3>
+
+<div class="mission">
+<strong>Mission: Speed Detective 🔎</strong><br>
+তোমার বাড়ি থেকে একটি নির্দিষ্ট জায়গায় যেতে কত সময় লাগে তা মাপো।
+Distance বের করে নিজের average speed হিসাব করো।
+</div>
+
+<Quiz id="motionQuiz" question="একজন ছাত্র 20 m পথ 5 s-এ অতিক্রম করল। তার speed কত?">
+<button onclick="answer(this,true)">4 m/s</button>
+<button onclick="answer(this,false)">5 m/s</button>
+<button onclick="answer(this,false)">10 m/s</button>
+<button onclick="answer(this,false)">25 m/s</button>
+</Quiz>
+
+<a class="source" href="https://phet.colorado.edu/" target="_blank">
+📚 Further Learning: PhET Interactive Simulations
+</a>
+
+<button class="complete" onclick="completeTopic('motion')">
+✓ Mission Complete +20 XP
 </button>
 
-<button class="secondary" onclick="show('world')">
-🗺️ Physics-এর দুনিয়া
-</button>
-
-</div>
-</div>
-
-
-<div class="grid">
-
-<div class="card">
-<div class="icon">🕵️</div>
-<h3>Physics গোয়েন্দা</h3>
-<p>
-বাস, সাইকেল, আয়না, ফ্যান—কোন ঘটনায়
-কোন Physics ধারণা কাজ করছে তা খুঁজে বের করো।
-</p>
-</div>
-
-<div class="card">
-<div class="icon">🧪</div>
-<h3>বাস্তব পরীক্ষা</h3>
-<p>
-সহজ ও নিরাপদ activity করে
-বইয়ের ধারণা নিজের চোখে বোঝো।
-</p>
-</div>
-
-<div class="card">
-<div class="icon">🏆</div>
-<h3>Challenge</h3>
-<p>
-Mission ও Quiz শেষ করে XP অর্জন করো
-এবং নতুন স্তর খুলে দাও।
-</p>
-</div>
-
-</div>
 </section>
 
 
-<!-- PROFILE -->
+<!-- FORCE -->
+<section id="force" class="panel">
 
-<section id="profile" class="page">
-
-<div class="panel">
-
-<span class="badge">👤 শিক্ষার্থীর পরিচয়</span>
-
-<h2>তোমার নাম লিখো</h2>
-
-<input id="studentName" placeholder="যেমন: Esha">
-
-<p>
-কোনো account লাগবে না।
-তোমার অগ্রগতি এই browser-এ সংরক্ষিত থাকবে।
-</p>
-
-<div class="row">
-
-<button class="secondary" onclick="show('home')">
-← ফিরে যাও
-</button>
-
-<button class="primary" onclick="startGame()">
-🎮 শেখা শুরু করি
-</button>
-
-</div>
-
-</div>
-</section>
-
-
-<!-- WORLD -->
-
-<section id="world" class="page">
-
-<div class="panel">
-
-<span class="badge">🗺️ Physics-এর দুনিয়া</span>
-
-<h2 id="journey">তোমার Physics Journey</h2>
+<h2>💪 বল ও Force</h2>
 
 <p>
-একটি Mission সফল হলে পরের স্তর খুলে যাবে।
+কোনো বস্তুর গতি বা আকৃতি পরিবর্তন করতে পারে এমন push বা pull-কে
+<strong>Force</strong> বলা হয়।
 </p>
 
-<div id="topics" class="map"></div>
+<div class="info">
+<strong>Newton-এর দ্বিতীয় সূত্র:</strong><br>
+<strong>F = ma</strong><br>
+Force = Mass × Acceleration
+</div>
 
-<div class="row">
+<h3>🌍 Real Life Connection</h3>
 
-<button class="secondary" onclick="show('home')">
-← হোম
+<div class="real">
+ফুটবলে বলকে জোরে kick করলে বল দ্রুত চলে যায়।
+কারণ বল প্রয়োগ করলে বলের motion পরিবর্তিত হয়।
+</div>
+
+<h3>🧪 Experiment</h3>
+
+<div class="experiment">
+একটি খালি বোতল ও একটি পানিভর্তি বোতল নাও।
+দুটিকে একইভাবে ঠেলা দাও।
+
+কোনটি বেশি সহজে acceleration পায়?
+
+<br><br>
+এর মাধ্যমে mass ও acceleration-এর সম্পর্ক বোঝার চেষ্টা করো।
+</div>
+
+<h3>🎯 Mission</h3>
+
+<div class="mission">
+<strong>Force Hunter 🕵️</strong><br>
+আজকের দিনে তুমি কোথায় কোথায় push বা pull force ব্যবহার করেছো—
+কমপক্ষে ৫টি উদাহরণ খুঁজে বের করো।
+</div>
+
+<Quiz id="forceQuiz" question="Force-এর SI unit কোনটি?">
+<button onclick="answer(this,true)">Newton</button>
+<button onclick="answer(this,false)">Joule</button>
+<button onclick="answer(this,false)">Watt</button>
+<button onclick="answer(this,false)">Pascal</button>
+</Quiz>
+
+<a class="source" href="https://www.khanacademy.org/science/physics/forces-newtons-laws" target="_blank">
+📚 Further Learning: Khan Academy — Forces
+</a>
+
+<button class="complete" onclick="completeTopic('force')">
+✓ Mission Complete +20 XP
 </button>
 
-<button class="primary" onclick="dashboard()">
-📊 আমার অগ্রগতি
+</section>
+
+
+<!-- ENERGY -->
+<section id="energy" class="panel">
+
+<h2>⚙️ কাজ, শক্তি ও Power</h2>
+
+<p>
+কোনো বল প্রয়োগের ফলে যদি বস্তুর displacement ঘটে, তাহলে সেই force কাজ করে।
+</p>
+
+<div class="info">
+<strong>Work = Force × Displacement</strong>
+<br><br>
+Energy হলো কাজ করার সক্ষমতা।
+Power হলো কাজ করার হার।
+</div>
+
+<h3>🌍 Real Life Connection</h3>
+
+<div class="real">
+সিঁড়ি দিয়ে ওপরে উঠতে আমাদের শরীর chemical energy ব্যবহার করে।
+ফ্যান electrical energy-কে mechanical energy-তে রূপান্তর করে।
+</div>
+
+<h3>🧪 Experiment</h3>
+
+<div class="experiment">
+একটি বই মেঝে থেকে টেবিলের উপর তোলো।
+তারপর লক্ষ্য করো—তুমি বইটির ওপর force প্রয়োগ করেছো এবং
+বইটির displacement হয়েছে।
+</div>
+
+<h3>🎯 Mission</h3>
+
+<div class="mission">
+<strong>Energy Tracker ⚡</strong><br>
+তোমার বাড়িতে একটি দিনে energy কোথায় কোথায় ব্যবহৃত হচ্ছে—
+কমপক্ষে ৫টি উদাহরণ লিখে ফেলো।
+</div>
+
+<Quiz id="energyQuiz" question="Power-এর SI unit কোনটি?">
+<button onclick="answer(this,true)">Watt</button>
+<button onclick="answer(this,false)">Joule</button>
+<button onclick="answer(this,false)">Newton</button>
+<button onclick="answer(this,false)">Volt</button>
+</Quiz>
+
+<a class="source" href="https://phet.colorado.edu/en/simulations/energy-forms-and-changes" target="_blank">
+📚 Further Learning: PhET — Energy Forms and Changes
+</a>
+
+<button class="complete" onclick="completeTopic('energy')">
+✓ Mission Complete +20 XP
 </button>
 
+</section>
+
+
+<!-- HEAT -->
+<section id="heat" class="panel">
+
+<h2>🌡️ তাপ ও Temperature</h2>
+
+<p>
+Heat হলো এক ধরনের energy transfer, আর Temperature কোনো বস্তুর
+উষ্ণতার মাত্রা নির্দেশ করে।
+</p>
+
+<div class="info">
+গরম বস্তু থেকে ঠান্ডা বস্তুর দিকে তাপ প্রবাহিত হয়।
 </div>
 
+<h3>🌍 Real Life Connection</h3>
+
+<div class="real">
+গরম চা কিছুক্ষণ রেখে দিলে ঠান্ডা হয়ে যায়।
+কারণ চা থেকে আশেপাশের পরিবেশে heat transfer হয়।
 </div>
-</section>
 
+<h3>🧪 Experiment</h3>
 
-<!-- LESSON -->
+<div class="experiment">
+একটি ধাতব চামচ এবং একটি কাঠের চামচ কিছুক্ষণ গরম পানিতে রাখো।
+সাবধানে স্পর্শ করে তাপ পরিবহণের পার্থক্য লক্ষ্য করো।
+</div>
 
-<section id="lesson" class="page">
+<h3>🎯 Mission</h3>
 
-<div id="lessonBox" class="panel"></div>
+<div class="mission">
+<strong>Heat Detective 🌡️</strong><br>
+বাড়িতে এমন ৫টি জিনিস খুঁজে বের করো যেখানে heat transfer হচ্ছে।
+</div>
 
-</section>
+<Quiz id="heatQuiz" question="তাপ স্বাভাবিকভাবে কোন দিকে প্রবাহিত হয়?">
+<button onclick="answer(this,true)">গরম থেকে ঠান্ডার দিকে</button>
+<button onclick="answer(this,false)">ঠান্ডা থেকে গরমের দিকে</button>
+<button onclick="answer(this,false)">দুই দিকেই সমানভাবে</button>
+<button onclick="answer(this,false)">কোনো দিকেই নয়</button>
+</Quiz>
 
+<a class="source" href="https://phet.colorado.edu/en/simulations/states-of-matter-basics" target="_blank">
+📚 Further Learning: PhET — States of Matter
+</a>
 
-<!-- DETAIL -->
-
-<section id="detail" class="page">
-
-<div id="detailBox" class="panel"></div>
-
-</section>
-
-
-<!-- QUIZ -->
-
-<section id="quiz" class="page">
-
-<div class="panel">
-
-<span class="badge">
-⚔️ Mission Challenge
-</span>
-
-<h2 id="quizTitle"></h2>
-
-<div id="quizBox"></div>
-
-<div id="quizResult"></div>
-
-<div class="row">
-
-<button class="secondary" onclick="openTopic(current)">
-← Concept Map
+<button class="complete" onclick="completeTopic('heat')">
+✓ Mission Complete +20 XP
 </button>
 
-<button class="primary" onclick="submitQuiz()">
-উত্তর জমা দাও
+</section>
+
+
+<!-- WAVE -->
+<section id="wave" class="panel">
+
+<h2>🔊 তরঙ্গ ও Sound</h2>
+
+<p>
+এক স্থান থেকে অন্য স্থানে energy পরিবহন করে এমন periodic disturbance-কে
+Wave বলা হয়।
+</p>
+
+<div class="info">
+Sound হলো একটি mechanical wave। এটি চলাচলের জন্য medium প্রয়োজন করে।
+</div>
+
+<h3>🌍 Real Life Connection</h3>
+
+<div class="real">
+তুমি যখন কথা বলো, তোমার vocal cord কম্পিত হয়।
+এই vibration বাতাসের মাধ্যমে অন্য মানুষের কানে পৌঁছায়।
+</div>
+
+<h3>🧪 Experiment</h3>
+
+<div class="experiment">
+একটি rubber band টেনে ছেড়ে দাও।
+তার vibration লক্ষ্য করো।
+
+এবার tension পরিবর্তন করে sound-এর পরিবর্তন লক্ষ্য করো।
+</div>
+
+<h3>🎯 Mission</h3>
+
+<div class="mission">
+<strong>Sound Hunter 🔊</strong><br>
+তোমার আশেপাশে ৫টি sound source খুঁজে বের করো।
+কোনটির vibration বেশি এবং কোনটির কম—অনুমান করো।
+</div>
+
+<Quiz id="waveQuiz" question="Sound কোন ধরনের wave?">
+<button onclick="answer(this,true)">Mechanical wave</button>
+<button onclick="answer(this,false)">Electromagnetic wave</button>
+<button onclick="answer(this,false)">Light wave</button>
+<button onclick="answer(this,false)">Matter নয়</button>
+</Quiz>
+
+<a class="source" href="https://phet.colorado.edu/en/simulations/wave-on-a-string" target="_blank">
+📚 Further Learning: PhET — Wave on a String
+</a>
+
+<button class="complete" onclick="completeTopic('wave')">
+✓ Mission Complete +20 XP
 </button>
 
-</div>
-
-</div>
 </section>
 
 
-<!-- DASHBOARD -->
+<!-- LIGHT -->
+<section id="light" class="panel">
 
-<section id="dash" class="page">
+<h2>🪞 আলো ও Optics</h2>
 
-<div class="panel">
+<p>
+আলো একটি electromagnetic radiation, যা আমাদের চারপাশের বস্তু দেখতে সাহায্য করে।
+</p>
 
-<span class="badge">
-📊 আমার অগ্রগতি
-</span>
-
-<h2 id="dashName"></h2>
-
-<p id="dashText"></p>
-
-<div class="bar">
-<i id="dashBar"></i>
+<div class="info">
+<strong>Reflection:</strong> আলো কোনো পৃষ্ঠে পড়ে ফিরে আসা।
+<br>
+<strong>Refraction:</strong> আলো এক medium থেকে অন্য medium-এ গেলে তার গতির পরিবর্তনের কারণে দিক পরিবর্তন করা।
 </div>
 
+<h3>🌍 Real Life Connection</h3>
+
+<div class="real">
+আয়নায় নিজের মুখ দেখা হলো reflection-এর উদাহরণ।
+পানিতে রাখা পেন্সিল বাঁকা দেখানো refraction-এর উদাহরণ।
 </div>
 
+<h3>🧪 Experiment</h3>
 
-<div class="grid">
+<div class="experiment">
+একটি স্বচ্ছ গ্লাসে পানি নাও।
+একটি pencil পানিতে আংশিক ডুবিয়ে দেখো।
 
-<div class="card">
-<h3>⭐ XP</h3>
-<h2 id="dashXp">0</h2>
+পেন্সিলটি কেন বাঁকা মনে হচ্ছে তা ব্যাখ্যা করার চেষ্টা করো।
 </div>
 
-<div class="card">
-<h3>🔥 ধারাবাহিকতা</h3>
-<h2 id="dashStreak">0</h2>
+<h3>🎯 Mission</h3>
+
+<div class="mission">
+<strong>Light Detective 🪞</strong><br>
+বাড়িতে reflection-এর ৩টি এবং refraction-এর ২টি উদাহরণ খুঁজে বের করো।
 </div>
 
-<div class="card">
-<h3>🎯 সম্পন্ন Mission</h3>
-<h2 id="dashDone">0</h2>
-</div>
+<Quiz id="lightQuiz" question="আয়নায় মুখ দেখা কোন ঘটনার উদাহরণ?">
+<button onclick="answer(this,true)">Reflection</button>
+<button onclick="answer(this,false)">Refraction</button>
+<button onclick="answer(this,false)">Diffusion</button>
+<button onclick="answer(this,false)">Conduction</button>
+</Quiz>
 
-</div>
+<a class="source" href="https://phet.colorado.edu/en/simulations/bending-light" target="_blank">
+📚 Further Learning: PhET — Bending Light
+</a>
 
-
-<div class="panel">
-
-<h3>🏅 অর্জন</h3>
-
-<p id="badges"></p>
-
-<h3>🔄 আবার অনুশীলন</h3>
-
-<div id="revision"></div>
-
-</div>
+<button class="complete" onclick="completeTopic('light')">
+✓ Mission Complete +20 XP
+</button>
 
 </section>
 
 
-<div id="toast" class="toast"></div>
+<!-- ELECTRICITY -->
+<section id="electricity" class="panel">
 
-<footer>
-Physics Khuji ⚡ • Class 10 Interactive Physics Learning
+<h2>🔋 বিদ্যুৎ ও Electricity</h2>
+
+<p>
+Electric current হলো electric charge-এর flow।
+</p>
+
+<div class="info">
+<strong>Ohm's Law:</strong><br>
+<strong>V = IR</strong><br>
+Voltage = Current × Resistance
+</div>
+
+<h3>🌍 Real Life Connection</h3>
+
+<div class="real">
+তোমার ঘরের bulb, fan, charger—সবই electrical energy ব্যবহার করে।
+Circuit-এর মাধ্যমে electric current প্রবাহিত হয়।
+</div>
+
+<h3>🧪 Experiment</h3>
+
+<div class="experiment">
+একটি battery, ছোট bulb এবং connecting wire ব্যবহার করে
+একটি simple circuit তৈরি করা যায়।
+
+Circuit সম্পূর্ণ হলে bulb জ্বলবে।
+Circuit ভেঙে দিলে bulb নিভে যাবে।
+</div>
+
+<h3>🎯 Mission</h3>
+
+<div class="mission">
+<strong>Electricity Detective 🔋</strong><br>
+তোমার ঘরে এমন ৫টি device খুঁজে বের করো যেগুলো electrical energy ব্যবহার করে।
+</div>
+
+<Quiz id="electricityQuiz" question="Ohm's Law কোনটি?">
+<button onclick="answer(this,true)">V = IR</button>
+<button onclick="answer(this,false)">P = VI²</button>
+<button onclick="answer(this,false)">F = ma</button>
+<button onclick="answer(this,false)">W = F/t</button>
+</Quiz>
+
+<a class="source" href="https://phet.colorado.edu/en/simulations/circuit-construction-kit-dc" target="_blank">
+📚 Further Learning: PhET — Circuit Construction Kit
+</a>
+
+<button class="complete" onclick="completeTopic('electricity')">
+✓ Mission Complete +20 XP
+</button>
+
+</section>
+
+
+<!-- MAGNET -->
+<section id="magnet" class="panel">
+
+<h2>🧲 চুম্বকত্ব ও Magnetism</h2>
+
+<p>
+চুম্বক এমন একটি বস্তু যা magnetic field তৈরি করে এবং কিছু নির্দিষ্ট পদার্থকে আকর্ষণ করতে পারে।
+</p>
+
+<div class="info">
+চুম্বকের দুটি pole থাকে—North pole এবং South pole।
+একই pole বিকর্ষণ করে, বিপরীত pole আকর্ষণ করে।
+</div>
+
+<h3>🌍 Real Life Connection</h3>
+
+<div class="real">
+কম্পাসের needle পৃথিবীর magnetic field-এর কারণে নির্দিষ্ট দিকে অবস্থান করে।
+Speaker, electric motor এবং generator-এর কাজেও magnetism গুরুত্বপূর্ণ।
+</div>
+
+<h3>🧪 Experiment</h3>
+
+<div class="experiment">
+একটি ছোট magnet নাও।
+পাশে paper clip, coin, pencil, eraser ইত্যাদি রাখো।
+কোনগুলো magnet দ্বারা আকৃষ্ট হয় তা পর্যবেক্ষণ করো।
+</div>
+
+<h3>🎯 Mission</h3>
+
+<div class="mission">
+<strong>Magnet Hunter 🧲</strong><br>
+তোমার আশেপাশে magnet কোথায় কোথায় ব্যবহার করা হয়েছে—
+কমপক্ষে ৫টি জায়গা খুঁজে বের করো।
+</div>
+
+<Quiz id="magnetQuiz" question="একই ধরনের magnetic poles কী করে?">
+<button onclick="answer(this,true)">বিকর্ষণ করে</button>
+<button onclick="answer(this,false)">আকর্ষণ করে</button>
+<button onclick="answer(this,false)">কোনো প্রভাব নেই</button>
+<button onclick="answer(this,false)">গলে যায়</button>
+</Quiz>
+
+<a class="source" href="https://phet.colorado.edu/en/simulations/magnets-and-electromagnets" target="_blank">
+📚 Further Learning: PhET — Magnets and Electromagnets
+</a>
+
+<button class="complete" onclick="completeTopic('magnet')">
+✓ Mission Complete +20 XP
+</button>
+
+</section>
+
+
+<div class="section-title">
+  <h2>🏆 Learning Rule</h2>
+  <p>
+    প্রতিটি Concept বুঝো → Real Life-এ খুঁজে দেখো → Experiment করো →
+    Mission complete করো → Quiz দাও।
+  </p>
+</div>
+
+</main>
+
+
+<footer class="footer">
+  <p>⚡ Physics Khuji</p>
+  <p>Class 10 Physics শেখার একটি interactive learning space</p>
+  <p>Learn • Explore • Experiment • Understand</p>
 </footer>
-
-</div>
 
 
 <script>
 
-const data=[
+let xp = Number(localStorage.getItem("physicsXP")) || 0;
+let completed = JSON.parse(localStorage.getItem("physicsCompleted") || "[]");
 
-{
-title:"গতি ও বেগ (Motion & Speed)",
-icon:"🚗",
+updateXP();
 
-concept:
-"কোনো বস্তুর অবস্থান সময়ের সঙ্গে পরিবর্তিত হলে তাকে গতিশীল বলা হয়। Speed বা দ্রুতি বোঝায় কোনো বস্তু কত দ্রুত দূরত্ব অতিক্রম করছে। সূত্র: Speed = Distance ÷ Time.",
+function openTopic(id){
 
-real:[
-"🚌 বাস চলার সময় যাত্রী কেন সামনে বা পিছনে হেলে যায়?",
-"🚴 সাইকেলের Speed কখন বাড়ে?",
-"🏃 দৌড়ানোর সময় কি তোমার Speed সবসময় একই থাকে?"
-],
+  document.querySelectorAll(".panel").forEach(panel=>{
+    panel.classList.remove("active");
+  });
 
-experiment:
-"একটি খেলনা গাড়ি নাও। নির্দিষ্ট একটি দূরত্ব ঠিক করে সময় মাপো। Speed = Distance ÷ Time ব্যবহার করে Speed বের করো। এবার গাড়িটিকে বেশি জোরে ঠেলে দেখো—সময় ও Speed কীভাবে বদলায়?",
+  const panel=document.getElementById(id);
 
-questions:[
-[
-"একটি বাস হঠাৎ সামনে চলতে শুরু করলে যাত্রী সাধারণত কোন দিকে হেলে যায়?",
-["সামনে","পিছনে","উপরে","কোনোটিই নয়"],1
-],
-[
-"Speed বের করার সূত্র কোনটি?",
-["Distance ÷ Time","Time ÷ Distance","Mass × Time","Force ÷ Area"],0
-],
-[
-"Acceleration কী বোঝায়?",
-["বেগের পরিবর্তনের হার","শুধু দূরত্ব","শুধু ভর","শুধু তাপমাত্রা"],0
-]
-],
+  if(panel){
+    panel.classList.add("active");
 
-sources:[
-[
-"Khan Academy — One-dimensional motion",
-"https://www.khanacademy.org/science/physics/one-dimensional-motion"
-],
-[
-"PhET — Moving Man",
-"https://phet.colorado.edu/en/simulations/moving-man"
-]
-]
-},
-
-
-{
-title:"বল ও নিউটনের সূত্র (Force & Newton’s Laws)",
-icon:"💪",
-
-concept:
-"Force বা বল কোনো বস্তুর গতি, দিক বা আকৃতি পরিবর্তন করতে পারে। Newton’s Laws দিয়ে বল ও গতির সম্পর্ক ব্যাখ্যা করা হয়।",
-
-real:[
-"⚽ ফুটবলকে জোরে লাথি দিলে কী হয়?",
-"🚲 ব্রেক চাপলে সাইকেল ধীরে যায় কেন?",
-"🚪 দরজা ঠেললে তার গতি কেন বদলায়?"
-],
-
-experiment:
-"একটি বলকে প্রথমে হালকা এবং পরে জোরে ধাক্কা দাও। দুই ক্ষেত্রে তার গতি কীভাবে বদলায় লক্ষ্য করো। তারপর নিজের ভাষায় কারণটি লিখে রাখো।",
-
-questions:[
-[
-"Force কোনো বস্তুর কী পরিবর্তন করতে পারে?",
-["গতি বা আকৃতি","শুধু রং","শুধু তাপমাত্রা","শুধু ভর"],0
-],
-[
-"Newton-এর তৃতীয় সূত্রের মূল ধারণা কী?",
-["ক্রিয়া ও প্রতিক্রিয়া","শুধু জড়তা","শুধু শক্তি","আলোর প্রতিফলন"],0
-],
-[
-"জড়তা (Inertia) কী?",
-["গতির অবস্থা বজায় রাখার প্রবণতা","তাপের প্রবাহ","আলোর বাঁক","বিদ্যুৎ প্রবাহ"],0
-]
-],
-
-sources:[
-[
-"Khan Academy — Forces & Newton’s Laws",
-"https://www.khanacademy.org/science/physics/forces-newtons-laws"
-],
-[
-"PhET — Forces and Motion",
-"https://phet.colorado.edu/en/simulations/forces-and-motion-basics"
-]
-]
-},
-
-
-{
-title:"কাজ, ক্ষমতা ও শক্তি (Work, Power & Energy)",
-icon:"🏋️",
-
-concept:
-"বল প্রয়োগের ফলে কোনো বস্তুর সরণ ঘটলে Work বা কাজ হতে পারে। Power বা ক্ষমতা হলো কাজ করার হার। Energy বা শক্তি হলো কাজ করার সামর্থ্য।",
-
-real:[
-"🎒 ব্যাগ তুলতে শক্তি কোথা থেকে আসে?",
-"🏃 একই সিঁড়ি কে দ্রুত উঠলে তার Power বেশি হতে পারে?",
-"💡 বৈদ্যুতিক শক্তি কীভাবে আলোতে রূপ নেয়?"
-],
-
-experiment:
-"একটি বই মেঝে থেকে টেবিলে তোলো। ভাবো—তোমার শরীরের শক্তি কীভাবে বইয়ের অবস্থান পরিবর্তনে ব্যবহৃত হলো।",
-
-questions:[
-[
-"Work সম্পন্ন হওয়ার জন্য সাধারণভাবে কী দরকার?",
-["বল ও সরণ","শুধু সময়","শুধু ভর","শুধু রং"],0
-],
-[
-"Power কী নির্দেশ করে?",
-["কাজ করার হার","শুধু বল","শুধু দূরত্ব","শুধু ভর"],0
-],
-[
-"Energy-এর একটি গুরুত্বপূর্ণ বৈশিষ্ট্য কী?",
-["এক রূপ থেকে অন্য রূপে রূপান্তরিত হতে পারে","সবসময় নষ্ট হয়","শুধু আলো হতে পারে","কোনো কাজে লাগে না"],0
-]
-],
-
-sources:[
-[
-"Khan Academy — Work & Energy",
-"https://www.khanacademy.org/science/physics/work-and-energy"
-],
-[
-"PhET — Energy Skate Park",
-"https://phet.colorado.edu/en/simulations/energy-skate-park"
-]
-]
-},
-
-
-{
-title:"আলো (Light)",
-icon:"💡",
-
-concept:
-"আলো প্রতিফলন (Reflection), প্রতিসরণ (Refraction) এবং ছায়ার মতো বিভিন্ন ঘটনা ঘটায়।",
-
-real:[
-"🪞 আয়নায় নিজের ছবি দেখা কীভাবে সম্ভব?",
-"🥤 পানিতে পেন্সিল বাঁকা দেখায় কেন?",
-"🌳 গাছের নিচে ছায়া তৈরি হয় কেন?"
-],
-
-experiment:
-"এক গ্লাস পানিতে একটি পেন্সিল আংশিক ডুবিয়ে পাশ থেকে দেখো। পেন্সিলটি বাঁকা মনে হচ্ছে কি? কেন এমন মনে হতে পারে তা ভাবো।",
-
-questions:[
-[
-"আয়নায় নিজের ছবি দেখা কোন ঘটনার উদাহরণ?",
-["Reflection বা প্রতিফলন","Refraction বা প্রতিসরণ","শব্দ","চাপ"],0
-],
-[
-"মাধ্যম পরিবর্তনের সময় আলোর দিক পরিবর্তনকে কী বলে?",
-["Refraction বা প্রতিসরণ","Reflection বা প্রতিফলন","কম্পন","তাপ পরিবহন"],0
-],
-[
-"ছায়া তৈরির জন্য সাধারণত কী দরকার?",
-["আলো ও একটি বাধা","শুধু পানি","শুধু শব্দ","শুধু তাপ"],0
-]
-],
-
-sources:[
-[
-"Khan Academy — Geometric Optics",
-"https://www.khanacademy.org/science/physics/geometric-optics"
-],
-[
-"PhET — Bending Light",
-"https://phet.colorado.edu/en/simulations/bending-light"
-]
-]
-},
-
-
-{
-title:"বিদ্যুৎ (Electricity)",
-icon:"🔌",
-
-concept:
-"একটি সম্পূর্ণ circuit-এ electric current বা তড়িৎ প্রবাহ হতে পারে। বৈদ্যুতিক শক্তি আলো, তাপ বা গতির মতো অন্য রূপে রূপান্তরিত হতে পারে।",
-
-real:[
-"💡 সুইচ অন করলে বাল্ব জ্বলে কেন?",
-"🔋 Battery কীভাবে circuit-কে শক্তি দেয়?",
-"🌀 ফ্যানের electrical energy কীভাবে motion-এ রূপ নেয়?"
-],
-
-experiment:
-"একটি নিরাপদ battery-powered circuit-এর switch অন ও অফ করে দেখো। Circuit সম্পূর্ণ ও বিচ্ছিন্ন হলে কী পরিবর্তন হয়?",
-
-questions:[
-[
-"সম্পূর্ণ circuit হলে কী হতে পারে?",
-["Electric current প্রবাহিত হতে পারে","ভর কমে যায়","শব্দ বন্ধ হয়","আলো বাঁকা হয়"],0
-],
-[
-"সুইচের প্রধান কাজ কী?",
-["Circuit খোলা বা বন্ধ করা","ভর বাড়ানো","আলো বাঁকানো","সময় মাপা"],0
-],
-[
-"বৈদ্যুতিক শক্তি কোন রূপে রূপান্তরিত হতে পারে?",
-["আলো, তাপ বা গতি","শুধু পানি","শুধু শব্দ","কোনোটিই নয়"],0
-]
-],
-
-sources:[
-[
-"Khan Academy — Electrical Circuits",
-"https://www.khanacademy.org/science/physics/circuits-topic"
-],
-[
-"PhET — Circuit Construction Kit",
-"https://phet.colorado.edu/en/simulations/circuit-construction-kit-dc"
-]
-]
-},
-
-
-{
-title:"চুম্বক ও চৌম্বকত্ব (Magnetism)",
-icon:"🧲",
-
-concept:
-"চৌম্বক ক্ষেত্র (Magnetic Field) এবং electric current-এর সম্পর্ক বিভিন্ন প্রযুক্তিতে ব্যবহার করা হয়। Compass, motor ও speaker-এর মতো যন্ত্রে Magnetism গুরুত্বপূর্ণ।",
-
-real:[
-"🧭 Compass কীভাবে দিক দেখায়?",
-"🔊 Speaker-এ Magnetism কেন গুরুত্বপূর্ণ?",
-"⚙️ Motor-এর ঘূর্ণনের সঙ্গে Magnetism-এর কী সম্পর্ক?"
-],
-
-experiment:
-"একটি ছোট চুম্বক দিয়ে নিরাপদ কিছু বস্তু পরীক্ষা করো। কোনগুলো আকর্ষিত হয় এবং কোনগুলো হয় না—তালিকা বানাও।",
-
-questions:[
-[
-"চুম্বক সাধারণত কোন বস্তু আকর্ষণ করে?",
-["লোহা","কাগজ","কাঠ","পানি"],0
-],
-[
-"Compass মূলত কী কাজে সাহায্য করে?",
-["দিক নির্ণয়","তাপ মাপা","ভর মাপা","সময় মাপা"],0
-],
-[
-"Motor-এর কাজের সঙ্গে কোন ধারণা সম্পর্কিত?",
-["চৌম্বকীয় প্রভাব ও বিদ্যুৎ","শুধু শব্দ","শুধু পানি","শুধু আলো"],0
-]
-],
-
-sources:[
-[
-"Khan Academy — Magnetic Forces",
-"https://www.khanacademy.org/science/physics/magnetic-forces-and-magnetic-fields"
-],
-[
-"PhET — Faraday’s Electromagnetic Lab",
-"https://phet.colorado.edu/en/simulations/faradays-electromagnetic-lab"
-]
-]
+    setTimeout(()=>{
+      panel.scrollIntoView({
+        behavior:"smooth",
+        block:"start"
+      });
+    },100);
+  }
 }
 
-];
+function answer(button,correct){
 
+  const quiz=button.closest(".quiz");
+  const options=quiz.querySelectorAll(".option");
 
-let state={
- name:"শিক্ষার্থী",
- xp:0,
- lives:3,
- streak:0,
- done:{}
-};
+  if(button.dataset.done==="true") return;
 
-let current=0;
-let selected={};
+  options.forEach(o=>{
+    o.dataset.done="true";
+    o.disabled=true;
+  });
 
+  if(correct){
 
-try{
- let saved=localStorage.getItem("physics_khuji_final");
- if(saved) state={...state,...JSON.parse(saved)};
-}catch(e){}
+    button.classList.add("correct");
 
+    const result=document.createElement("div");
+    result.className="result";
+    result.innerHTML="✅ সঠিক উত্তর! +5 XP";
+    quiz.appendChild(result);
 
-function save(){
- try{
+    addXP(5);
+
+  }else{
+
+    button.classList.add("wrong");
+
+    const result=document.createElement("div");
+    result.className="result";
+    result.innerHTML="❌ উত্তরটি সঠিক নয়। আবার ধারণাটি পড়ে চেষ্টা করো।";
+    quiz.appendChild(result);
+  }
+}
+
+function addXP(amount){
+
+  xp += amount;
+
+  localStorage.setItem("physicsXP",xp);
+
+  updateXP();
+}
+
+function updateXP(){
+
+  document.getElementById("xp").textContent=xp;
+
+  let percent=Math.min((xp/160)*100,100);
+
+  document.getElementById("progressBar").style.width=percent+"%";
+}
+
+function completeTopic(topic){
+
+  if(completed.includes(topic)){
+    alert("এই Mission তুমি ইতিমধ্যেই complete করেছো! 🎉");
+    return;
+  }
+
+  completed.push(topic);
+
   localStorage.setItem(
-   "physics_khuji_final",
-   JSON.stringify(state)
-  );
- }catch(e){}
-}
-
-
-function updateTop(){
-
- document.getElementById("lives").textContent=state.lives;
- document.getElementById("xp").textContent=state.xp;
- document.getElementById("level")
- .textContent=Math.floor(state.xp/100)+1;
-
-}
-
-
-function show(id){
-
- document.querySelectorAll(".page")
- .forEach(p=>p.classList.remove("active"));
-
- document.getElementById(id)
- .classList.add("active");
-
- window.scrollTo(0,0);
-
- updateTop();
-
- if(id==="world") renderWorld();
-
- if(id==="dash") renderDashboard();
-
-}
-
-
-function startGame(){
-
- state.name=
- document.getElementById("studentName")
- .value.trim() || "শিক্ষার্থী";
-
- save();
-
- show("world");
-}
-
-
-function renderWorld(){
-
- document.getElementById("journey")
- .textContent=state.name+"-এর Physics Journey";
-
- document.getElementById("topics").innerHTML=
-
- data.map((t,i)=>{
-
-  let open=
-   i===0 ||
-   state.done[data[i-1].title];
-
-  return `
-
-  <div class="topic ${open?"open":"locked"}"
-   onclick="${open?`openTopic(${i})`:"lockedTopic()"}">
-
-   <span class="level">
-   LEVEL ${i+1}
-   </span>
-
-   <div class="icon">${t.icon}</div>
-
-   <h3>${t.title}</h3>
-
-   <p>
-   ${open?
-   "🎯 Mission প্রস্তুত":
-   "🔒 আগের স্তর সম্পন্ন করো"}
-   </p>
-
-   <div class="bar">
-   <i style="
-   width:${state.done[t.title]?100:open?18:0}%
-   "></i>
-   </div>
-
-  </div>
-
-  `;
-
- }).join("");
-
-}
-
-
-function lockedTopic(){
-
- toast("🔒 আগে আগের Mission সম্পন্ন করো।");
-
-}
-
-
-function openTopic(i){
-
- current=i;
-
- let t=data[i];
-
- document.getElementById("lessonBox").innerHTML=`
-
- <span class="badge">
- স্তর ${i+1} • ${t.title}
- </span>
-
- <h2>${t.icon} ${t.title}</h2>
-
- <div class="detail">
-
- <h3>📖 আজকের মূল ধারণা</h3>
-
- <p>${t.concept}</p>
-
- </div>
-
-
- <h3 style="margin-top:22px">
- 🗺️ Concept Map
- </h3>
-
- <p>
- নিচের প্রতিটি অংশে ক্লিক করো।
- প্রতিটি অংশে আলাদা learning content আছে।
- </p>
-
-
- <div class="map4">
-
- <button class="mapbtn"
- onclick="showDetail('concept')">
-
- 📖<br>
- <b>Concept</b>
-
- <small>
- মূল ধারণা ও সহজ ব্যাখ্যা
- </small>
-
- </button>
-
-
- <button class="mapbtn"
- onclick="showDetail('real')">
-
- 🌍<br>
- <b>Real Life</b>
-
- <small>
- বাস্তব জীবনে কোথায় দেখি?
- </small>
-
- </button>
-
-
- <button class="mapbtn"
- onclick="showDetail('experiment')">
-
- 🧪<br>
- <b>Experiment</b>
-
- <small>
- নিজে করে দেখো
- </small>
-
- </button>
-
-
- <button class="mapbtn"
- onclick="startQuiz()">
-
- ⚔️<br>
- <b>Mission</b>
-
- <small>
- শিখে সমস্যা সমাধান করো
- </small>
-
- </button>
-
- </div>
-
-
- <div class="source">
-
- <h3>📚 আরও শেখার Source</h3>
-
- <p>
- এই Topic নিয়ে আরও শিখতে নিচের
- resources ব্যবহার করতে পারো।
- </p>
-
- ${t.sources.map(s=>`
-
- <a href="${s[1]}"
- target="_blank"
- rel="noopener">
-
- ${s[0]} ↗
-
- </a>
-
- `).join("")}
-
- </div>
-
-
- <div class="row">
-
- <button class="primary"
- onclick="startQuiz()">
-
- ⚔️ Mission শুরু করি
-
- </button>
-
- <button class="secondary"
- onclick="show('world')">
-
- ← মানচিত্রে ফিরে যাও
-
- </button>
-
- </div>
-
- `;
-
- show("lesson");
-
-}
-
-
-function showDetail(type){
-
- let t=data[current];
-
- let title="";
- let body="";
-
-
- if(type==="concept"){
-
-  title="📖 Concept — সহজ করে বুঝি";
-
-  body=`
-
-  <p>${t.concept}</p>
-
-  <p>
-  <b>শেখার কৌশল:</b>
-  এই ধারণাটি নিজের ভাষায় একজন বন্ধুকে
-  বোঝানোর চেষ্টা করো।
-  </p>
-
-  `;
-
- }
-
-
- if(type==="real"){
-
-  title="🌍 Real Life — বাস্তবে কোথায় দেখি?";
-
-  body=t.real.map(x=>`
-
-  <div class="detail">
-  ${x}
-  </div>
-
-  `).join("");
-
- }
-
-
- if(type==="experiment"){
-
-  title="🧪 Experiment — নিজে করে দেখো";
-
-  body=`
-
-  <div class="detail">
-
-  <p>${t.experiment}</p>
-
-  <p>
-  📝 শেষে লিখে রাখো:
-  <b>আমি কী দেখলাম?</b>
-  এবং
-  <b>কেন এমন হলো?</b>
-  </p>
-
-  <p>
-  ⚠️ শুধু নিরাপদ activity করবে।
-  প্রয়োজন হলে শিক্ষক বা অভিভাবকের সাহায্য নেবে।
-  </p>
-
-  </div>
-
-  `;
-
- }
-
-
- document.getElementById("detailBox").innerHTML=`
-
- <span class="badge">
- ${t.title}
- </span>
-
- <h2>${title}</h2>
-
- ${body}
-
- <div class="row">
-
- <button class="secondary"
- onclick="openTopic(${current})">
-
- ← Concept Map
-
- </button>
-
- <button class="primary"
- onclick="startQuiz()">
-
- ⚔️ Mission-এ যাও
-
- </button>
-
- </div>
-
- `;
-
- show("detail");
-
-}
-
-
-function startQuiz(){
-
- selected={};
-
- let t=data[current];
-
- document.getElementById("quizTitle")
- .textContent=t.icon+" "+t.title;
-
-
- document.getElementById("quizBox").innerHTML=
-
- t.questions.map((q,i)=>`
-
- <div class="detail">
-
- <b>
- ${i+1}. ${q[0]}
- </b>
-
- ${q[1].map((option,j)=>`
-
- <button
- class="option"
- id="option${i}_${j}"
- onclick="selectAnswer(${i},${j})">
-
- ${String.fromCharCode(65+j)}.
- ${option}
-
- </button>
-
- `).join("")}
-
- </div>
-
- `).join("");
-
-
- document.getElementById("quizResult").innerHTML="";
-
- show("quiz");
-
-}
-
-
-function selectAnswer(q,a){
-
- selected[q]=a;
-
- document.querySelectorAll(".option")
- .forEach(x=>x.classList.remove("selected"));
-
- document.getElementById(
- `option${q}_${a}`
- ).classList.add("selected");
-
-}
-
-
-function submitQuiz(){
-
- let t=data[current];
-
- if(Object.keys(selected).length<t.questions.length){
-
-  toast("সব প্রশ্নের উত্তর নির্বাচন করো।");
-
-  return;
- }
-
-
- let score=0;
-
- t.questions.forEach((q,i)=>{
-
-  if(selected[i]===q[2])
-   score++;
-
- });
-
-
- if(score===t.questions.length){
-
-  let fresh=!state.done[t.title];
-
-  state.done[t.title]=true;
-
-  if(fresh)
-   state.xp+=50;
-
-  state.streak++;
-
-  save();
-
-
-  document.getElementById("quizResult")
-  .innerHTML=`
-
-  <div class="detail success">
-
-  <h3>🎉 Mission সম্পন্ন!</h3>
-
-  <p>
-  দারুণ! তুমি সবগুলো প্রশ্নের
-  সঠিক উত্তর দিয়েছ।
-  </p>
-
-  <p>
-  ${fresh?
-  "⭐ তুমি ৫০ XP পেয়েছ।":
-  "এই Mission আগে সম্পন্ন করেছিলে।"}
-  </p>
-
-  <p>
-  🏆 পরের স্তর এখন খুলে গেছে।
-  </p>
-
-  <button class="primary"
-  onclick="show('world')">
-
-  🗺️ পরের স্তরে যাও
-
-  </button>
-
-  </div>
-
-  `;
-
- }
-
-
- else{
-
-  state.lives=
-  Math.max(0,state.lives-1);
-
-  state.streak=0;
-
-  save();
-
-
-  document.getElementById("quizResult")
-  .innerHTML=`
-
-  <div class="detail wrong">
-
-  <h3>💡 আবার চেষ্টা করো</h3>
-
-  <p>
-  তোমার ফলাফল:
-  ${score}/${t.questions.length}
-  </p>
-
-  <p>
-  ভুল হলে সমস্যা নেই।
-  Concept Map-এর Concept ও Real Life
-  অংশ আবার দেখে চেষ্টা করো।
-  </p>
-
-  <button class="secondary"
-  onclick="openTopic(${current})">
-
-  🔄 আবার শিখি
-
-  </button>
-
-  </div>
-
-  `;
-
- }
-
- updateTop();
-
-}
-
-
-function dashboard(){
-
- renderDashboard();
-
- show("dash");
-
-}
-
-
-function renderDashboard(){
-
- let doneCount=
- Object.keys(state.done).length;
-
-
- document.getElementById("dashName")
- .textContent="⚡ "+state.name;
-
-
- document.getElementById("dashText")
- .textContent=
- `তোমার Level ${Math.floor(state.xp/100)+1}
- • ${doneCount}টি Mission সম্পন্ন
- • ${state.xp} XP`;
-
-
- document.getElementById("dashXp")
- .textContent=state.xp;
-
- document.getElementById("dashStreak")
- .textContent=state.streak;
-
- document.getElementById("dashDone")
- .textContent=doneCount;
-
-
- document.getElementById("dashBar")
- .style.width=(state.xp%100)+"%";
-
-
- let badges=[];
-
-
- if(doneCount>=1)
-  badges.push("🌱 Physics Explorer");
-
- if(doneCount>=3)
-  badges.push("🕵️ Physics Detective");
-
- if(doneCount>=5)
-  badges.push("⚡ Physics Master");
-
-
- document.getElementById("badges")
- .textContent=
-
- badges.length?
- badges.join(" • "):
- "প্রথম Mission সম্পন্ন করলে তোমার প্রথম Badge পাওয়া যাবে।";
-
-
- document.getElementById("revision")
- .innerHTML=
-
- doneCount?
-
- Object.keys(state.done)
- .map(title=>{
-
-  let i=data.findIndex(
-   t=>t.title===title
+    "physicsCompleted",
+    JSON.stringify(completed)
   );
 
-  return `
+  addXP(20);
 
-  <button
-  class="secondary"
-  style="margin:5px"
-  onclick="openTopic(${i})">
-
-  🔄 ${data[i].title}
-
-  </button>
-
-  `;
-
- }).join("")
-
- :
-
- "<p>Mission সম্পন্ন করলে Revision এখানে দেখা যাবে।</p>";
-
+  alert(
+    "🎉 Mission Complete!\n\n"+
+    "+20 XP অর্জন করেছো।\n\n"+
+    "এভাবেই Physics খুঁজে শিখতে থাকো!"
+  );
 }
 
 
-function updateTop(){
+/* Quiz button setup */
 
- document.getElementById("lives")
- .textContent=state.lives;
+document.querySelectorAll(".quiz").forEach(quiz=>{
 
- document.getElementById("xp")
- .textContent=state.xp;
+  quiz.querySelectorAll("button").forEach(button=>{
+    button.classList.add("option");
+  });
 
- document.getElementById("level")
- .textContent=
- Math.floor(state.xp/100)+1;
-
-}
+});
 
 
-function toast(message){
+/* Prevent page jumping when links are opened */
 
- let t=document.getElementById("toast");
-
- t.textContent=message;
-
- t.style.display="block";
-
- setTimeout(()=>{
-  t.style.display="none";
- },1800);
-
-}
-
-
-updateTop();
+document.querySelectorAll(".source").forEach(link=>{
+  link.addEventListener("click",function(){
+    this.setAttribute("rel","noopener noreferrer");
+  });
+});
 
 </script>
 
