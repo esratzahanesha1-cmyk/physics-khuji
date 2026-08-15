@@ -1,191 +1,117 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="bn">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
-<title>FutureFind — Physics Quest</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Physics Khuji ⚡</title>
 <style>
-*{box-sizing:border-box}body{margin:0;font-family:Arial,"Noto Sans Bengali",sans-serif;background:#090d20;color:#fff}
-button,input,select{font:inherit}button{cursor:pointer}.wrap{max-width:1100px;margin:auto;padding:18px}
-.top{display:flex;justify-content:space-between;align-items:center;gap:12px}.logo{font-size:24px;font-weight:900}.logo b{display:inline-grid;place-items:center;width:40px;height:40px;border-radius:13px;background:#7057ff;margin-right:8px}
-.stats{display:flex;gap:8px;flex-wrap:wrap}.stat{background:#171d38;border:1px solid #293052;padding:8px 12px;border-radius:12px;font-size:13px}
-.screen{display:none}.screen.show{display:block}.hero,.panel,.mission,.card{background:#121832;border:1px solid #293052;border-radius:22px;box-shadow:0 12px 35px #0005}
-.hero{margin-top:18px;padding:36px;background:radial-gradient(circle at 85% 15%,#563cf155,transparent 30%),linear-gradient(135deg,#151c3c,#10152c)}
-h1{font-size:clamp(40px,8vw,72px);line-height:1;margin:10px 0}h2{margin:8px 0 12px}h3{margin:8px 0}p{color:#b7bfd8;line-height:1.7}
-.badge{display:inline-block;background:#26204e;color:#bcaeff;padding:6px 10px;border-radius:99px;font-size:12px;font-weight:800}
-.row{display:flex;gap:10px;flex-wrap:wrap;margin-top:18px}.primary,.secondary{border-radius:12px;padding:12px 17px;font-weight:800}
-.primary{border:0;background:#7057ff;color:#fff}.secondary{border:1px solid #343c61;background:#181e39;color:#fff}
-.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:18px}.card{padding:19px}.card:hover{transform:translateY(-2px)}.click{cursor:pointer}.icon{font-size:32px}
-.panel{padding:25px;margin-top:18px}.map{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-top:18px}
-.zone{padding:18px;border-radius:18px;border:1px solid #343c61;background:#171d38;min-height:150px;position:relative}.zone.locked{opacity:.5;filter:grayscale(.5)}
-.zone .num{position:absolute;right:12px;top:10px;color:#7f89a9;font-weight:900}.zone h3{margin-top:18px}
-.progress{height:9px;background:#292f4a;border-radius:99px;overflow:hidden}.progress i{display:block;height:100%;background:#7a62ff}
-.quest{background:#151c37;border:1px solid #343c61;border-radius:18px;padding:20px;margin-top:16px}.choice{width:100%;text-align:left;padding:14px;border-radius:12px;border:1px solid #343c61;background:#10162e;color:#fff;margin:7px 0}.choice:hover,.choice.selected{border-color:#7b65ff;background:#24204d}
-.good{background:#10392d!important;border-color:#31c795!important}.bad{background:#3a1720!important;border-color:#ff6680!important}
-.node{display:inline-block;padding:11px 14px;border-radius:12px;background:#171d38;border:1px solid #343c61;margin:5px}.mind{text-align:center;padding:18px;background:#0e142a;border-radius:17px}
-input,select{width:100%;padding:13px;border-radius:10px;border:1px solid #343c61;background:#10162e;color:#fff;margin:7px 0 15px}
-footer{text-align:center;color:#7c86a5;padding:30px 0}
-@media(max-width:800px){.grid,.map{grid-template-columns:1fr 1fr}}@media(max-width:520px){.grid,.map{grid-template-columns:1fr}.top{align-items:flex-start;flex-direction:column}}
+*{box-sizing:border-box}body{margin:0;background:#07111f;color:#f7f8ff;font-family:Arial,"Noto Sans Bengali",sans-serif}.app{max-width:1050px;margin:auto;padding:15px}
+header{display:flex;justify-content:space-between;align-items:center;gap:10px;padding:10px 0;position:sticky;top:0;background:#07111fee;z-index:10}.logo{font-size:23px;font-weight:900}.logo span{background:#7659ff;padding:8px 10px;border-radius:12px;margin-right:6px}.stats{display:flex;gap:6px;flex-wrap:wrap}.stat{background:#122039;border:1px solid #293a57;border-radius:12px;padding:7px 10px;font-size:12px}
+.page{display:none}.page.active{display:block}.hero,.panel,.zone,.card,.mission{background:#0f1c30;border:1px solid #293a57;border-radius:22px;box-shadow:0 12px 35px #0006}.hero{padding:38px;margin-top:16px;background:radial-gradient(circle at 85% 15%,#7659ff55,transparent 30%),linear-gradient(135deg,#142541,#0d1728)}
+.badge{display:inline-block;background:#2a2252;color:#d0c6ff;padding:6px 10px;border-radius:99px;font-size:12px;font-weight:bold}h1{font-size:clamp(42px,8vw,75px);line-height:.98;margin:12px 0}h2{margin:8px 0 12px}h3{margin:7px 0}p{color:#b8c2d5;line-height:1.7}.row{display:flex;gap:10px;flex-wrap:wrap;margin-top:18px}
+button{font:inherit;cursor:pointer}.primary,.secondary{padding:12px 17px;border-radius:12px;font-weight:800}.primary{border:0;background:#7659ff;color:white}.secondary{border:1px solid #354665;background:#14223a;color:white}
+.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:18px}.card{padding:20px}.icon{font-size:31px}.panel{padding:24px;margin-top:18px}
+.map{display:grid;grid-template-columns:repeat(3,1fr);gap:13px;margin-top:18px}.zone{padding:18px;min-height:180px}.zone.open{cursor:pointer}.zone.open:hover{transform:translateY(-2px);border-color:#8b74ff}.zone.locked{opacity:.45}.num{float:right;color:#8490a9;font-weight:bold}
+.progress{height:8px;background:#27344b;border-radius:99px;overflow:hidden;margin-top:12px}.progress i{display:block;height:100%;background:#8068ff}.mission{padding:20px;margin-top:15px}
+.choice{display:block;width:100%;text-align:left;margin:7px 0;padding:13px;border-radius:11px;border:1px solid #354665;background:#0b1729;color:#fff}.choice.selected{background:#2d245a;border-color:#8b74ff}.good{border-color:#2acb98!important;background:#103a30!important}.bad{border-color:#ff637c!important;background:#3b1823!important}
+.mind{text-align:center;background:#091526;border-radius:16px;padding:17px;margin-top:12px}.node{display:inline-block;background:#14223a;border:1px solid #354665;border-radius:10px;padding:10px 13px;margin:4px}input{width:100%;padding:13px;background:#0b1729;color:white;border:1px solid #354665;border-radius:10px;margin:7px 0}
+footer{text-align:center;color:#74829b;padding:30px}.toast{display:none;position:fixed;bottom:20px;left:50%;transform:translateX(-50%);background:white;color:#101828;padding:12px 18px;border-radius:12px;font-weight:bold;z-index:20}
+@media(max-width:760px){.grid,.map{grid-template-columns:1fr 1fr}}@media(max-width:500px){.grid,.map{grid-template-columns:1fr}}
 </style>
 </head>
 <body>
-<div class="wrap">
-<div class="top">
-<div class="logo"><b>⚡</b>FutureFind</div>
-<div class="stats">
-<div class="stat">❤️ জীবন: <span id="lives">3</span></div>
-<div class="stat">⭐ XP: <span id="xp">0</span></div>
-<div class="stat">🏆 Level: <span id="level">1</span></div>
-</div>
-</div>
+<div class="app">
+<header>
+<div class="logo"><span>⚡</span>Physics Khuji</div>
+<div class="stats"><div class="stat">❤️ <b id="life">3</b></div><div class="stat">⭐ <b id="xp">0</b> XP</div><div class="stat">🏆 Lv <b id="level">1</b></div></div>
+</header>
 
-<section id="home" class="screen show">
+<section id="home" class="page active">
 <div class="hero">
-<span class="badge">🎮 CLASS 10 PHYSICS QUEST</span>
-<h1>খেলতে খেলতে<br>Physics শিখি!</h1>
-<p>বইয়ের Physics-কে বাস্তব জীবনের ঘটনা, মিশন, puzzle, experiment ও challenge-এর সঙ্গে যুক্ত করো।</p>
-<div class="row">
-<button class="primary" onclick="show('profile')">🚀 অভিযান শুরু</button>
-<button class="secondary" onclick="show('map')">🗺️ Physics World</button>
-</div>
+<span class="badge">🎮 CLASS 10 • PHYSICS QUEST</span>
+<h1>Physics<br>খুঁজি! ⚡</h1>
+<p>বইয়ের Physics-কে চারপাশের বাস্তব জীবনে খুঁজে বের করো। Mission, puzzle, experiment আর challenge-এর মাধ্যমে শেখো।</p>
+<div class="row"><button class="primary" onclick="go('profile')">🚀 অভিযান শুরু</button><button class="secondary" onclick="go('world')">🗺️ Physics World</button></div>
 </div>
 <div class="grid">
-<div class="card"><div class="icon">🕵️</div><h3>Physics Detective</h3><p>চারপাশের ঘটনার পেছনের Physics খুঁজে বের করো।</p></div>
+<div class="card"><div class="icon">🕵️</div><h3>Physics Detective</h3><p>দৈনন্দিন ঘটনার পেছনের Physics খুঁজে বের করো।</p></div>
 <div class="card"><div class="icon">🧪</div><h3>Experiment Quest</h3><p>সহজ ও নিরাপদ activity করে concept বোঝো।</p></div>
-<div class="card"><div class="icon">👾</div><h3>Boss Challenge</h3><p>বাস্তব সমস্যার সমাধান করে chapter unlock করো।</p></div>
+<div class="card"><div class="icon">👾</div><h3>Boss Challenge</h3><p>Problem solve করে পরের level unlock করো।</p></div>
 </div>
 </section>
 
-<section id="profile" class="screen">
-<div class="panel">
-<span class="badge">👤 PLAYER SETUP</span><h2>তোমার Physics Profile</h2>
-<label>তোমার নাম</label><input id="name" placeholder="নাম লিখো">
-<label>তোমার শ্রেণি</label><select id="cls"><option>১০ম</option></select>
-<div class="row"><button class="secondary" onclick="show('home')">← ফিরে যাও</button><button class="primary" onclick="startGame()">🎮 Play</button></div>
-</div>
-</section>
+<section id="profile" class="page"><div class="panel">
+<span class="badge">👤 PLAYER PROFILE</span><h2>তোমার নাম লিখো</h2>
+<input id="name" placeholder="যেমন: Esrat"><p>কোনো account লাগবে না। Progress এই browser-এ save হবে।</p>
+<div class="row"><button class="secondary" onclick="go('home')">← ফিরে যাও</button><button class="primary" onclick="start()">🎮 Play শুরু</button></div>
+</div></section>
 
-<section id="map" class="screen">
-<div class="panel"><span class="badge">🗺️ PHYSICS WORLD</span><h2 id="hello">তোমার Physics Journey</h2>
-<p>একটি zone-এ ঢুকে mission complete করো। XP পেলে নতুন level খুলবে।</p>
+<section id="world" class="page"><div class="panel">
+<span class="badge">🗺️ PHYSICS WORLD</span><h2 id="worldTitle">Physics-এর দুনিয়া</h2><p>প্রথম Zone থেকে শুরু করো। Mission সফল হলে পরের Zone খুলবে।</p>
 <div id="zones" class="map"></div>
-<div class="row"><button class="secondary" onclick="show('home')">← Home</button><button class="primary" onclick="show('dashboard')">📊 আমার Progress</button></div>
+<div class="row"><button class="secondary" onclick="go('home')">← Home</button><button class="primary" onclick="go('dashboard')">📊 Progress</button></div>
+</div></section>
+
+<section id="lesson" class="page"><div id="lessonBox" class="panel"></div></section>
+
+<section id="quiz" class="page"><div class="panel">
+<span class="badge">⚔️ MISSION CHALLENGE</span><h2 id="quizTitle"></h2><div id="quizBox"></div><div id="result"></div>
+<div class="row"><button class="secondary" onclick="go('lesson')">← Lesson</button><button class="primary" onclick="check()">🔒 উত্তর Lock</button></div>
+</div></section>
+
+<section id="dashboard" class="page"><div class="panel">
+<span class="badge">🏆 PLAYER DASHBOARD</span><h2 id="dashName"></h2><p id="dashText"></p><div class="progress"><i id="bar"></i></div>
 </div>
+<div class="grid"><div class="card"><h3>⭐ XP</h3><h2 id="dxp">0</h2></div><div class="card"><h3>🔥 Streak</h3><h2 id="dstreak">0</h2></div><div class="card"><h3>🎯 Mission</h3><h2 id="dm">0</h2></div></div>
+<div class="panel"><h3>🏅 Badges</h3><p id="badges"></p><h3>🔄 Revision</h3><div id="revision"></div></div>
 </section>
 
-<section id="lesson" class="screen"><div id="lessonBox" class="panel"></div></section>
-<section id="quiz" class="screen"><div class="panel"><span class="badge">⚔️ MISSION CHALLENGE</span><h2 id="qtitle"></h2><div id="qbox"></div><div id="qresult"></div><div class="row"><button class="secondary" onclick="show('lesson')">← Mission</button><button class="primary" onclick="checkQuiz()">⚡ Answer Lock</button></div></div></section>
-
-<section id="dashboard" class="screen">
-<div class="panel"><span class="badge">🏆 PLAYER DASHBOARD</span><h2 id="dname"></h2><p id="dtext"></p><div class="progress"><i id="xpbar" style="width:0%"></i></div></div>
-<div class="grid"><div class="card"><h3>⭐ XP</h3><h2 id="dxp">0</h2></div><div class="card"><h3>🔥 Streak</h3><h2 id="dstreak">0</h2></div><div class="card"><h3>🎯 Missions</h3><h2 id="dm">0</h2></div></div>
-<div class="panel"><h3>🏅 Badges</h3><p id="badges">🔒 প্রথম mission complete করো।</p><h3>🔄 Weak Topic Rescue</h3><div id="rescue"></div></div>
-</section>
-
-<footer>FutureFind ⚡ Physics Quest • Class 10</footer>
+<div id="toast" class="toast"></div><footer>Physics Khuji ⚡ • Class 10 Interactive Learning</footer>
 </div>
 
 <script>
-const data={
-math:{s:"Mathematics",icon:"📐",t:"Algebra & Linear Equations",c:"Algebra uses symbols such as x and y to represent unknown or changing quantities. A linear equation such as 2x + 5 = 15 can be solved by applying the same operation to both sides until the variable is isolated. The important skill is understanding the relationship between quantities, not only memorising a procedure.",k:"Check your answer by putting it back into the original equation.",e:"A notebook costs 20 taka more than a pen. If the pen costs x taka, the notebook costs x + 20 taka. Algebra lets us describe and solve this relationship.",a:"Create your own shopping problem with one unknown, write an equation, solve it and check the result.",q:[["If 2x+4=12, x is:",["2","4","6","8"],1],["A variable represents:",["An unknown/changing quantity","Only a unit","A graph","A fixed colour"],0],["Which is linear?",["x²+1","3x+5","1/x","x³"],1],["Why check a solution?",["To verify it satisfies the original equation","To make it longer","To remove x","To draw a graph"],0],["If y=3x and x=4, y is:",["7","9","12","16"],2]]},
-science:{s:"General Science",icon:"🔬",t:"Motion & Speed",c:"Motion means a change in position with time. Speed tells how quickly distance is covered and is calculated as distance divided by time. When speed changes, an object is accelerating or decelerating. These ideas explain bicycles, cars, sports and many everyday situations.",k:"Distance tells how much ground was covered; time tells how long it took; speed connects the two.",e:"A cyclist travels 120 metres in 20 seconds. Average speed is 120 ÷ 20 = 6 metres per second.",a:"Measure a short walking distance, time yourself, calculate average speed, then repeat at a faster pace.",q:[["Speed equals:",["time÷distance","distance÷time","distance×time","distance+time"],1],["A change in position is related to:",["Motion","Colour","Mass only","Sound"],0],["An object getting faster is:",["Accelerating","At rest","Weightless","Invisible"],0],["SI unit of speed:",["metre","second","metre per second","kilogram"],2],["Average speed summarizes:",["Distance over a time interval","Colour","Mass","Temperature"],0]]},
-biology:{s:"Biology",icon:"🧬",t:"Cell & Life Processes",c:"The cell is the basic structural and functional unit of living organisms. Cells contain specialized structures that perform different jobs. The nucleus contains genetic information, while mitochondria help release usable energy from food. In multicellular organisms, cells work together as tissues, organs and organ systems.",k:"Connect each structure to its function instead of memorising names alone.",e:"Muscle cells need substantial energy because muscles perform work, so mitochondria are important for them.",a:"Draw a simple cell, label three structures and write one function for each.",q:[["Basic unit of life:",["Tissue","Cell","Organ","System"],1],["Most genetic information is stored in the:",["Cell wall","Nucleus","Vacuole","Cytoplasm only"],1],["Mitochondria help with:",["Energy release","Hearing","Bone shape","Blood colour"],0],["Cells working together form:",["Tissues","Planets","Equations","Only atoms"],0],["Specialized cells are useful because:",["They perform particular functions efficiently","They have no structure","They all do the same job","They cannot communicate"],0]]},
-ict:{s:"ICT",icon:"💻",t:"Algorithms & Problem Solving",c:"An algorithm is a clear sequence of steps for solving a problem or completing a task. Good algorithms have a defined goal, logical steps and decisions or repetition when needed. Breaking a large problem into smaller parts makes solutions easier to design and test.",k:"Think first, code second: a clear plan makes programming easier.",e:"An attendance system can follow: enter ID → check today's record → if present mark present → otherwise mark absent → save.",a:"Write an algorithm for making tea. Add one decision, such as what to do if the water is not hot enough.",q:[["An algorithm is:",["A random guess","A sequence of logical steps","Only a computer","A keyboard"],1],["Breaking a large problem into parts makes it:",["Easier to understand and test","Impossible","Always longer","Unsolvable"],0],["A decision can use:",["If/else logic","Only colour","Only sound","A password"],0],["A flowchart can:",["Visualize steps and decisions","Increase internet speed","Change hardware","Print books"],0],["A good algorithm should be:",["Ambiguous","Logical and clear","Impossible to test","Random"],1]]},
-english:{s:"English",icon:"🇬🇧",t:"Effective Communication",c:"Effective communication means expressing an idea clearly while considering the audience. A strong communicator chooses suitable words, organizes ideas logically, listens and responds to feedback. The same message may need a different style for a friend, a school report or a public presentation.",k:"Audience matters: communication is not only what you say, but how the listener or reader understands it.",e:"A science idea may need a simpler explanation for a ten-year-old and a more technical explanation for a university student.",a:"Explain one topic in two sentences for a ten-year-old, then explain it for a university student.",q:[["Effective communication needs:",["Clarity and audience awareness","The longest words","Speaking fastest","Ignoring feedback"],0],["Why does audience matter?",["People have different needs and knowledge","Everyone understands identically","It changes facts","It removes grammar"],0],["A school report usually needs:",["Organized, appropriate language","Only slang","No structure","Random ideas"],0],["Listening helps us:",["Understand and respond","Stop conversation","Avoid all feedback","Change facts"],0],["A good presentation has:",["A clear purpose and organized ideas","Only pictures","No conclusion","Unrelated examples"],0]]},
-bgs:{s:"Bangladesh & Global Studies",icon:"🌍",t:"Citizenship & Social Responsibility",c:"Citizenship includes rights, responsibilities and participation in society. Responsible citizens respect others, care for shared resources, follow laws and contribute to their communities. Social responsibility means recognizing how individual actions affect other people and the environment.",k:"Ask not only 'What are my rights?' but also 'What can I contribute?'",e:"Reducing waste at school, protecting shared spaces and responsibly reporting a community problem are small acts of civic responsibility.",a:"Identify one school/community problem. Suggest two actions a student can take and one action needing collective support.",q:[["Citizenship includes:",["Only rights","Rights and responsibilities","Only exams","Only voting"],1],["A responsible citizen should:",["Respect shared resources","Ignore problems","Break rules","Spread rumours"],0],["Social responsibility means:",["Considering how actions affect others","Doing everything alone","Avoiding participation","Only helping friends"],0],["A civic action is:",["Responsibly reporting a public problem","Damaging property","Spreading rumours","Ignoring safety"],0],["Communities need cooperation because:",["Many problems require collective action","One person solves everything","Rules disappear","Communication stops"],0]]}
-};
+const topics=[
+{id:"motion",icon:"🚗",title:"গতি ও বেগ",real:"সাইকেল, বাস বা দৌড়ানোর সময় কোনো বস্তুর অবস্থান ও গতি বদলায়।",concept:"কোনো বস্তুর অবস্থান সময়ের সঙ্গে পরিবর্তিত হলে বস্তুটি গতিশীল।",activity:"একটি খেলনা গাড়ি চালিয়ে একই সময়ে কত দূর যায় তা লক্ষ্য করো।",q:[
+["বাস হঠাৎ চলতে শুরু করলে যাত্রী সাধারণত কোন দিকে হেলে যায়?",["সামনে","পিছনে","উপরে","কোনোটিই নয়"],1],
+["Speed কী বোঝায়?",["সময় প্রতি অতিক্রান্ত দূরত্ব","ভর","চাপ","তাপমাত্রা"],0],
+["Acceleration কী নির্দেশ করে?",["বেগের পরিবর্তন","শুধু ভর","শুধু রং","শুধু দূরত্ব"],0]]},
+{id:"force",icon:"💪",title:"বল ও নিউটনের সূত্র",real:"দরজা ঠেলা, বলকে লাথি দেওয়া, ব্রেক চাপা—সবখানেই বলের প্রভাব দেখা যায়।",concept:"বল কোনো বস্তুর গতি বা আকৃতি পরিবর্তন করতে পারে।",activity:"একটি বলকে হালকা ও জোরে ধাক্কা দিয়ে গতি পরিবর্তন লক্ষ্য করো।",q:[
+["বল কোনো বস্তুর কী পরিবর্তন করতে পারে?",["শুধু রং","গতি বা আকৃতি","শুধু তাপমাত্রা","শুধু ভর"],1],
+["Newton-এর তৃতীয় সূত্রের মূল ধারণা কী?",["ক্রিয়া-প্রতিক্রিয়া","আলোর প্রতিফলন","তাপ","চাপ"],0],
+["জড়তা কোন ধারণার সঙ্গে যুক্ত?",["নিজের গতির অবস্থা বজায় রাখার প্রবণতা","তাপ","আলো","বিদ্যুৎ"],0]]},
+{id:"work",icon:"🏋️",title:"কাজ, ক্ষমতা ও শক্তি",real:"সিঁড়ি দিয়ে ওঠা, ব্যাগ তোলা বা মোটর চালানো—সবকিছুতেই শক্তির ব্যবহার আছে।",concept:"বল প্রয়োগের ফলে বস্তুর সরণ ঘটলে কাজ সম্পন্ন হতে পারে।",activity:"একটি বই মেঝে থেকে টেবিলে তোলো এবং শক্তির রূপান্তর ভাবো।",q:[
+["কাজ সম্পন্ন হওয়ার জন্য সাধারণভাবে কী দরকার?",["বল ও সরণ","শুধু সময়","শুধু ভর","শুধু রং"],0],
+["ক্ষমতা কী নির্দেশ করে?",["কাজ করার হার","শুধু বল","শুধু দূরত্ব","তাপমাত্রা"],0],
+["শক্তির একটি বৈশিষ্ট্য কী?",["রূপান্তরিত হতে পারে","সবসময় নষ্ট হয়","কেবল আলো","কোনো ব্যবহার নেই"],0]]},
+{id:"light",icon:"💡",title:"আলো",real:"আয়নায় মুখ দেখা, পানিতে পেন্সিল বাঁকা দেখা এবং ছায়া—সবই আলোর সঙ্গে যুক্ত।",concept:"আলো প্রতিফলন ও প্রতিসরণের মতো ঘটনা ঘটাতে পারে।",activity:"পানির গ্লাসে পেন্সিল আংশিক ডুবিয়ে পাশ থেকে দেখো।",q:[
+["আয়নায় নিজের ছবি দেখা কোন ঘটনার উদাহরণ?",["প্রতিফলন","শব্দ","তাপ","চাপ"],0],
+["মাধ্যম পরিবর্তনের সময় আলোর দিক পরিবর্তনকে কী বলে?",["প্রতিসরণ","বাষ্পীভবন","পরিবহন","কম্পন"],0],
+["ছায়া তৈরির জন্য কী দরকার?",["আলো ও বাধা","শুধু পানি","শুধু শব্দ","শুধু তাপ"],0]]},
+{id:"electricity",icon:"🔌",title:"বিদ্যুৎ",real:"বাড়ির লাইট, ফ্যান, চার্জার ও কম্পিউটার বৈদ্যুতিক বর্তনীর সঙ্গে যুক্ত।",concept:"সম্পূর্ণ বর্তনীতে বৈদ্যুতিক প্রবাহ হতে পারে এবং শক্তি বিভিন্ন কাজে ব্যবহৃত হয়।",activity:"একটি appliance-এর সুইচ অন/অফ করে circuit-এর পরিবর্তন ভাবো।",q:[
+["সার্কিট সম্পূর্ণ হলে কী হতে পারে?",["কারেন্ট প্রবাহিত হতে পারে","ভর কমে","শব্দ বন্ধ হয়","আলো বাঁকে"],0],
+["কোনটি বিদ্যুৎ ব্যবহার করে চলে?",["ফ্যান","পাথর","কাগজ","কাঠ"],0],
+["সুইচের কাজ কী?",["সার্কিট খোলা/বন্ধ করা","ভর বাড়ানো","আলো বাঁকানো","পানি মাপা"],0]]},
+{id:"magnet",icon:"🧲",title:"চুম্বক ও চৌম্বকত্ব",real:"স্পিকার, মোটর, কম্পাস ও অনেক বৈদ্যুতিক যন্ত্রে চৌম্বকত্ব গুরুত্বপূর্ণ।",concept:"চৌম্বক ক্ষেত্র ও বৈদ্যুতিক প্রবাহের সম্পর্ক প্রযুক্তিতে ব্যবহৃত হয়।",activity:"একটি ছোট চুম্বক দিয়ে লোহা ও প্লাস্টিকের বস্তু আলাদা করে দেখো।",q:[
+["চুম্বক কোনটি আকর্ষণ করতে পারে?",["লোহা","কাগজ","কাচ সবসময়","পানি"],0],
+["কম্পাস কী কাজে সাহায্য করে?",["দিক নির্ণয়","তাপ মাপা","ভর মাপা","সময় মাপা"],0],
+["মোটরের সঙ্গে কোন ধারণাটি সম্পর্কিত?",["চৌম্বকীয় প্রভাব ও বিদ্যুৎ","শুধু শব্দ","শুধু আলো","শুধু পানি"],0]]}
+];
 
-let player={name:"Explorer",xp:0,lives:3,done:{},streak:0};
-let topic="";
-let picked=null;
-
-try{let s=localStorage.getItem("ff_physics_player");if(s)player={...player,...JSON.parse(s)}}catch(e){}
-function save(){try{localStorage.setItem("ff_physics_player",JSON.stringify(player))}catch(e){}}
-function updateTop(){document.getElementById("xp").textContent=player.xp;document.getElementById("lives").textContent=player.lives;document.getElementById("level").textContent=Math.floor(player.xp/100)+1}
-
-function show(id){
-document.querySelectorAll(".screen").forEach(x=>x.classList.remove("show"));
-document.getElementById(id).classList.add("show");window.scrollTo(0,0);
-if(id==="map")renderMap();if(id==="dashboard")renderDashboard();updateTop();
-}
-
-function startGame(){
-player.name=document.getElementById("name").value.trim()||"Explorer";save();show("map");
-}
-
-function renderMap(){
-document.getElementById("hello").textContent=player.name+"-এর Physics Journey";
-let ids=Object.keys(data);
-document.getElementById("zones").innerHTML=ids.map(function(id,i){
-let unlocked=i===0||player.done[ids[i-1]];
-let x=data[id];
-return '<div class="zone '+(unlocked?"click":"locked")+'" onclick="'+(unlocked?"openTopic('"+id+"')":"lockedMsg()")+'">'+
-'<span class="num">LEVEL '+(i+1)+'</span><div class="icon">'+x.icon+'</div><h3>'+x.t+'</h3>'+
-'<p>'+ (unlocked?"🎯 Mission available":"🔒 আগের mission শেষ করো")+'</p>'+
-'<div class="progress"><i style="width:'+(player.done[id]?100:unlocked?20:0)+'%"></i></div></div>';
-}).join("");
-}
-
-function lockedMsg(){alert("🔒 এই zone এখনো locked! আগে আগের mission complete করো।")}
-
-function openTopic(id){
-topic=id;let x=data[id];
-document.getElementById("lessonBox").innerHTML=
-'<span class="badge">🎯 LEVEL MISSION</span><h2>'+x.t+'</h2>'+
-'<p>'+x.c+'</p><div class="quest"><h3>🕵️ Physics Detective</h3><p><b>এই ঘটনা কি তুমি তোমার চারপাশে দেখেছ?</b></p><p>'+x.e+'</p></div>'+
-'<div class="info"><b>💡 Power Hint</b><p>'+x.k+'</p></div>'+
-'<div class="activity"><h3>🧪 Experiment Quest</h3><p>'+x.a+'</p><p>👉 নিজে করে দেখো এবং কী লক্ষ্য করলে তা মনে রাখো।</p></div>'+
-'<h3>🗺️ Concept Map</h3><div class="mind"><div class="node"><b>'+x.t+'</b></div><div>↓</div><div class="node">📖 Concept</div><div class="node">🌍 বাস্তব ঘটনা</div><div class="node">🧪 Experiment</div><div>↓</div><div class="node">🎯 Mission → 👾 Boss</div></div>'+
-'<div class="row"><button class="primary" onclick="startQuiz()">⚔️ Mission Challenge</button><button class="secondary" onclick="show(\\'map\\')">← World Map</button></div>';
-show("lesson");
-}
-
-function startQuiz(){
-let x=data[topic];picked=null;
-document.getElementById("qtitle").textContent="⚔️ "+x.t+" — Mission Challenge";
-document.getElementById("qresult").innerHTML="";
-document.getElementById("qbox").innerHTML=x.q.map(function(q,i){
-return '<div class="quest"><b>'+q[0]+'</b>'+q[1].map(function(o,j){
-return '<button class="choice" id="c'+i+'_'+j+'" onclick="pick('+i+','+j+')">'+String.fromCharCode(65+j)+'. '+o+'</button>';
-}).join("")+'</div>';
-}).join("");
-show("quiz");
-}
-
-function pick(i,j){
-picked={i:i,j:j};
-document.querySelectorAll(".choice").forEach(x=>x.classList.remove("selected"));
-document.getElementById("c"+i+"_"+j).classList.add("selected");
-}
-
-function checkQuiz(){
-if(!picked){alert("একটি উত্তর বেছে নাও!");return}
-let x=data[topic],q=x.q[picked.i],ok=picked.j===q[2];
-document.querySelectorAll(".choice").forEach(x=>x.disabled=true);
-let correct=document.getElementById("c"+picked.i+"_"+q[2]);
-if(correct)correct.classList.add("good");
-if(ok){
-player.xp+=50;player.done[topic]=true;player.streak++;save();updateTop();
-document.getElementById("qresult").innerHTML='<div class="result good"><h3>🎉 Mission Complete!</h3><p>⭐ +50 XP</p><p>🔓 পরের Physics Zone unlock হয়েছে!</p></div>';
-}else{
-player.lives=Math.max(0,player.lives-1);player.streak=0;save();updateTop();
-document.getElementById("qresult").innerHTML='<div class="result bad"><h3>💥 Mission Failed!</h3><p>সঠিক উত্তর: <b>'+q[1][q[2]]+'</b></p><p>💡 আবার lesson দেখে চেষ্টা করো।</p></div>';
-}
-}
-
-function renderDashboard(){
-let keys=Object.keys(player.done);
-document.getElementById("dname").textContent="⚡ "+player.name;
-document.getElementById("dtext").textContent="তুমি "+keys.length+"টি mission complete করেছ। Level "+(Math.floor(player.xp/100)+1)+" Explorer.";
-document.getElementById("dxp").textContent=player.xp;
-document.getElementById("dstreak").textContent=player.streak;
-document.getElementById("dm").textContent=keys.length;
-document.getElementById("xpbar").style.width=(player.xp%100)+"%";
-let badges=[];if(keys.length>=1)badges.push("🥉 Physics Explorer");if(keys.length>=3)badges.push("🕵️ Physics Detective");if(player.xp>=200)badges.push("⚡ Physics Warrior");
-document.getElementById("badges").textContent=badges.length?badges.join("  •  "):"🔒 প্রথম mission complete করো।";
-document.getElementById("rescue").innerHTML=keys.length?keys.map(function(k){return'<button class="secondary" style="margin:5px" onclick="openTopic(\\''+k+'\\')">🔄 '+data[k].t+'</button>'}).join(""):"<p>Mission complete করলে এখানে revision option আসবে।";
-}
-updateTop();
+let state={name:"Explorer",xp:0,lives:3,streak:0,done:{}};let current=0;let answers={};
+try{const s=localStorage.getItem("physicsKhuji");if(s)state={...state,...JSON.parse(s)}}catch(e){}
+function save(){try{localStorage.setItem("physicsKhuji",JSON.stringify(state))}catch(e){}}
+function update(){life.textContent=state.lives;xp.textContent=state.xp;level.textContent=Math.floor(state.xp/100)+1}
+function go(id){document.querySelectorAll(".page").forEach(p=>p.classList.remove("active"));document.getElementById(id).classList.add("active");scrollTo(0,0);if(id==="world")renderWorld();if(id==="dashboard")renderDashboard();update()}
+function start(){state.name=document.getElementById("name").value.trim()||"Explorer";save();go("world")}
+function renderWorld(){worldTitle.textContent=state.name+"-এর Physics World";zones.innerHTML=topics.map((t,i)=>{let open=i===0||state.done[topics[i-1].id];return `<div class="zone ${open?"open":"locked"}" onclick="${open?`openTopic(${i})`:"locked()"}"><span class="num">LEVEL ${i+1}</span><div class="icon">${t.icon}</div><h3>${t.title}</h3><p>${open?"🎯 Mission ready":"🔒 আগের level শেষ করো"}</p><div class="progress"><i style="width:${state.done[t.id]?100:open?18:0}%"></i></div></div>`}).join("")}
+function locked(){toast("🔒 আগে আগের Mission complete করো!")}
+function openTopic(i){current=i;let t=topics[i];lessonBox.innerHTML=`<span class="badge">🎯 LEVEL ${i+1}</span><h2>${t.icon} ${t.title}</h2><div class="mission"><h3>🕵️ Physics Detective</h3><p>${t.real}</p></div><div class="mission"><h3>💡 Power Hint</h3><p>${t.concept}</p></div><div class="mission"><h3>🧪 Experiment Quest</h3><p>${t.activity}</p></div><h3>🗺️ Concept Map</h3><div class="mind"><span class="node"><b>${t.title}</b></span> ↓ <span class="node">📖 Concept</span><span class="node">🌍 বাস্তব জীবন</span><span class="node">🧪 Experiment</span> ↓ <span class="node">⚔️ Mission</span></div><div class="row"><button class="primary" onclick="quizStart()">⚔️ Mission Challenge</button><button class="secondary" onclick="go('world')">← World Map</button></div>`;go("lesson")}
+function quizStart(){answers={};let t=topics[current];quizTitle.textContent=t.icon+" "+t.title;quizBox.innerHTML=t.q.map((q,i)=>`<div class="mission"><b>${i+1}. ${q[0]}</b>${q[1].map((o,j)=>`<button class="choice" id="a${i}_${j}" onclick="pick(${i},${j})">${String.fromCharCode(65+j)}. ${o}</button>`).join("")}</div>`).join("");result.innerHTML="";go("quiz")}
+function pick(i,j){answers[i]=j;document.querySelectorAll(".choice").forEach(x=>x.classList.remove("selected"));document.getElementById("a"+i+"_"+j).classList.add("selected")}
+function check(){let t=topics[current];if(Object.keys(answers).length<t.q.length){toast("সব প্রশ্নের উত্তর দাও!");return}let score=0;t.q.forEach((q,i)=>{if(answers[i]===q[2])score++});if(score===t.q.length){state.xp+=50;state.done[t.id]=true;state.streak++;save();result.innerHTML=`<div class="mission good"><h3>🎉 Mission Complete!</h3><p>⭐ +50 XP • 🏆 ${t.title} complete!</p><button class="primary" onclick="go('world')">🗺️ Next Zone</button></div>`}else{state.lives=Math.max(0,state.lives-1);state.streak=0;save();result.innerHTML=`<div class="mission bad"><h3>💥 আরও একবার চেষ্টা করো!</h3><p>Score: ${score}/${t.q.length}</p><p>💡 Lesson দেখে আবার চেষ্টা করো।</p><button class="secondary" onclick="openTopic(${current})">🔄 Review Lesson</button></div>`}update()}
+function renderDashboard(){let n=Object.keys(state.done).length;dashName.textContent="⚡ "+state.name;dashText.textContent=`Level ${Math.floor(state.xp/100)+1} • ${n}টি Mission complete • ${state.xp} XP`;dxp.textContent=state.xp;dstreak.textContent=state.streak;dm.textContent=n;bar.style.width=(state.xp%100)+"%";let b=[];if(n>=1)b.push("🌱 Physics Explorer");if(n>=3)b.push("🕵️ Physics Detective");if(n>=5)b.push("⚡ Physics Warrior");badges.textContent=b.length?b.join(" • "):"🔒 প্রথম Mission complete করো।";revision.innerHTML=n?Object.keys(state.done).map(id=>{let i=topics.findIndex(t=>t.id===id);return `<button class="secondary" style="margin:5px" onclick="openTopic(${i})">🔄 ${topics[i].title}</button>`}).join(""):"<p>Mission complete করলে revision এখানে দেখা যাবে।"}
+function toast(s){let t=document.getElementById("toast");t.textContent=s;t.style.display="block";setTimeout(()=>t.style.display="none",1800)}
+update();
 </script>
 </body>
 </html>
