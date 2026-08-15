@@ -17,6 +17,10 @@ button{font:inherit;cursor:pointer}.primary,.secondary{padding:12px 17px;border-
 .mind{text-align:center;background:#091526;border-radius:16px;padding:17px;margin-top:12px}.node{display:inline-block;background:#14223a;border:1px solid #354665;border-radius:10px;padding:10px 13px;margin:4px}input{width:100%;padding:13px;background:#0b1729;color:white;border:1px solid #354665;border-radius:10px;margin:7px 0}
 footer{text-align:center;color:#74829b;padding:30px}.toast{display:none;position:fixed;bottom:20px;left:50%;transform:translateX(-50%);background:white;color:#101828;padding:12px 18px;border-radius:12px;font-weight:bold;z-index:20}
 @media(max-width:760px){.grid,.map{grid-template-columns:1fr 1fr}}@media(max-width:500px){.grid,.map{grid-template-columns:1fr}}
+
+.sourceBox{margin-top:16px;padding:16px;border:1px solid #354665;background:#0b1729;border-radius:16px}
+.sourceBox a{display:block;color:#bfb2ff;text-decoration:none;padding:9px 0;border-bottom:1px solid #263650}
+.sourceBox a:last-child{border-bottom:0}.sourceBox small{color:#91a0b8}
 </style>
 </head>
 <body>
@@ -105,7 +109,16 @@ function go(id){document.querySelectorAll(".page").forEach(p=>p.classList.remove
 function start(){state.name=document.getElementById("name").value.trim()||"Explorer";save();go("world")}
 function renderWorld(){worldTitle.textContent=state.name+"-এর Physics World";zones.innerHTML=topics.map((t,i)=>{let open=i===0||state.done[topics[i-1].id];return `<div class="zone ${open?"open":"locked"}" onclick="${open?`openTopic(${i})`:"locked()"}"><span class="num">Level ${i+1}</span><div class="icon">${t.icon}</div><h3>${t.title}</h3><p>${open?"🎯 Mission ready":"🔒 আগের Level শেষ করো"}</p><div class="progress"><i style="width:${state.done[t.id]?100:open?18:0}%"></i></div></div>`}).join("")}
 function locked(){toast("🔒 আগে আগের Mission Complete করো!")}
-function openTopic(i){current=i;let t=topics[i];lessonBox.innerHTML=`<span class="badge">🎯 Level ${i+1}</span><h2>${t.icon} ${t.title}</h2><div class="mission"><h3>🕵️ Physics Detective</h3><p>${t.real}</p></div><div class="mission"><h3>💡 Power Hint</h3><p>${t.concept}</p></div><div class="mission"><h3>🧪 পরীক্ষা Mission</h3><p>${t.activity}</p></div><h3>🗺️ Concept Map</h3><div class="mind"><span class="node"><b>${t.title}</b></span> ↓ <span class="node">📖 Concept</span><span class="node">🌍 বাস্তব জীবন</span><span class="node">🧪 Experiment</span> ↓ <span class="node">⚔️ Mission</span></div><div class="row"><button class="primary" onclick="quizStart()">⚔️ Mission Challenge</button><button class="secondary" onclick="go('world')">← দুনিয়ার মানচিত্র</button></div>`;go("lesson")}
+function openTopic(i){current=i;let t=topics[i];lessonBox.innerHTML=`<span class="badge">🎯 Level ${i+1}</span><h2>${t.icon} ${t.title}</h2><div class="mission"><h3>🕵️ Physics Detective</h3><p>${t.real}</p></div><div class="mission"><h3>💡 Power Hint</h3><p>${t.concept}</p></div><div class="mission"><h3>🧪 পরীক্ষা Mission</h3><p>${t.activity}</p></div><h3>🗺️ Concept Map</h3><div class="mind"><span class="node"><b>${t.title}</b></span> ↓ <span class="node">📖 Concept</span><span class="node">🌍 বাস্তব জীবন</span><span class="node">🧪 Experiment</span> ↓ <span class="node">⚔️ Mission</span></div>
+<div class="sourceBox">
+<h3>📚 আরও শিখতে Source</h3>
+<p>এই Topic সম্পর্কে আরও বুঝতে নিচের নির্ভরযোগ্য learning resources ব্যবহার করতে পারো।</p>
+<a href="https://www.khanacademy.org/science/highschool-physics" target="_blank" rel="noopener">🎓 Khan Academy — High School Physics</a>
+<a href="https://www.khanacademy.org/science/ms-physics" target="_blank" rel="noopener">🎓 Khan Academy — Motion, Force & Energy</a>
+<a href="https://phet.colorado.edu/en/simulations/filter?subjects=physics&type=html" target="_blank" rel="noopener">🧪 PhET — Interactive Physics Simulations</a>
+<p><small>প্রথমে Lesson পড়ো, তারপর Source থেকে একই concept-এর lesson/simulation দেখে আবার Mission দাও।</small></p>
+</div>
+<div class="row"><button class="primary" onclick="quizStart()">⚔️ Mission Challenge</button><button class="secondary" onclick="go('world')">← দুনিয়ার মানচিত্র</button></div>`;go("lesson")}
 function quizStart(){answers={};let t=topics[current];quizTitle.textContent=t.icon+" "+t.title;quizBox.innerHTML=t.q.map((q,i)=>`<div class="mission"><b>${i+1}. ${q[0]}</b>${q[1].map((o,j)=>`<button class="choice" id="a${i}_${j}" onclick="pick(${i},${j})">${String.fromCharCode(65+j)}. ${o}</button>`).join("")}</div>`).join("");result.innerHTML="";go("quiz")}
 function pick(i,j){answers[i]=j;document.querySelectorAll(".choice").forEach(x=>x.classList.remove("selected"));document.getElementById("a"+i+"_"+j).classList.add("selected")}
 function check(){let t=topics[current];if(Object.keys(answers).length<t.q.length){toast("সব প্রশ্নের উত্তর দাও!");return}let score=0;t.q.forEach((q,i)=>{if(answers[i]===q[2])score++});if(score===t.q.length){state.xp+=50;state.done[t.id]=true;state.streak++;save();result.innerHTML=`<div class="mission good"><h3>🎉 Mission Complete!</h3><p>⭐ +50 XP • 🏆 ${t.title} complete!</p><button class="primary" onclick="go('world')">🗺️ Next Zone</button></div>`}else{state.lives=Math.max(0,state.lives-1);state.streak=0;save();result.innerHTML=`<div class="mission bad"><h3>💥 আরও একবার চেষ্টা করো!</h3><p>নম্বর: ${score}/${t.q.length}</p><p>💡 Lesson দেখে আবার চেষ্টা করো।</p><button class="secondary" onclick="openTopic(${current})">🔄 পাঠ আবার দেখো</button></div>`}update()}
