@@ -13,15 +13,11 @@
   padding:0;
 }
 
-html{
-  scroll-behavior:smooth;
-}
-
 body{
-  font-family:"Noto Sans Bengali","Segoe UI",Arial,sans-serif;
+  font-family:"Noto Sans Bengali","Segoe UI",sans-serif;
   background:#07111f;
   color:#f4f7fb;
-  line-height:1.75;
+  line-height:1.7;
 }
 
 button{
@@ -30,7 +26,7 @@ button{
 }
 
 .header{
-  padding:18px 6%;
+  padding:22px 6%;
   background:linear-gradient(135deg,#0d2340,#102d4d);
   border-bottom:1px solid #23476d;
   position:sticky;
@@ -44,7 +40,7 @@ button{
   display:flex;
   align-items:center;
   justify-content:space-between;
-  gap:15px;
+  gap:20px;
 }
 
 .logo{
@@ -61,13 +57,12 @@ button{
   padding:5px 12px;
   border-radius:20px;
   font-size:13px;
-  color:#dcecff;
 }
 
 .hero{
   max-width:1150px;
   margin:auto;
-  padding:60px 6% 45px;
+  padding:65px 6% 45px;
   text-align:center;
 }
 
@@ -81,7 +76,7 @@ button{
 }
 
 .hero p{
-  max-width:750px;
+  max-width:720px;
   margin:auto;
   color:#b8c9dc;
   font-size:18px;
@@ -189,19 +184,13 @@ button{
   animation:fade .3s;
 }
 
-.panel.active{
-  display:block;
+@keyframes fade{
+  from{opacity:0;transform:translateY(8px)}
+  to{opacity:1;transform:translateY(0)}
 }
 
-@keyframes fade{
-  from{
-    opacity:0;
-    transform:translateY(8px);
-  }
-  to{
-    opacity:1;
-    transform:translateY(0);
-  }
+.panel.active{
+  display:block;
 }
 
 .panel h2{
@@ -247,17 +236,13 @@ button{
 
 .source{
   display:block;
-  margin:18px 0 5px;
+  margin:8px 0;
   color:#71c8ff;
   text-decoration:none;
-  padding:10px 14px;
-  background:#10283e;
-  border-radius:10px;
 }
 
 .source:hover{
   text-decoration:underline;
-  background:#15344f;
 }
 
 .quiz{
@@ -267,10 +252,8 @@ button{
   padding:20px;
 }
 
-.quiz-title{
-  font-size:18px;
-  font-weight:700;
-  margin-bottom:15px;
+.question{
+  margin-bottom:22px;
 }
 
 .option{
@@ -283,12 +266,10 @@ button{
   background:#12263b;
   color:white;
   border-radius:10px;
-  transition:.2s;
 }
 
 .option:hover{
   border-color:#5ee7d2;
-  transform:translateX(2px);
 }
 
 .option.correct{
@@ -306,19 +287,6 @@ button{
   font-weight:bold;
 }
 
-.retry{
-  margin-top:12px;
-  padding:9px 15px;
-  border:1px solid #5ee7d2;
-  background:transparent;
-  color:#5ee7d2;
-  border-radius:9px;
-}
-
-.retry:hover{
-  background:#163b57;
-}
-
 .complete{
   margin-top:20px;
   padding:13px 20px;
@@ -329,30 +297,6 @@ button{
   font-weight:700;
 }
 
-.complete:hover{
-  transform:translateY(-2px);
-}
-
-.completed{
-  background:#193e36 !important;
-  color:#a9ffe9 !important;
-  cursor:default !important;
-}
-
-.reset{
-  margin-top:25px;
-  background:transparent;
-  border:1px solid #526a80;
-  color:#9fb2c8;
-  padding:8px 14px;
-  border-radius:8px;
-}
-
-.reset:hover{
-  border-color:#e87575;
-  color:#e87575;
-}
-
 .footer{
   text-align:center;
   padding:30px;
@@ -360,22 +304,9 @@ button{
   color:#8197ad;
 }
 
-.footer strong{
-  color:#5ee7d2;
-}
-
 @media(max-width:600px){
-
-  .hero{
-    padding-top:45px;
-  }
-
   .hero h1{
     font-size:35px;
-  }
-
-  .hero p{
-    font-size:16px;
   }
 
   .nav{
@@ -385,238 +316,171 @@ button{
   .panel{
     padding:19px;
   }
-
-  .section-title h2{
-    font-size:25px;
-  }
 }
 </style>
 </head>
 
-
 <body>
 
 <header class="header">
-
   <div class="nav">
-
-    <div class="logo">
-      ⚡ Physics <span>Khuji</span>
-    </div>
-
-    <div class="badge">
-      Class 10 • Interactive Learning
-    </div>
-
+    <div class="logo">⚡ Physics <span>Khuji</span></div>
+    <div class="badge">Class 10 • Interactive Learning</div>
   </div>
-
 </header>
 
-
 <section class="hero">
-
-  <h1>
-    Physics <span>Khuji</span> 🔎
-  </h1>
+  <h1>Physics <span>Khuji</span> 🔎</h1>
 
   <p>
-    শুধু মুখস্থ নয়—চারপাশের বাস্তব জীবন থেকে Physics খুঁজে বের করো,
-    বুঝে শেখো, Experiment করো এবং নিজের জ্ঞান যাচাই করো।
+    শুধু মুখস্থ নয়—চারপাশের বাস্তব জীবন থেকে পদার্থবিজ্ঞান খুঁজে বের করো,
+    বুঝে শেখো, পরীক্ষা করো এবং নিজের জ্ঞান যাচাই করো।
   </p>
 
-
   <div class="xpbox">
-
     <div class="xprow">
-
-      <strong>
-        তোমার Learning Progress
-      </strong>
-
-      <strong>
-        <span id="xp">0</span> XP
-      </strong>
-
+      <strong>তোমার Learning Progress</strong>
+      <strong><span id="xp">0</span> XP</strong>
     </div>
 
     <div class="progress">
       <div id="progressBar"></div>
     </div>
-
   </div>
-
 </section>
 
 
 <main class="container">
 
-
 <div class="section-title">
-
-  <h2>
-    🗺️ Physics Concept Map
-  </h2>
+  <h2>🗺️ Physics Concept Map</h2>
 
   <p>
     একটি topic বেছে নিয়ে Physics-এর ধারণাগুলো আবিষ্কার করো।
   </p>
-
 </div>
 
 
 <div class="topic-grid">
 
+  <!-- MOTION -->
 
-<div class="topic">
+  <div class="topic">
+    <div class="icon">🏃</div>
 
-  <div class="icon">🏃</div>
+    <h3>গতি (Motion)</h3>
 
-  <h3>
-    গতি ও Motion
-  </h3>
+    <small>Motion • Speed • Velocity</small>
 
-  <small>
-    Motion • Speed • Velocity
-  </small>
-
-  <button onclick="openTopic('motion')">
-    শিখি →
-  </button>
-
-</div>
+    <button onclick="openTopic('motion')">
+      শিখি →
+    </button>
+  </div>
 
 
-<div class="topic">
+  <!-- FORCE -->
 
-  <div class="icon">💪</div>
+  <div class="topic">
+    <div class="icon">💪</div>
 
-  <h3>
-    বল ও Force
-  </h3>
+    <h3>বল (Force)</h3>
 
-  <small>
-    Force • Inertia • Newton
-  </small>
+    <small>Force • Inertia • Newton</small>
 
-  <button onclick="openTopic('force')">
-    শিখি →
-  </button>
-
-</div>
+    <button onclick="openTopic('force')">
+      শিখি →
+    </button>
+  </div>
 
 
-<div class="topic">
+  <!-- ENERGY -->
 
-  <div class="icon">⚙️</div>
+  <div class="topic">
+    <div class="icon">⚙️</div>
 
-  <h3>
-    কাজ ও শক্তি
-  </h3>
+    <h3>কাজ, শক্তি ও ক্ষমতা</h3>
 
-  <small>
-    Work • Energy • Power
-  </small>
+    <small>Work • Energy • Power</small>
 
-  <button onclick="openTopic('energy')">
-    শিখি →
-  </button>
-
-</div>
+    <button onclick="openTopic('energy')">
+      শিখি →
+    </button>
+  </div>
 
 
-<div class="topic">
+  <!-- HEAT -->
 
-  <div class="icon">🌡️</div>
+  <div class="topic">
+    <div class="icon">🌡️</div>
 
-  <h3>
-    তাপ ও Temperature
-  </h3>
+    <h3>তাপ ও তাপমাত্রা</h3>
 
-  <small>
-    Heat • Temperature • Expansion
-  </small>
+    <small>Heat • Temperature • Expansion</small>
 
-  <button onclick="openTopic('heat')">
-    শিখি →
-  </button>
-
-</div>
+    <button onclick="openTopic('heat')">
+      শিখি →
+    </button>
+  </div>
 
 
-<div class="topic">
+  <!-- WAVE -->
 
-  <div class="icon">🔊</div>
+  <div class="topic">
+    <div class="icon">🔊</div>
 
-  <h3>
-    তরঙ্গ ও Sound
-  </h3>
+    <h3>তরঙ্গ ও শব্দ</h3>
 
-  <small>
-    Wave • Frequency • Sound
-  </small>
+    <small>Wave • Frequency • Sound</small>
 
-  <button onclick="openTopic('wave')">
-    শিখি →
-  </button>
-
-</div>
+    <button onclick="openTopic('wave')">
+      শিখি →
+    </button>
+  </div>
 
 
-<div class="topic">
+  <!-- LIGHT -->
 
-  <div class="icon">🪞</div>
+  <div class="topic">
+    <div class="icon">🪞</div>
 
-  <h3>
-    আলো ও Optics
-  </h3>
+    <h3>আলো (Optics)</h3>
 
-  <small>
-    Reflection • Refraction • Lens
-  </small>
+    <small>Reflection • Refraction • Lens</small>
 
-  <button onclick="openTopic('light')">
-    শিখি →
-  </button>
-
-</div>
+    <button onclick="openTopic('light')">
+      শিখি →
+    </button>
+  </div>
 
 
-<div class="topic">
+  <!-- ELECTRICITY -->
 
-  <div class="icon">🔋</div>
+  <div class="topic">
+    <div class="icon">🔋</div>
 
-  <h3>
-    বিদ্যুৎ
-  </h3>
+    <h3>বিদ্যুৎ (Electricity)</h3>
 
-  <small>
-    Current • Voltage • Resistance
-  </small>
+    <small>Current • Voltage • Resistance</small>
 
-  <button onclick="openTopic('electricity')">
-    শিখি →
-  </button>
-
-</div>
+    <button onclick="openTopic('electricity')">
+      শিখি →
+    </button>
+  </div>
 
 
-<div class="topic">
+  <!-- MAGNET -->
 
-  <div class="icon">🧲</div>
+  <div class="topic">
+    <div class="icon">🧲</div>
 
-  <h3>
-    চুম্বকত্ব
-  </h3>
+    <h3>চুম্বকত্ব (Magnetism)</h3>
 
-  <small>
-    Magnet • Magnetic Field
-  </small>
+    <small>Magnet • Magnetic Field</small>
 
-  <button onclick="openTopic('magnet')">
-    শিখি →
-  </button>
-
-</div>
+    <button onclick="openTopic('magnet')">
+      শিখি →
+    </button>
+  </div>
 
 </div>
 
@@ -625,9 +489,7 @@ button{
 
 <section id="motion" class="panel">
 
-<h2>
-🏃 গতি ও Motion
-</h2>
+<h2>🏃 গতি (Motion)</h2>
 
 <p>
 কোনো বস্তু সময়ের সাথে তার অবস্থান পরিবর্তন করলে আমরা বলি বস্তুটি
@@ -636,28 +498,19 @@ button{
 
 <div class="info">
 
-<strong>মূল ধারণা:</strong>
-
-<br>
+<strong>মূল ধারণা:</strong><br>
 
 Distance হলো মোট অতিক্রান্ত পথ।
-
-<br>
-
-Speed হলো একক সময়ে কত দূরত্ব অতিক্রম করা হয়েছে।
+আর Speed হলো একক সময়ে কত দূরত্ব অতিক্রম করা হয়েছে।
 
 <br><br>
 
-<strong>
-Speed = Distance ÷ Time
-</strong>
+<strong>Speed = Distance ÷ Time</strong>
 
 </div>
 
 
-<h3>
-🌍 Real Life Connection
-</h3>
+<h3>🌍 Real Life Connection</h3>
 
 <div class="real">
 
@@ -669,21 +522,14 @@ Speed = Distance ÷ Time
 </div>
 
 
-<h3>
-🧪 Try an Experiment
-</h3>
+<h3>🧪 Try an Experiment</h3>
 
 <div class="experiment">
 
 একটি মোবাইল stopwatch নাও।
-
-<br>
-
 10 মিটার দূরত্ব নির্ধারণ করো।
 
-<br>
-
-হেঁটে যেতে কত সময় লাগে মাপো।
+তারপর হেঁটে যেতে কত সময় লাগে মাপো।
 
 <br><br>
 
@@ -691,9 +537,7 @@ Speed = Distance ÷ Time
 
 <br><br>
 
-<strong>
-Speed = 10 ÷ 5 = 2 m/s
-</strong>
+<strong>Speed = 10 ÷ 5 = 2 m/s</strong>
 
 <br><br>
 
@@ -702,15 +546,11 @@ Speed = 10 ÷ 5 = 2 m/s
 </div>
 
 
-<h3>
-🎯 Mission
-</h3>
+<h3>🎯 Mission</h3>
 
 <div class="mission">
 
-<strong>
-Speed Detective 🔎
-</strong>
+<strong>Mission: Speed Detective 🔎</strong>
 
 <br>
 
@@ -721,49 +561,46 @@ Distance বের করে নিজের average speed হিসাব ক�
 </div>
 
 
-<div class="quiz" data-quiz="motion">
+<div class="quiz">
 
-<div class="quiz-title">
+<div class="question">
 
-🧠 Quiz:
-
-একজন ছাত্র 20 m পথ 5 s-এ অতিক্রম করল।
-তার speed কত?
+<strong>
+একজন ছাত্র 20 m পথ 5 s-এ অতিক্রম করল। তার speed কত?
+</strong>
 
 </div>
 
-<button class="option" data-correct="true">
+<button onclick="answer(this,true)">
 4 m/s
 </button>
 
-<button class="option" data-correct="false">
+<button onclick="answer(this,false)">
 5 m/s
 </button>
 
-<button class="option" data-correct="false">
+<button onclick="answer(this,false)">
 10 m/s
 </button>
 
-<button class="option" data-correct="false">
+<button onclick="answer(this,false)">
 25 m/s
 </button>
 
 </div>
 
 
-<a class="source"
+<a
+class="source"
 href="https://phet.colorado.edu/"
-target="_blank"
-rel="noopener noreferrer">
+target="_blank">
 
-📚 Further Learning:
-PhET Interactive Simulations →
+📚 Further Learning: PhET Interactive Simulations
 
 </a>
 
 
 <button
-id="complete-motion"
 class="complete"
 onclick="completeTopic('motion')">
 
@@ -779,24 +616,23 @@ onclick="completeTopic('motion')">
 
 <section id="force" class="panel">
 
-<h2>
-💪 বল ও Force
-</h2>
+<h2>💪 বল (Force)</h2>
 
 <p>
-কোনো বস্তুর গতি বা আকৃতি পরিবর্তন করতে পারে এমন push বা pull-কে
-<strong>Force</strong> বলা হয়।
+
+কোনো বস্তুর গতি বা আকৃতি পরিবর্তন করতে পারে এমন
+push বা pull-কে <strong>Force</strong> বলা হয়।
+
 </p>
+
 
 <div class="info">
 
 <strong>Newton-এর দ্বিতীয় সূত্র:</strong>
 
-<br><br>
+<br>
 
-<strong>
-F = ma
-</strong>
+<strong>F = ma</strong>
 
 <br>
 
@@ -805,9 +641,7 @@ Force = Mass × Acceleration
 </div>
 
 
-<h3>
-🌍 Real Life Connection
-</h3>
+<h3>🌍 Real Life Connection</h3>
 
 <div class="real">
 
@@ -818,17 +652,13 @@ Force = Mass × Acceleration
 </div>
 
 
-<h3>
-🧪 Experiment
-</h3>
+<h3>🧪 Experiment</h3>
 
 <div class="experiment">
 
 একটি খালি বোতল ও একটি পানিভর্তি বোতল নাও।
 
 দুটিকে একইভাবে ঠেলা দাও।
-
-<br><br>
 
 কোনটি বেশি সহজে acceleration পায়?
 
@@ -839,15 +669,11 @@ Force = Mass × Acceleration
 </div>
 
 
-<h3>
-🎯 Mission
-</h3>
+<h3>🎯 Mission</h3>
 
 <div class="mission">
 
-<strong>
-Force Hunter 🕵️
-</strong>
+<strong>Force Hunter 🕵️</strong>
 
 <br>
 
@@ -857,48 +683,46 @@ Force Hunter 🕵️
 </div>
 
 
-<div class="quiz" data-quiz="force">
+<div class="quiz">
 
-<div class="quiz-title">
+<div class="question">
 
-🧠 Quiz:
-
+<strong>
 Force-এর SI unit কোনটি?
+</strong>
 
 </div>
 
-<button class="option" data-correct="true">
+<button onclick="answer(this,true)">
 Newton
 </button>
 
-<button class="option" data-correct="false">
+<button onclick="answer(this,false)">
 Joule
 </button>
 
-<button class="option" data-correct="false">
+<button onclick="answer(this,false)">
 Watt
 </button>
 
-<button class="option" data-correct="false">
+<button onclick="answer(this,false)">
 Pascal
 </button>
 
 </div>
 
 
-<a class="source"
+<a
+class="source"
 href="https://www.khanacademy.org/science/physics/forces-newtons-laws"
-target="_blank"
-rel="noopener noreferrer">
+target="_blank">
 
-📚 Further Learning:
-Khan Academy — Forces →
+📚 Further Learning: Khan Academy — Forces
 
 </a>
 
 
 <button
-id="complete-force"
 class="complete"
 onclick="completeTopic('force')">
 
@@ -914,35 +738,30 @@ onclick="completeTopic('force')">
 
 <section id="energy" class="panel">
 
-<h2>
-⚙️ কাজ, শক্তি ও Power
-</h2>
+<h2>⚙️ কাজ, শক্তি ও ক্ষমতা</h2>
 
 <p>
+
 কোনো বল প্রয়োগের ফলে যদি বস্তুর displacement ঘটে,
 তাহলে সেই force কাজ করে।
+
 </p>
+
 
 <div class="info">
 
-<strong>
-Work = Force × Displacement
-</strong>
+<strong>Work = Force × Displacement</strong>
 
 <br><br>
 
 Energy হলো কাজ করার সক্ষমতা।
-
-<br>
 
 Power হলো কাজ করার হার।
 
 </div>
 
 
-<h3>
-🌍 Real Life Connection
-</h3>
+<h3>🌍 Real Life Connection</h3>
 
 <div class="real">
 
@@ -953,29 +772,23 @@ Power হলো কাজ করার হার।
 </div>
 
 
-<h3>
-🧪 Experiment
-</h3>
+<h3>🧪 Experiment</h3>
 
 <div class="experiment">
 
 একটি বই মেঝে থেকে টেবিলের উপর তোলো।
 
-তারপর লক্ষ্য করো—
-তুমি বইটির ওপর force প্রয়োগ করেছো এবং বইটির displacement হয়েছে।
+তারপর লক্ষ্য করো—তুমি বইটির ওপর force প্রয়োগ করেছো
+এবং বইটির displacement হয়েছে।
 
 </div>
 
 
-<h3>
-🎯 Mission
-</h3>
+<h3>🎯 Mission</h3>
 
 <div class="mission">
 
-<strong>
-Energy Tracker ⚡
-</strong>
+<strong>Energy Tracker ⚡</strong>
 
 <br>
 
@@ -985,48 +798,46 @@ Energy Tracker ⚡
 </div>
 
 
-<div class="quiz" data-quiz="energy">
+<div class="quiz">
 
-<div class="quiz-title">
+<div class="question">
 
-🧠 Quiz:
-
+<strong>
 Power-এর SI unit কোনটি?
+</strong>
 
 </div>
 
-<button class="option" data-correct="true">
+<button onclick="answer(this,true)">
 Watt
 </button>
 
-<button class="option" data-correct="false">
+<button onclick="answer(this,false)">
 Joule
 </button>
 
-<button class="option" data-correct="false">
+<button onclick="answer(this,false)">
 Newton
 </button>
 
-<button class="option" data-correct="false">
+<button onclick="answer(this,false)">
 Volt
 </button>
 
 </div>
 
 
-<a class="source"
+<a
+class="source"
 href="https://phet.colorado.edu/en/simulations/energy-forms-and-changes"
-target="_blank"
-rel="noopener noreferrer">
+target="_blank">
 
-📚 Further Learning:
-PhET — Energy Forms and Changes →
+📚 Further Learning: PhET — Energy Forms and Changes
 
 </a>
 
 
 <button
-id="complete-energy"
 class="complete"
 onclick="completeTopic('energy')">
 
@@ -1042,14 +853,15 @@ onclick="completeTopic('energy')">
 
 <section id="heat" class="panel">
 
-<h2>
-🌡️ তাপ ও Temperature
-</h2>
+<h2>🌡️ তাপ ও তাপমাত্রা</h2>
 
 <p>
+
 Heat হলো এক ধরনের energy transfer,
 আর Temperature কোনো বস্তুর উষ্ণতার মাত্রা নির্দেশ করে।
+
 </p>
+
 
 <div class="info">
 
@@ -1058,9 +870,7 @@ Heat হলো এক ধরনের energy transfer,
 </div>
 
 
-<h3>
-🌍 Real Life Connection
-</h3>
+<h3>🌍 Real Life Connection</h3>
 
 <div class="real">
 
@@ -1071,78 +881,72 @@ Heat হলো এক ধরনের energy transfer,
 </div>
 
 
-<h3>
-🧪 Experiment
-</h3>
+<h3>🧪 Experiment</h3>
 
 <div class="experiment">
 
-একটি ধাতব চামচ এবং একটি কাঠের চামচ কিছুক্ষণ গরম পানিতে রাখো।
+একটি ধাতব চামচ এবং একটি কাঠের চামচ
+কিছুক্ষণ গরম পানিতে রাখো।
 
 সাবধানে স্পর্শ করে তাপ পরিবহণের পার্থক্য লক্ষ্য করো।
 
 </div>
 
 
-<h3>
-🎯 Mission
-</h3>
+<h3>🎯 Mission</h3>
 
 <div class="mission">
 
-<strong>
-Heat Detective 🌡️
-</strong>
+<strong>Heat Detective 🌡️</strong>
 
 <br>
 
-বাড়িতে এমন ৫টি জিনিস খুঁজে বের করো যেখানে heat transfer হচ্ছে।
+বাড়িতে এমন ৫টি জিনিস খুঁজে বের করো
+যেখানে heat transfer হচ্ছে।
 
 </div>
 
 
-<div class="quiz" data-quiz="heat">
+<div class="quiz">
 
-<div class="quiz-title">
+<div class="question">
 
-🧠 Quiz:
-
+<strong>
 তাপ স্বাভাবিকভাবে কোন দিকে প্রবাহিত হয়?
+</strong>
 
 </div>
 
-<button class="option" data-correct="true">
+<button onclick="answer(this,true)">
 গরম থেকে ঠান্ডার দিকে
 </button>
 
-<button class="option" data-correct="false">
+<button onclick="answer(this,false)">
 ঠান্ডা থেকে গরমের দিকে
 </button>
 
-<button class="option" data-correct="false">
+<button onclick="answer(this,false)">
 দুই দিকেই সমানভাবে
 </button>
 
-<button class="option" data-correct="false">
+<button onclick="answer(this,false)">
 কোনো দিকেই নয়
 </button>
 
 </div>
 
 
-<a class="source"
+<a
+class="source"
 href="https://phet.colorado.edu/en/simulations/states-of-matter-basics"
-target="_blank"
-rel="noopener noreferrer">
+target="_blank">
 
-📚 Further Learning:
-PhET — States of Matter →
+📚 Further Learning: PhET — States of Matter
 
 </a>
 
 
 <button
-id="complete-heat"
 class="complete"
 onclick="completeTopic('heat')">
 
@@ -1158,27 +962,25 @@ onclick="completeTopic('heat')">
 
 <section id="wave" class="panel">
 
-<h2>
-🔊 তরঙ্গ ও Sound
-</h2>
+<h2>🔊 তরঙ্গ ও শব্দ</h2>
 
 <p>
-এক স্থান থেকে অন্য স্থানে energy পরিবহন করে এমন periodic disturbance-কে
-Wave বলা হয়।
+
+এক স্থান থেকে অন্য স্থানে energy পরিবহন করে এমন
+periodic disturbance-কে Wave বলা হয়।
+
 </p>
+
 
 <div class="info">
 
 Sound হলো একটি mechanical wave।
-
 এটি চলাচলের জন্য medium প্রয়োজন করে।
 
 </div>
 
 
-<h3>
-🌍 Real Life Connection
-</h3>
+<h3>🌍 Real Life Connection</h3>
 
 <div class="real">
 
@@ -1189,9 +991,7 @@ Sound হলো একটি mechanical wave।
 </div>
 
 
-<h3>
-🧪 Experiment
-</h3>
+<h3>🧪 Experiment</h3>
 
 <div class="experiment">
 
@@ -1199,22 +999,16 @@ Sound হলো একটি mechanical wave।
 
 তার vibration লক্ষ্য করো।
 
-<br><br>
-
 এবার tension পরিবর্তন করে sound-এর পরিবর্তন লক্ষ্য করো।
 
 </div>
 
 
-<h3>
-🎯 Mission
-</h3>
+<h3>🎯 Mission</h3>
 
 <div class="mission">
 
-<strong>
-Sound Hunter 🔊
-</strong>
+<strong>Sound Hunter 🔊</strong>
 
 <br>
 
@@ -1226,48 +1020,46 @@ Sound Hunter 🔊
 </div>
 
 
-<div class="quiz" data-quiz="wave">
+<div class="quiz">
 
-<div class="quiz-title">
+<div class="question">
 
-🧠 Quiz:
-
+<strong>
 Sound কোন ধরনের wave?
+</strong>
 
 </div>
 
-<button class="option" data-correct="true">
+<button onclick="answer(this,true)">
 Mechanical wave
 </button>
 
-<button class="option" data-correct="false">
+<button onclick="answer(this,false)">
 Electromagnetic wave
 </button>
 
-<button class="option" data-correct="false">
+<button onclick="answer(this,false)">
 Light wave
 </button>
 
-<button class="option" data-correct="false">
-Matter wave
+<button onclick="answer(this,false)">
+Matter নয়
 </button>
 
 </div>
 
 
-<a class="source"
+<a
+class="source"
 href="https://phet.colorado.edu/en/simulations/wave-on-a-string"
-target="_blank"
-rel="noopener noreferrer">
+target="_blank">
 
-📚 Further Learning:
-PhET — Wave on a String →
+📚 Further Learning: PhET — Wave on a String
 
 </a>
 
 
 <button
-id="complete-wave"
 class="complete"
 onclick="completeTopic('wave')">
 
@@ -1283,34 +1075,31 @@ onclick="completeTopic('wave')">
 
 <section id="light" class="panel">
 
-<h2>
-🪞 আলো ও Optics
-</h2>
+<h2>🪞 আলো (Optics)</h2>
 
 <p>
+
 আলো একটি electromagnetic radiation,
 যা আমাদের চারপাশের বস্তু দেখতে সাহায্য করে।
+
 </p>
+
 
 <div class="info">
 
 <strong>Reflection:</strong>
-
 আলো কোনো পৃষ্ঠে পড়ে ফিরে আসা।
 
-<br><br>
+<br>
 
 <strong>Refraction:</strong>
-
 আলো এক medium থেকে অন্য medium-এ গেলে
 তার গতির পরিবর্তনের কারণে দিক পরিবর্তন করা।
 
 </div>
 
 
-<h3>
-🌍 Real Life Connection
-</h3>
+<h3>🌍 Real Life Connection</h3>
 
 <div class="real">
 
@@ -1321,9 +1110,7 @@ onclick="completeTopic('wave')">
 </div>
 
 
-<h3>
-🧪 Experiment
-</h3>
+<h3>🧪 Experiment</h3>
 
 <div class="experiment">
 
@@ -1331,72 +1118,65 @@ onclick="completeTopic('wave')">
 
 একটি pencil পানিতে আংশিক ডুবিয়ে দেখো।
 
-<br><br>
-
 পেন্সিলটি কেন বাঁকা মনে হচ্ছে তা ব্যাখ্যা করার চেষ্টা করো।
 
 </div>
 
 
-<h3>
-🎯 Mission
-</h3>
+<h3>🎯 Mission</h3>
 
 <div class="mission">
 
-<strong>
-Light Detective 🪞
-</strong>
+<strong>Light Detective 🪞</strong>
 
 <br>
 
-বাড়িতে reflection-এর ৩টি এবং refraction-এর ২টি উদাহরণ খুঁজে বের করো।
+বাড়িতে reflection-এর ৩টি এবং refraction-এর
+২টি উদাহরণ খুঁজে বের করো।
 
 </div>
 
 
-<div class="quiz" data-quiz="light">
+<div class="quiz">
 
-<div class="quiz-title">
+<div class="question">
 
-🧠 Quiz:
-
+<strong>
 আয়নায় মুখ দেখা কোন ঘটনার উদাহরণ?
+</strong>
 
 </div>
 
-<button class="option" data-correct="true">
+<button onclick="answer(this,true)">
 Reflection
 </button>
 
-<button class="option" data-correct="false">
+<button onclick="answer(this,false)">
 Refraction
 </button>
 
-<button class="option" data-correct="false">
+<button onclick="answer(this,false)">
 Diffusion
 </button>
 
-<button class="option" data-correct="false">
+<button onclick="answer(this,false)">
 Conduction
 </button>
 
 </div>
 
 
-<a class="source"
+<a
+class="source"
 href="https://phet.colorado.edu/en/simulations/bending-light"
-target="_blank"
-rel="noopener noreferrer">
+target="_blank">
 
-📚 Further Learning:
-PhET — Bending Light →
+📚 Further Learning: PhET — Bending Light
 
 </a>
 
 
 <button
-id="complete-light"
 class="complete"
 onclick="completeTopic('light')">
 
@@ -1412,25 +1192,22 @@ onclick="completeTopic('light')">
 
 <section id="electricity" class="panel">
 
-<h2>
-🔋 বিদ্যুৎ ও Electricity
-</h2>
+<h2>🔋 বিদ্যুৎ (Electricity)</h2>
 
 <p>
+
 Electric current হলো electric charge-এর flow।
+
 </p>
+
 
 <div class="info">
 
-<strong>
-Ohm's Law:
-</strong>
+<strong>Ohm's Law:</strong>
 
-<br><br>
+<br>
 
-<strong>
-V = IR
-</strong>
+<strong>V = IR</strong>
 
 <br>
 
@@ -1439,9 +1216,7 @@ Voltage = Current × Resistance
 </div>
 
 
-<h3>
-🌍 Real Life Connection
-</h3>
+<h3>🌍 Real Life Connection</h3>
 
 <div class="real">
 
@@ -1453,16 +1228,12 @@ Circuit-এর মাধ্যমে electric current প্রবাহিত �
 </div>
 
 
-<h3>
-🧪 Experiment
-</h3>
+<h3>🧪 Experiment</h3>
 
 <div class="experiment">
 
 একটি battery, ছোট bulb এবং connecting wire ব্যবহার করে
 একটি simple circuit তৈরি করা যায়।
-
-<br><br>
 
 Circuit সম্পূর্ণ হলে bulb জ্বলবে।
 
@@ -1471,15 +1242,11 @@ Circuit ভেঙে দিলে bulb নিভে যাবে।
 </div>
 
 
-<h3>
-🎯 Mission
-</h3>
+<h3>🎯 Mission</h3>
 
 <div class="mission">
 
-<strong>
-Electricity Detective 🔋
-</strong>
+<strong>Electricity Detective 🔋</strong>
 
 <br>
 
@@ -1489,48 +1256,46 @@ Electricity Detective 🔋
 </div>
 
 
-<div class="quiz" data-quiz="electricity">
+<div class="quiz">
 
-<div class="quiz-title">
+<div class="question">
 
-🧠 Quiz:
-
+<strong>
 Ohm's Law কোনটি?
+</strong>
 
 </div>
 
-<button class="option" data-correct="true">
+<button onclick="answer(this,true)">
 V = IR
 </button>
 
-<button class="option" data-correct="false">
+<button onclick="answer(this,false)">
 P = VI²
 </button>
 
-<button class="option" data-correct="false">
+<button onclick="answer(this,false)">
 F = ma
 </button>
 
-<button class="option" data-correct="false">
+<button onclick="answer(this,false)">
 W = F/t
 </button>
 
 </div>
 
 
-<a class="source"
+<a
+class="source"
 href="https://phet.colorado.edu/en/simulations/circuit-construction-kit-dc"
-target="_blank"
-rel="noopener noreferrer">
+target="_blank">
 
-📚 Further Learning:
-PhET — Circuit Construction Kit →
+📚 Further Learning: PhET — Circuit Construction Kit
 
 </a>
 
 
 <button
-id="complete-electricity"
 class="complete"
 onclick="completeTopic('electricity')">
 
@@ -1546,30 +1311,20 @@ onclick="completeTopic('electricity')">
 
 <section id="magnet" class="panel">
 
-<h2>
-🧲 চুম্বকত্ব ও Magnetism
-</h2>
+<h2>🧲 চুম্বকত্ব (Magnetism)</h2>
 
 <p>
+
 চুম্বক এমন একটি বস্তু যা magnetic field তৈরি করে
 এবং কিছু নির্দিষ্ট পদার্থকে আকর্ষণ করতে পারে।
+
 </p>
+
 
 <div class="info">
 
 চুম্বকের দুটি pole থাকে—
-
-<br>
-
-<strong>
-North pole
-</strong>
-এবং
-<strong>
-South pole
-</strong>।
-
-<br><br>
+North pole এবং South pole।
 
 একই pole বিকর্ষণ করে,
 বিপরীত pole আকর্ষণ করে।
@@ -1577,9 +1332,7 @@ South pole
 </div>
 
 
-<h3>
-🌍 Real Life Connection
-</h3>
+<h3>🌍 Real Life Connection</h3>
 
 <div class="real">
 
@@ -1592,9 +1345,7 @@ magnetism গুরুত্বপূর্ণ।
 </div>
 
 
-<h3>
-🧪 Experiment
-</h3>
+<h3>🧪 Experiment</h3>
 
 <div class="experiment">
 
@@ -1607,15 +1358,11 @@ magnetism গুরুত্বপূর্ণ।
 </div>
 
 
-<h3>
-🎯 Mission
-</h3>
+<h3>🎯 Mission</h3>
 
 <div class="mission">
 
-<strong>
-Magnet Hunter 🧲
-</strong>
+<strong>Magnet Hunter 🧲</strong>
 
 <br>
 
@@ -1625,48 +1372,46 @@ Magnet Hunter 🧲
 </div>
 
 
-<div class="quiz" data-quiz="magnet">
+<div class="quiz">
 
-<div class="quiz-title">
+<div class="question">
 
-🧠 Quiz:
-
+<strong>
 একই ধরনের magnetic poles কী করে?
+</strong>
 
 </div>
 
-<button class="option" data-correct="true">
+<button onclick="answer(this,true)">
 বিকর্ষণ করে
 </button>
 
-<button class="option" data-correct="false">
+<button onclick="answer(this,false)">
 আকর্ষণ করে
 </button>
 
-<button class="option" data-correct="false">
+<button onclick="answer(this,false)">
 কোনো প্রভাব নেই
 </button>
 
-<button class="option" data-correct="false">
+<button onclick="answer(this,false)">
 গলে যায়
 </button>
 
 </div>
 
 
-<a class="source"
+<a
+class="source"
 href="https://phet.colorado.edu/en/simulations/magnets-and-electromagnets"
-target="_blank"
-rel="noopener noreferrer">
+target="_blank">
 
-📚 Further Learning:
-PhET — Magnets and Electromagnets →
+📚 Further Learning: PhET — Magnets and Electromagnets
 
 </a>
 
 
 <button
-id="complete-magnet"
 class="complete"
 onclick="completeTopic('magnet')">
 
@@ -1678,30 +1423,21 @@ onclick="completeTopic('magnet')">
 
 
 
+<!-- ================= LEARNING RULE ================= -->
+
 <div class="section-title">
 
-<h2>
-🏆 Learning Rule
-</h2>
+<h2>🏆 Learning Rule</h2>
 
 <p>
 
-প্রতিটি Concept বুঝো →
+Concept বুঝো →
 Real Life-এ খুঁজে দেখো →
 Experiment করো →
 Mission complete করো →
-Quiz দাও →
-নিজের জ্ঞান যাচাই করো।
+Quiz দাও।
 
 </p>
-
-<button
-class="reset"
-onclick="resetProgress()">
-
-↻ নিজের Progress Reset করো
-
-</button>
 
 </div>
 
@@ -1710,9 +1446,7 @@ onclick="resetProgress()">
 
 <footer class="footer">
 
-<p>
-⚡ <strong>Physics Khuji</strong>
-</p>
+<p>⚡ Physics Khuji</p>
 
 <p>
 Class 10 Physics শেখার একটি interactive learning space
@@ -1728,73 +1462,25 @@ Learn • Explore • Experiment • Understand
 
 <script>
 
-/* =========================================
-   PERSONAL LEARNING PROGRESS
-========================================= */
-
 let xp =
-Number(localStorage.getItem("physicsKhujiXP")) || 0;
+Number(localStorage.getItem("physicsXP")) || 0;
 
 let completed =
 JSON.parse(
-localStorage.getItem("physicsKhujiCompleted") || "[]"
-);
-
-let quizDone =
-JSON.parse(
-localStorage.getItem("physicsKhujiQuizDone") || "[]"
+localStorage.getItem("physicsCompleted") || "[]"
 );
 
 
-/* =========================================
-   UPDATE XP
-========================================= */
-
-function updateXP(){
-
-  document.getElementById("xp").textContent = xp;
-
-  const totalXP = 160;
-
-  const percent =
-  Math.min((xp / totalXP) * 100,100);
-
-  document.getElementById("progressBar")
-  .style.width = percent + "%";
-
-}
+updateXP();
 
 
-/* =========================================
-   ADD XP
-========================================= */
-
-function addXP(amount){
-
-  xp += amount;
-
-  localStorage.setItem(
-    "physicsKhujiXP",
-    xp
-  );
-
-  updateXP();
-
-}
-
-
-/* =========================================
-   OPEN TOPIC
-========================================= */
 
 function openTopic(id){
 
   document
   .querySelectorAll(".panel")
-  .forEach(panel => {
-
+  .forEach(panel=>{
     panel.classList.remove("active");
-
   });
 
 
@@ -1806,7 +1492,8 @@ function openTopic(id){
 
     panel.classList.add("active");
 
-    setTimeout(() => {
+
+    setTimeout(()=>{
 
       panel.scrollIntoView({
         behavior:"smooth",
@@ -1820,192 +1507,118 @@ function openTopic(id){
 }
 
 
-/* =========================================
-   QUIZ SYSTEM
-========================================= */
 
-document
-.querySelectorAll(".quiz")
-.forEach(quiz => {
+function answer(button,correct){
+
+  const quiz =
+  button.closest(".quiz");
+
 
   const options =
-  quiz.querySelectorAll(".option");
+  quiz.querySelectorAll("button");
 
 
-  options.forEach(option => {
+  if(button.dataset.done==="true")
+    return;
 
-    option.addEventListener("click",function(){
 
-      const quizId =
-      quiz.dataset.quiz;
+  options.forEach(o=>{
 
-      const alreadyDone =
-      quizDone.includes(quizId);
-
-
-      /*
-        If quiz was already correctly completed,
-        don't allow XP again.
-      */
-
-      if(alreadyDone){
-
-        return;
-
-      }
-
-
-      /*
-        Disable only after an answer.
-      */
-
-      options.forEach(btn => {
-
-        btn.disabled = true;
-
-      });
-
-
-      const correct =
-      this.dataset.correct === "true";
-
-
-      /*
-        CORRECT ANSWER
-      */
-
-      if(correct){
-
-        this.classList.add("correct");
-
-        const result =
-        document.createElement("div");
-
-        result.className = "result";
-
-        result.innerHTML =
-        "✅ সঠিক উত্তর! +5 XP";
-
-        quiz.appendChild(result);
-
-
-        addXP(5);
-
-
-        /*
-          Save quiz completion
-        */
-
-        quizDone.push(quizId);
-
-        localStorage.setItem(
-          "physicsKhujiQuizDone",
-          JSON.stringify(quizDone)
-        );
-
-
-      }
-
-      /*
-        WRONG ANSWER
-      */
-
-      else{
-
-        this.classList.add("wrong");
-
-        const result =
-        document.createElement("div");
-
-        result.className = "result";
-
-        result.innerHTML =
-        "❌ উত্তরটি সঠিক নয়। আবার চেষ্টা করো।";
-
-        quiz.appendChild(result);
-
-
-        /*
-          Show correct answer
-          WITHOUT giving XP.
-        */
-
-        options.forEach(btn => {
-
-          if(btn.dataset.correct === "true"){
-
-            btn.classList.add("correct");
-
-          }
-
-        });
-
-
-        /*
-          Retry button
-        */
-
-        const retry =
-        document.createElement("button");
-
-        retry.className = "retry";
-
-        retry.textContent =
-        "↻ আবার চেষ্টা করো";
-
-
-        retry.onclick = function(){
-
-          options.forEach(btn => {
-
-            btn.disabled = false;
-
-            btn.classList.remove(
-              "wrong",
-              "correct"
-            );
-
-          });
-
-
-          result.remove();
-
-          retry.remove();
-
-        };
-
-
-        quiz.appendChild(retry);
-
-      }
-
-    });
+    o.dataset.done="true";
+    o.disabled=true;
 
   });
 
-});
+
+  if(correct){
+
+    button.classList.add("correct");
 
 
-/* =========================================
-   COMPLETE MISSION
-========================================= */
+    const result =
+    document.createElement("div");
 
-function completeTopic(topic){
 
-  const button =
-  document.getElementById(
-    "complete-" + topic
+    result.className="result";
+
+
+    result.innerHTML =
+    "✅ সঠিক উত্তর! +5 XP";
+
+
+    quiz.appendChild(result);
+
+
+    addXP(5);
+
+  }
+
+
+  else{
+
+    button.classList.add("wrong");
+
+
+    const result =
+    document.createElement("div");
+
+
+    result.className="result";
+
+
+    result.innerHTML =
+    "❌ উত্তরটি সঠিক নয়। আবার ধারণাটি পড়ে চেষ্টা করো।";
+
+
+    quiz.appendChild(result);
+
+  }
+
+}
+
+
+
+function addXP(amount){
+
+  xp += amount;
+
+
+  localStorage.setItem(
+    "physicsXP",
+    xp
   );
 
 
-  /*
-    Already completed
-  */
+  updateXP();
+
+}
+
+
+
+function updateXP(){
+
+  document.getElementById("xp")
+  .textContent=xp;
+
+
+  let percent =
+  Math.min((xp/160)*100,100);
+
+
+  document
+  .getElementById("progressBar")
+  .style.width=percent+"%";
+
+}
+
+
+
+function completeTopic(topic){
 
   if(completed.includes(topic)){
 
     alert(
-      "🎉 এই Mission তুমি ইতিমধ্যেই complete করেছো!"
+      "এই Mission তুমি ইতিমধ্যেই complete করেছো! 🎉"
     );
 
     return;
@@ -2013,179 +1626,61 @@ function completeTopic(topic){
   }
 
 
-  /*
-    Save completed topic
-  */
-
   completed.push(topic);
 
+
   localStorage.setItem(
-    "physicsKhujiCompleted",
+    "physicsCompleted",
     JSON.stringify(completed)
   );
 
 
-  /*
-    Give XP
-  */
-
   addXP(20);
 
 
-  /*
-    Change button
-  */
-
-  if(button){
-
-    button.textContent =
-    "✓ Mission Completed 🎉";
-
-    button.classList.add(
-      "completed"
-    );
-
-  }
-
-
   alert(
-    "🎉 Mission Complete!\n\n" +
-    "+20 XP অর্জন করেছো।\n\n" +
+    "🎉 Mission Complete!\n\n"+
+    "+20 XP অর্জন করেছো।\n\n"+
     "এভাবেই Physics খুঁজে শিখতে থাকো!"
   );
 
 }
 
 
-/* =========================================
-   RESTORE COMPLETED MISSIONS
-========================================= */
 
-function restoreProgress(){
+document
+.querySelectorAll(".quiz")
+.forEach(quiz=>{
 
-  completed.forEach(topic => {
+  quiz
+  .querySelectorAll("button")
+  .forEach(button=>{
 
-    const button =
-    document.getElementById(
-      "complete-" + topic
-    );
+    button.classList.add("option");
+
+  });
+
+});
 
 
-    if(button){
 
-      button.textContent =
-      "✓ Mission Completed 🎉";
+document
+.querySelectorAll(".source")
+.forEach(link=>{
 
-      button.classList.add(
-        "completed"
+  link.addEventListener(
+    "click",
+    function(){
+
+      this.setAttribute(
+        "rel",
+        "noopener noreferrer"
       );
 
     }
-
-  });
-
-}
-
-
-/* =========================================
-   RESET PERSONAL PROGRESS
-========================================= */
-
-function resetProgress(){
-
-  const confirmReset =
-  confirm(
-    "তোমার XP, completed Mission এবং Quiz progress মুছে যাবে।\n\nতুমি কি নিশ্চিত?"
   );
 
-
-  if(!confirmReset){
-
-    return;
-
-  }
-
-
-  localStorage.removeItem(
-    "physicsKhujiXP"
-  );
-
-  localStorage.removeItem(
-    "physicsKhujiCompleted"
-  );
-
-  localStorage.removeItem(
-    "physicsKhujiQuizDone"
-  );
-
-
-  xp = 0;
-
-  completed = [];
-
-  quizDone = [];
-
-
-  updateXP();
-
-
-  document
-  .querySelectorAll(".complete")
-  .forEach(button => {
-
-    button.textContent =
-    "✓ Mission Complete +20 XP";
-
-    button.classList.remove(
-      "completed"
-    );
-
-  });
-
-
-  document
-  .querySelectorAll(".quiz")
-  .forEach(quiz => {
-
-    quiz
-    .querySelectorAll(".option")
-    .forEach(button => {
-
-      button.disabled = false;
-
-      button.classList.remove(
-        "correct",
-        "wrong"
-      );
-
-    });
-
-
-    quiz
-    .querySelectorAll(".result,.retry")
-    .forEach(element => {
-
-      element.remove();
-
-    });
-
-  });
-
-
-  alert(
-    "Progress reset হয়েছে। এখন 0 XP থেকে শুরু করো! 🚀"
-  );
-
-}
-
-
-/* =========================================
-   START
-========================================= */
-
-updateXP();
-
-restoreProgress();
+});
 
 </script>
 
