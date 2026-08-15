@@ -28,26 +28,26 @@ footer{text-align:center;color:#74829b;padding:30px}.toast{display:none;position
 
 <section id="home" class="page active">
 <div class="hero">
-<span class="badge">🎮 CLASS 10 • PHYSICS QUEST</span>
-<h1>Physics<br>খুঁজি! ⚡</h1>
-<p>বইয়ের Physics-কে চারপাশের বাস্তব জীবনে খুঁজে বের করো। Mission, puzzle, experiment আর challenge-এর মাধ্যমে শেখো।</p>
-<div class="row"><button class="primary" onclick="go('profile')">🚀 অভিযান শুরু</button><button class="secondary" onclick="go('world')">🗺️ Physics World</button></div>
+<span class="badge">🎮 Class 10 • Physics Quest</span>
+<h1>পদার্থবিজ্ঞান<br>খুঁজি! ⚡</h1>
+<p>বইয়ের পদার্থবিজ্ঞান-কে চারপাশের বাস্তব জীবনে খুঁজে বের করো। Mission, puzzle, experiment আর challenge-এর মাধ্যমে শেখো।</p>
+<div class="row"><button class="primary" onclick="go('profile')">🚀 Mission শুরু</button><button class="secondary" onclick="go('world')">🗺️ Physics World</button></div>
 </div>
 <div class="grid">
-<div class="card"><div class="icon">🕵️</div><h3>Physics Detective</h3><p>দৈনন্দিন ঘটনার পেছনের Physics খুঁজে বের করো।</p></div>
-<div class="card"><div class="icon">🧪</div><h3>Experiment Quest</h3><p>সহজ ও নিরাপদ activity করে concept বোঝো।</p></div>
-<div class="card"><div class="icon">👾</div><h3>Boss Challenge</h3><p>Problem solve করে পরের level unlock করো।</p></div>
+<div class="card"><div class="icon">🕵️</div><h3>Physics Detective</h3><p>দৈনন্দিন ঘটনার পেছনের পদার্থবিজ্ঞান খুঁজে বের করো।</p></div>
+<div class="card"><div class="icon">🧪</div><h3>পরীক্ষা Mission</h3><p>সহজ ও নিরাপদ Experiment করে concept নিজের চোখে বোঝো।</p></div>
+<div class="card"><div class="icon">👾</div><h3>Boss Challenge</h3><p>সমস্যা সমাধান করে পরের Level খুলে দাও।</p></div>
 </div>
 </section>
 
 <section id="profile" class="page"><div class="panel">
-<span class="badge">👤 PLAYER PROFILE</span><h2>তোমার নাম লিখো</h2>
+<span class="badge">👤 Player Profile</span><h2>তোমার নাম লিখো</h2>
 <input id="name" placeholder="যেমন: Esrat"><p>কোনো account লাগবে না। Progress এই browser-এ save হবে।</p>
-<div class="row"><button class="secondary" onclick="go('home')">← ফিরে যাও</button><button class="primary" onclick="start()">🎮 Play শুরু</button></div>
+<div class="row"><button class="secondary" onclick="go('home')">← ফিরে যাও</button><button class="primary" onclick="start()">🎮 খেলা শুরু</button></div>
 </div></section>
 
 <section id="world" class="page"><div class="panel">
-<span class="badge">🗺️ PHYSICS WORLD</span><h2 id="worldTitle">Physics-এর দুনিয়া</h2><p>প্রথম Zone থেকে শুরু করো। Mission সফল হলে পরের Zone খুলবে।</p>
+<span class="badge">🗺️ PHYSICS WORLD</span><h2 id="worldTitle">Physics World</h2><p>প্রথম অঞ্চল থেকে শুরু করো। Mission সফল হলে পরের Zone খুলবে।</p>
 <div id="zones" class="map"></div>
 <div class="row"><button class="secondary" onclick="go('home')">← Home</button><button class="primary" onclick="go('dashboard')">📊 Progress</button></div>
 </div></section>
@@ -62,7 +62,7 @@ footer{text-align:center;color:#74829b;padding:30px}.toast{display:none;position
 <section id="dashboard" class="page"><div class="panel">
 <span class="badge">🏆 PLAYER DASHBOARD</span><h2 id="dashName"></h2><p id="dashText"></p><div class="progress"><i id="bar"></i></div>
 </div>
-<div class="grid"><div class="card"><h3>⭐ XP</h3><h2 id="dxp">0</h2></div><div class="card"><h3>🔥 Streak</h3><h2 id="dstreak">0</h2></div><div class="card"><h3>🎯 Mission</h3><h2 id="dm">0</h2></div></div>
+<div class="grid"><div class="card"><h3>⭐ XP</h3><h2 id="dxp">0</h2></div><div class="card"><h3>🔥 ধারাবাহিকতা</h3><h2 id="dstreak">0</h2></div><div class="card"><h3>🎯 Mission</h3><h2 id="dm">0</h2></div></div>
 <div class="panel"><h3>🏅 Badges</h3><p id="badges"></p><h3>🔄 Revision</h3><div id="revision"></div></div>
 </section>
 
@@ -71,45 +71,45 @@ footer{text-align:center;color:#74829b;padding:30px}.toast{display:none;position
 
 <script>
 const topics=[
-{id:"motion",icon:"🚗",title:"গতি ও বেগ",real:"সাইকেল, বাস বা দৌড়ানোর সময় কোনো বস্তুর অবস্থান ও গতি বদলায়।",concept:"কোনো বস্তুর অবস্থান সময়ের সঙ্গে পরিবর্তিত হলে বস্তুটি গতিশীল।",activity:"একটি খেলনা গাড়ি চালিয়ে একই সময়ে কত দূর যায় তা লক্ষ্য করো।",q:[
+{id:"motion",icon:"🚗",title:"গতি ও বেগ (Motion & Speed)",real:"সাইকেল, বাস বা দৌড়ানোর সময় কোনো বস্তুর অবস্থান ও গতি বদলায়।",concept:"কোনো বস্তুর অবস্থান সময়ের সঙ্গে পরিবর্তিত হলে বস্তুটি গতিশীল।",activity:"একটি খেলনা গাড়ি চালিয়ে একই সময়ে কত দূর যায় তা লক্ষ্য করো।",q:[
 ["বাস হঠাৎ চলতে শুরু করলে যাত্রী সাধারণত কোন দিকে হেলে যায়?",["সামনে","পিছনে","উপরে","কোনোটিই নয়"],1],
-["Speed কী বোঝায়?",["সময় প্রতি অতিক্রান্ত দূরত্ব","ভর","চাপ","তাপমাত্রা"],0],
-["Acceleration কী নির্দেশ করে?",["বেগের পরিবর্তন","শুধু ভর","শুধু রং","শুধু দূরত্ব"],0]]},
-{id:"force",icon:"💪",title:"বল ও নিউটনের সূত্র",real:"দরজা ঠেলা, বলকে লাথি দেওয়া, ব্রেক চাপা—সবখানেই বলের প্রভাব দেখা যায়।",concept:"বল কোনো বস্তুর গতি বা আকৃতি পরিবর্তন করতে পারে।",activity:"একটি বলকে হালকা ও জোরে ধাক্কা দিয়ে গতি পরিবর্তন লক্ষ্য করো।",q:[
+["দ্রুতি কী বোঝায়?",["সময় প্রতি অতিক্রান্ত দূরত্ব","ভর","চাপ","তাপমাত্রা"],0],
+["ত্বরণ কী নির্দেশ করে?",["বেগের পরিবর্তন","শুধু ভর","শুধু রং","শুধু দূরত্ব"],0]]},
+{id:"force",icon:"💪",title:"বল ও নিউটনের সূত্র (Force & Newton’s Laws)",real:"দরজা ঠেলা, বলকে লাথি দেওয়া, ব্রেক চাপা—সবখানেই বলের প্রভাব দেখা যায়।",concept:"বল কোনো বস্তুর গতি বা আকৃতি পরিবর্তন করতে পারে।",activity:"একটি বলকে হালকা ও জোরে ধাক্কা দিয়ে গতি পরিবর্তন লক্ষ্য করো।",q:[
 ["বল কোনো বস্তুর কী পরিবর্তন করতে পারে?",["শুধু রং","গতি বা আকৃতি","শুধু তাপমাত্রা","শুধু ভর"],1],
-["Newton-এর তৃতীয় সূত্রের মূল ধারণা কী?",["ক্রিয়া-প্রতিক্রিয়া","আলোর প্রতিফলন","তাপ","চাপ"],0],
-["জড়তা কোন ধারণার সঙ্গে যুক্ত?",["নিজের গতির অবস্থা বজায় রাখার প্রবণতা","তাপ","আলো","বিদ্যুৎ"],0]]},
-{id:"work",icon:"🏋️",title:"কাজ, ক্ষমতা ও শক্তি",real:"সিঁড়ি দিয়ে ওঠা, ব্যাগ তোলা বা মোটর চালানো—সবকিছুতেই শক্তির ব্যবহার আছে।",concept:"বল প্রয়োগের ফলে বস্তুর সরণ ঘটলে কাজ সম্পন্ন হতে পারে।",activity:"একটি বই মেঝে থেকে টেবিলে তোলো এবং শক্তির রূপান্তর ভাবো।",q:[
+["নিউটন-এর তৃতীয় সূত্রের মূল ধারণা কী?",["ক্রিয়া-প্রতিক্রিয়া","আলো (Light)র প্রতিফলন","তাপ","চাপ"],0],
+["জড়তা কোন ধারণার সঙ্গে যুক্ত?",["নিজের গতির অবস্থা বজায় রাখার প্রবণতা","তাপ","আলো (Light)","বিদ্যুৎ (Electricity)"],0]]},
+{id:"work",icon:"🏋️",title:"কাজ, ক্ষমতা ও শক্তি (Work, Power & Energy)",real:"সিঁড়ি দিয়ে ওঠা, ব্যাগ তোলা বা মোটর চালানো—সবকিছুতেই শক্তির ব্যবহার আছে।",concept:"বল প্রয়োগের ফলে বস্তুর সরণ ঘটলে কাজ সম্পন্ন হতে পারে।",activity:"একটি বই মেঝে থেকে টেবিলে তোলো এবং শক্তির রূপান্তর ভাবো।",q:[
 ["কাজ সম্পন্ন হওয়ার জন্য সাধারণভাবে কী দরকার?",["বল ও সরণ","শুধু সময়","শুধু ভর","শুধু রং"],0],
 ["ক্ষমতা কী নির্দেশ করে?",["কাজ করার হার","শুধু বল","শুধু দূরত্ব","তাপমাত্রা"],0],
-["শক্তির একটি বৈশিষ্ট্য কী?",["রূপান্তরিত হতে পারে","সবসময় নষ্ট হয়","কেবল আলো","কোনো ব্যবহার নেই"],0]]},
-{id:"light",icon:"💡",title:"আলো",real:"আয়নায় মুখ দেখা, পানিতে পেন্সিল বাঁকা দেখা এবং ছায়া—সবই আলোর সঙ্গে যুক্ত।",concept:"আলো প্রতিফলন ও প্রতিসরণের মতো ঘটনা ঘটাতে পারে।",activity:"পানির গ্লাসে পেন্সিল আংশিক ডুবিয়ে পাশ থেকে দেখো।",q:[
+["শক্তির একটি বৈশিষ্ট্য কী?",["রূপান্তরিত হতে পারে","সবসময় নষ্ট হয়","কেবল আলো (Light)","কোনো ব্যবহার নেই"],0]]},
+{id:"light",icon:"💡",title:"আলো (Light)",real:"আয়নায় মুখ দেখা, পানিতে পেন্সিল বাঁকা দেখা এবং ছায়া—সবই আলো (Light)র সঙ্গে যুক্ত।",concept:"আলো (Light) প্রতিফলন ও প্রতিসরণের মতো ঘটনা ঘটাতে পারে।",activity:"পানির গ্লাসে পেন্সিল আংশিক ডুবিয়ে পাশ থেকে দেখো।",q:[
 ["আয়নায় নিজের ছবি দেখা কোন ঘটনার উদাহরণ?",["প্রতিফলন","শব্দ","তাপ","চাপ"],0],
-["মাধ্যম পরিবর্তনের সময় আলোর দিক পরিবর্তনকে কী বলে?",["প্রতিসরণ","বাষ্পীভবন","পরিবহন","কম্পন"],0],
-["ছায়া তৈরির জন্য কী দরকার?",["আলো ও বাধা","শুধু পানি","শুধু শব্দ","শুধু তাপ"],0]]},
-{id:"electricity",icon:"🔌",title:"বিদ্যুৎ",real:"বাড়ির লাইট, ফ্যান, চার্জার ও কম্পিউটার বৈদ্যুতিক বর্তনীর সঙ্গে যুক্ত।",concept:"সম্পূর্ণ বর্তনীতে বৈদ্যুতিক প্রবাহ হতে পারে এবং শক্তি বিভিন্ন কাজে ব্যবহৃত হয়।",activity:"একটি appliance-এর সুইচ অন/অফ করে circuit-এর পরিবর্তন ভাবো।",q:[
-["সার্কিট সম্পূর্ণ হলে কী হতে পারে?",["কারেন্ট প্রবাহিত হতে পারে","ভর কমে","শব্দ বন্ধ হয়","আলো বাঁকে"],0],
-["কোনটি বিদ্যুৎ ব্যবহার করে চলে?",["ফ্যান","পাথর","কাগজ","কাঠ"],0],
-["সুইচের কাজ কী?",["সার্কিট খোলা/বন্ধ করা","ভর বাড়ানো","আলো বাঁকানো","পানি মাপা"],0]]},
-{id:"magnet",icon:"🧲",title:"চুম্বক ও চৌম্বকত্ব",real:"স্পিকার, মোটর, কম্পাস ও অনেক বৈদ্যুতিক যন্ত্রে চৌম্বকত্ব গুরুত্বপূর্ণ।",concept:"চৌম্বক ক্ষেত্র ও বৈদ্যুতিক প্রবাহের সম্পর্ক প্রযুক্তিতে ব্যবহৃত হয়।",activity:"একটি ছোট চুম্বক দিয়ে লোহা ও প্লাস্টিকের বস্তু আলাদা করে দেখো।",q:[
+["মাধ্যম পরিবর্তনের সময় আলো (Light)র দিক পরিবর্তনকে কী বলে?",["প্রতিসরণ","বাষ্পীভবন","পরিবহন","কম্পন"],0],
+["ছায়া তৈরির জন্য কী দরকার?",["আলো (Light) ও বাধা","শুধু পানি","শুধু শব্দ","শুধু তাপ"],0]]},
+{id:"electricity",icon:"🔌",title:"বিদ্যুৎ (Electricity)",real:"বাড়ির লাইট, ফ্যান, চার্জার ও কম্পিউটার বৈদ্যুতিক বর্তনীর সঙ্গে যুক্ত।",concept:"সম্পূর্ণ বর্তনীতে বৈদ্যুতিক প্রবাহ হতে পারে এবং শক্তি বিভিন্ন কাজে ব্যবহৃত হয়।",activity:"একটি appliance-এর সুইচ অন/অফ করে circuit-এর পরিবর্তন ভাবো।",q:[
+["সার্কিট সম্পূর্ণ হলে কী হতে পারে?",["কারেন্ট প্রবাহিত হতে পারে","ভর কমে","শব্দ বন্ধ হয়","আলো (Light) বাঁকে"],0],
+["কোনটি বিদ্যুৎ (Electricity) ব্যবহার করে চলে?",["ফ্যান","পাথর","কাগজ","কাঠ"],0],
+["সুইচের কাজ কী?",["সার্কিট খোলা/বন্ধ করা","ভর বাড়ানো","আলো (Light) বাঁকানো","পানি মাপা"],0]]},
+{id:"magnet",icon:"🧲",title:"চুম্বক ও চৌম্বকত্ব (Magnetism)",real:"স্পিকার, মোটর, কম্পাস ও অনেক বৈদ্যুতিক যন্ত্রে চৌম্বকত্ব গুরুত্বপূর্ণ।",concept:"চৌম্বক ক্ষেত্র ও বৈদ্যুতিক প্রবাহের সম্পর্ক প্রযুক্তিতে ব্যবহৃত হয়।",activity:"একটি ছোট চুম্বক দিয়ে লোহা ও প্লাস্টিকের বস্তু আলাদা করে দেখো।",q:[
 ["চুম্বক কোনটি আকর্ষণ করতে পারে?",["লোহা","কাগজ","কাচ সবসময়","পানি"],0],
 ["কম্পাস কী কাজে সাহায্য করে?",["দিক নির্ণয়","তাপ মাপা","ভর মাপা","সময় মাপা"],0],
-["মোটরের সঙ্গে কোন ধারণাটি সম্পর্কিত?",["চৌম্বকীয় প্রভাব ও বিদ্যুৎ","শুধু শব্দ","শুধু আলো","শুধু পানি"],0]]}
+["মোটরের সঙ্গে কোন ধারণাটি সম্পর্কিত?",["চৌম্বকীয় প্রভাব ও বিদ্যুৎ (Electricity)","শুধু শব্দ","শুধু আলো (Light)","শুধু পানি"],0]]}
 ];
 
 let state={name:"Explorer",xp:0,lives:3,streak:0,done:{}};let current=0;let answers={};
 try{const s=localStorage.getItem("physicsKhuji");if(s)state={...state,...JSON.parse(s)}}catch(e){}
 function save(){try{localStorage.setItem("physicsKhuji",JSON.stringify(state))}catch(e){}}
 function update(){life.textContent=state.lives;xp.textContent=state.xp;level.textContent=Math.floor(state.xp/100)+1}
-function go(id){document.querySelectorAll(".page").forEach(p=>p.classList.remove("active"));document.getElementById(id).classList.add("active");scrollTo(0,0);if(id==="world")renderWorld();if(id==="dashboard")renderDashboard();update()}
+function go(id){document.querySelectorAll(".page").forEach(p=>p.classList.remove("active"));document.getElementById(id).classList.add("active");scrollTo(0,0);if(id==="world")renderWorld();if(id==="dashboard")renderProgress();update()}
 function start(){state.name=document.getElementById("name").value.trim()||"Explorer";save();go("world")}
-function renderWorld(){worldTitle.textContent=state.name+"-এর Physics World";zones.innerHTML=topics.map((t,i)=>{let open=i===0||state.done[topics[i-1].id];return `<div class="zone ${open?"open":"locked"}" onclick="${open?`openTopic(${i})`:"locked()"}"><span class="num">LEVEL ${i+1}</span><div class="icon">${t.icon}</div><h3>${t.title}</h3><p>${open?"🎯 Mission ready":"🔒 আগের level শেষ করো"}</p><div class="progress"><i style="width:${state.done[t.id]?100:open?18:0}%"></i></div></div>`}).join("")}
-function locked(){toast("🔒 আগে আগের Mission complete করো!")}
-function openTopic(i){current=i;let t=topics[i];lessonBox.innerHTML=`<span class="badge">🎯 LEVEL ${i+1}</span><h2>${t.icon} ${t.title}</h2><div class="mission"><h3>🕵️ Physics Detective</h3><p>${t.real}</p></div><div class="mission"><h3>💡 Power Hint</h3><p>${t.concept}</p></div><div class="mission"><h3>🧪 Experiment Quest</h3><p>${t.activity}</p></div><h3>🗺️ Concept Map</h3><div class="mind"><span class="node"><b>${t.title}</b></span> ↓ <span class="node">📖 Concept</span><span class="node">🌍 বাস্তব জীবন</span><span class="node">🧪 Experiment</span> ↓ <span class="node">⚔️ Mission</span></div><div class="row"><button class="primary" onclick="quizStart()">⚔️ Mission Challenge</button><button class="secondary" onclick="go('world')">← World Map</button></div>`;go("lesson")}
+function renderWorld(){worldTitle.textContent=state.name+"-এর Physics World";zones.innerHTML=topics.map((t,i)=>{let open=i===0||state.done[topics[i-1].id];return `<div class="zone ${open?"open":"locked"}" onclick="${open?`openTopic(${i})`:"locked()"}"><span class="num">Level ${i+1}</span><div class="icon">${t.icon}</div><h3>${t.title}</h3><p>${open?"🎯 Mission ready":"🔒 আগের Level শেষ করো"}</p><div class="progress"><i style="width:${state.done[t.id]?100:open?18:0}%"></i></div></div>`}).join("")}
+function locked(){toast("🔒 আগে আগের Mission Complete করো!")}
+function openTopic(i){current=i;let t=topics[i];lessonBox.innerHTML=`<span class="badge">🎯 Level ${i+1}</span><h2>${t.icon} ${t.title}</h2><div class="mission"><h3>🕵️ Physics Detective</h3><p>${t.real}</p></div><div class="mission"><h3>💡 Power Hint</h3><p>${t.concept}</p></div><div class="mission"><h3>🧪 পরীক্ষা Mission</h3><p>${t.activity}</p></div><h3>🗺️ Concept Map</h3><div class="mind"><span class="node"><b>${t.title}</b></span> ↓ <span class="node">📖 Concept</span><span class="node">🌍 বাস্তব জীবন</span><span class="node">🧪 Experiment</span> ↓ <span class="node">⚔️ Mission</span></div><div class="row"><button class="primary" onclick="quizStart()">⚔️ Mission Challenge</button><button class="secondary" onclick="go('world')">← দুনিয়ার মানচিত্র</button></div>`;go("lesson")}
 function quizStart(){answers={};let t=topics[current];quizTitle.textContent=t.icon+" "+t.title;quizBox.innerHTML=t.q.map((q,i)=>`<div class="mission"><b>${i+1}. ${q[0]}</b>${q[1].map((o,j)=>`<button class="choice" id="a${i}_${j}" onclick="pick(${i},${j})">${String.fromCharCode(65+j)}. ${o}</button>`).join("")}</div>`).join("");result.innerHTML="";go("quiz")}
 function pick(i,j){answers[i]=j;document.querySelectorAll(".choice").forEach(x=>x.classList.remove("selected"));document.getElementById("a"+i+"_"+j).classList.add("selected")}
-function check(){let t=topics[current];if(Object.keys(answers).length<t.q.length){toast("সব প্রশ্নের উত্তর দাও!");return}let score=0;t.q.forEach((q,i)=>{if(answers[i]===q[2])score++});if(score===t.q.length){state.xp+=50;state.done[t.id]=true;state.streak++;save();result.innerHTML=`<div class="mission good"><h3>🎉 Mission Complete!</h3><p>⭐ +50 XP • 🏆 ${t.title} complete!</p><button class="primary" onclick="go('world')">🗺️ Next Zone</button></div>`}else{state.lives=Math.max(0,state.lives-1);state.streak=0;save();result.innerHTML=`<div class="mission bad"><h3>💥 আরও একবার চেষ্টা করো!</h3><p>Score: ${score}/${t.q.length}</p><p>💡 Lesson দেখে আবার চেষ্টা করো।</p><button class="secondary" onclick="openTopic(${current})">🔄 Review Lesson</button></div>`}update()}
-function renderDashboard(){let n=Object.keys(state.done).length;dashName.textContent="⚡ "+state.name;dashText.textContent=`Level ${Math.floor(state.xp/100)+1} • ${n}টি Mission complete • ${state.xp} XP`;dxp.textContent=state.xp;dstreak.textContent=state.streak;dm.textContent=n;bar.style.width=(state.xp%100)+"%";let b=[];if(n>=1)b.push("🌱 Physics Explorer");if(n>=3)b.push("🕵️ Physics Detective");if(n>=5)b.push("⚡ Physics Warrior");badges.textContent=b.length?b.join(" • "):"🔒 প্রথম Mission complete করো।";revision.innerHTML=n?Object.keys(state.done).map(id=>{let i=topics.findIndex(t=>t.id===id);return `<button class="secondary" style="margin:5px" onclick="openTopic(${i})">🔄 ${topics[i].title}</button>`}).join(""):"<p>Mission complete করলে revision এখানে দেখা যাবে।"}
+function check(){let t=topics[current];if(Object.keys(answers).length<t.q.length){toast("সব প্রশ্নের উত্তর দাও!");return}let score=0;t.q.forEach((q,i)=>{if(answers[i]===q[2])score++});if(score===t.q.length){state.xp+=50;state.done[t.id]=true;state.streak++;save();result.innerHTML=`<div class="mission good"><h3>🎉 Mission Complete!</h3><p>⭐ +50 XP • 🏆 ${t.title} complete!</p><button class="primary" onclick="go('world')">🗺️ Next Zone</button></div>`}else{state.lives=Math.max(0,state.lives-1);state.streak=0;save();result.innerHTML=`<div class="mission bad"><h3>💥 আরও একবার চেষ্টা করো!</h3><p>নম্বর: ${score}/${t.q.length}</p><p>💡 Lesson দেখে আবার চেষ্টা করো।</p><button class="secondary" onclick="openTopic(${current})">🔄 পাঠ আবার দেখো</button></div>`}update()}
+function renderProgress(){let n=Object.keys(state.done).length;dashName.textContent="⚡ "+state.name;dashText.textContent=`Level ${Math.floor(state.xp/100)+1} • ${n}টি Mission Complete • ${state.xp} XP`;dxp.textContent=state.xp;dstreak.textContent=state.streak;dm.textContent=n;bar.style.width=(state.xp%100)+"%";let b=[];if(n>=1)b.push("🌱 Physics Explorer");if(n>=3)b.push("🕵️ Physics Detective");if(n>=5)b.push("⚡ Physics Warrior");badges.textContent=b.length?b.join(" • "):"🔒 প্রথম Mission Complete করো।";revision.innerHTML=n?Object.keys(state.done).map(id=>{let i=topics.findIndex(t=>t.id===id);return `<button class="secondary" style="margin:5px" onclick="openTopic(${i})">🔄 ${topics[i].title}</button>`}).join(""):"<p>Mission Complete করলে revision এখানে দেখা যাবে।"}
 function toast(s){let t=document.getElementById("toast");t.textContent=s;t.style.display="block";setTimeout(()=>t.style.display="none",1800)}
 update();
 </script>
